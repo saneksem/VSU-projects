@@ -25,6 +25,7 @@ namespace Algem_manual
             dgv_mtr2.Columns.Add(col, col);
             dgv_mtr2.Columns.Add(col, col);
             dgv_mtr2.Rows.Add(2);
+
             /*
             /begin { array} (lllll)\(
                 1&2&3&4&5\\
@@ -110,7 +111,47 @@ namespace Algem_manual
 
         private void btn_calculate_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("calculations");
+            int[,] A = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
+            ReadMatr(dgv_mtr1, A);
+
+            //Определитель
+            if (chbx_определитель_разложение_строка.Checked)
+                tbx_output.Text += "";
+            if (chbx_определитель_разложение_столбец.Checked)
+                tbx_output.Text += "";
+            if (chbx_определитель_лаплас.Checked)
+                tbx_output.Text += "";
+            if (chbx_определитель_саррюс.Checked)
+                tbx_output.Text += DetMatrix(A);
+
+            //Ранг
+            if (chbx_ранг.Checked)
+                tbx_output.Text += RankMatrix(A);
+
+            //Обратная матрица
+            if (chbx_обратная_матрица_приписывание.Checked)
+                tbx_output.Text += "";
+            if (chbx_обратная_матрица_алг_дополнение.Checked)
+                tbx_output.Text += "";
+
+            //СЛУ
+            if (chbx_слу_крит_совместности.Checked)
+                tbx_output.Text += "";
+            if (chbx_слу_гаусс.Checked)
+                tbx_output.Text += "";
+
+            //Несколько матриц
+            int[,] B = new int[dgv_mtr2.Rows.Count, dgv_mtr2.Columns.Count];
+            ReadMatr(dgv_mtr2, B);
+
+            if (gbx_две_матр_действия_сложение.Checked)
+                tbx_output.Text += AddMatrix(A, B);
+            if (gbx_две_матр_действия_вычитание.Checked)
+                tbx_output.Text += SubMatrix(A, B);
+            if (gbx_две_матр_действия_умножение.Checked)
+                tbx_output.Text += MultMatrix(A, B);
+
+            MessageBox.Show("Готово!");
         }
 
         private void ReadMatr(DataGridView dgv,int[,] matr)
@@ -305,6 +346,11 @@ namespace Algem_manual
             int[,] temp = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
             ReadMatr(dgv_mtr1, temp);
             tbx_output.Text = RankMatrix(temp);
+        }
+
+        private void btn_определитель_Click(object sender, EventArgs e)
+        {
+            gbx_определитель.Height = 20;
         }
     }
 }
