@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
 using System.Windows.Media;
 using System.Drawing.Drawing2D;
 
@@ -23,6 +22,19 @@ namespace Algem_manual
         {
             private int current;
             private string subfolder;
+            public string Directory
+            { get
+                {
+                    return Path.Combine(DirectoriesSettings.TempImagesPath, subfolder);
+                }
+            }
+            public string HTMLPath
+            {
+                get
+                {
+                    return Path.Combine(Directory, "main.html");
+                }
+            }
             
             public Render(string folder)
             {
@@ -110,9 +122,13 @@ namespace Algem_manual
                 throw new NotImplementedException();
             }
 
+            /// <summary>
+            /// На основе .тех файла создаёт HTML страницу с картинками в текущем каталоге экземпляра
+            /// </summary>
+            /// <param name="filepath">Полный путь до .тех файла</param>
             public void TexToHTML(string filepath)
             {
-                string FilePath = Path.Combine(DirectoriesSettings.TempImagesPath, subfolder);
+                string FilePath = Directory;
                 System.IO.Directory.CreateDirectory(FilePath);//проверка на существование не нужна!!! 100%!!!
                 FilePath = Path.Combine(FilePath, "main.html");
 
@@ -217,6 +233,101 @@ namespace Algem_manual
                 }
             }
 
+            public void StringToHTML(string[] strings)
+            {
+                string FilePath = Directory;
+                System.IO.Directory.CreateDirectory(FilePath);//проверка на существование не нужна!!! 100%!!!
+                FilePath = Path.Combine(FilePath, "main.html");
+
+                using (StreamWriter writer = new StreamWriter(File.Open(FilePath, FileMode.Create), Encoding.GetEncoding("windows-1251")))
+                {
+                    writer.WriteLine(TexSettings.HTMLHeader);
+                    writer.WriteLine(TexSettings.HTMLImageStyle);
+
+                    string formula = ""; //временное хранение формулы (возможно, многострочной)
+                    bool formula_opened = false; //флаг,отслеживающий, не рассматриваем ли мы формулу
+
+                    //создаём абзац и начинаем считывать
+                    writer.Write("<p>");
+                    foreach (string current_string in strings)
+                    {
+                        string current = current_string;
+
+                        //если пустая строка,то новый абзац
+                        if (String.IsNullOrWhiteSpace(current))
+                        {
+                            writer.WriteLine("</p>");
+                            writer.WriteLine("<p>");
+                        }
+                        else
+                        {
+                            int cur_index = 0;
+
+                            if (formula_opened)
+                                if (current.IndexOf("$$") == -1)
+                                {
+                                    formula += current;
+                                    //MessageBox.Show("Обновление незакрытой формулы: " + formula);
+                                    continue;
+                                }
+                                else
+                                {
+                                    int formula_end = current.IndexOf("$$");
+                                    formula += current.Substring(0, formula_end + 2);
+                                    current = current.Remove(0, formula_end + 2);
+
+                                    //MessageBox.Show("Конец незакрытой формулы: " + formula);
+
+                                    string finished_formula = "<img src=\"" + CreateImage(formula) + "\">";
+                                    current = current.Insert(0, finished_formula);
+
+
+                                    formula = "";
+                                    formula_opened = false;
+                                    cur_index += finished_formula.Length;
+                                }
+
+
+                            int pred_index = cur_index;
+                            while ((cur_index <= current.Length) && ((cur_index = current.IndexOf("$$", cur_index)) != -1))
+                            {
+                                if (!formula_opened)
+                                {
+                                    formula_opened = true;
+                                    pred_index = cur_index;
+                                    cur_index += 2;
+                                }
+                                else
+                                {
+                                    formula += current.Substring(pred_index, cur_index + 2 - pred_index);
+                                    current = current.Remove(pred_index, cur_index + 2 - pred_index);
+                                    //MessageBox.Show("after delete строка:" + current);
+                                    //MessageBox.Show("Найдена формула: " + formula);
+                                    string expression = "<img src=\"" + CreateImage(formula) + "\">";
+                                    //MessageBox.Show("Добавляем:" + expression);
+                                    current = current.Insert(pred_index, expression);
+                                    //MessageBox.Show("Новая строка:" + current);
+                                    cur_index = pred_index + expression.Length;
+                                    formula_opened = false;
+                                    formula = "";
+                                }
+                            }
+
+                            if (formula_opened)
+                            {
+                                formula += current.Substring(pred_index, current.Length - pred_index);
+                                current = current.Remove(pred_index, current.Length - pred_index);
+                                //MessageBox.Show("Есть незакрытая формула: " + formula);
+                            }
+
+                            //просто бежим по строке и считываем формулы
+
+                            writer.WriteLine(current);
+                        }
+                    }
+                }
+            }
+
             /// <summary>
             /// Создаёт временное изображение для ТЕХ формулы
             /// </summary>
@@ -233,7 +344,7 @@ namespace Algem_manual
                 try
                 {
                     Logs.WriteLine("Поиск или создание подкаталога для формулы");
-                    string FilePath = Path.Combine(DirectoriesSettings.TempImagesPath, subfolder);
+                    string FilePath = Directory;
                     System.IO.Directory.CreateDirectory(FilePath);//проверка на существование не нужна!!! 100%!!!
                     FilePath = Path.Combine(FilePath, String.Format("{0}.gif", current));
 

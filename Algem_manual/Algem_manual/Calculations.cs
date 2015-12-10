@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,18 +26,6 @@ namespace Algem_manual
             dgv_mtr2.Columns.Add(col, col);
             dgv_mtr2.Columns.Add(col, col);
             dgv_mtr2.Rows.Add(2);
-
-            /*
-            /begin { array} (lllll)\(
-                1&2&3&4&5\\
-            ...
-            /)/End { array }*/
-            /*int[,] mtr = new int[2, 2];
-            mtr[0, 0] = 1;
-            mtr[0, 1] = 2;
-            mtr[1, 0] = 3;
-            mtr[1, 1] = 4;
-            dgv_mtr1.DataSource = mtr;*/
         }
 
         private void mtr_index_changed(object sender, EventArgs e)
@@ -111,47 +100,61 @@ namespace Algem_manual
 
         private void btn_calculate_Click(object sender, EventArgs e)
         {
+            string result = "";
+            //tbx_output.Text = result;
+
+            //действия с одной матрицей
             int[,] A = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
             ReadMatr(dgv_mtr1, A);
 
-            //Определитель
-            if (chbx_определитель_разложение_строка.Checked)
-                tbx_output.Text += "";
-            if (chbx_определитель_разложение_столбец.Checked)
-                tbx_output.Text += "";
-            if (chbx_определитель_лаплас.Checked)
-                tbx_output.Text += "";
-            if (chbx_определитель_саррюс.Checked)
-                tbx_output.Text += DetMatrix(A);
+            foreach (Control panel_control in splitContainerMatrix.Panel1.Controls)
+                if (panel_control is GroupBox)
+                    foreach (Control group_control in panel_control.Controls)
+                        if ((group_control is CheckBox) && ((CheckBox)group_control).Checked)
+                        {
+                            string function = group_control.Name.Substring(5);
+                            Type matr_utils = typeof(MatrixUtils);
+                            MethodInfo method = matr_utils.GetMethod(function);
 
-            //Ранг
-            if (chbx_ранг.Checked)
-                tbx_output.Text += RankMatrix(A);
+                            Control[] controls = Controls.Find("cmbx_" + function, true);
+                            if (controls.Count() == 0)
+                                //MessageBox.Show(String.Format("Для чекбокса {0} не найден привязанный комбобокс", group_control.Name));
+                                result += (string)method.Invoke(this, new object[] { A, this.chbx_details.Checked });
+                            else
+                                //MessageBox.Show(String.Format("Для чекбокса {0} НАШЁЛСЯ привязанный комбобокс", group_control.Name));
+                                result += (string)method.Invoke(this, new object[] { A, ((ComboBox)controls[0]).SelectedIndex, this.chbx_details.Checked });
+                        }
 
-            //Обратная матрица
-            if (chbx_обратная_матрица_приписывание.Checked)
-                tbx_output.Text += "";
-            if (chbx_обратная_матрица_алг_дополнение.Checked)
-                tbx_output.Text += "";
-
-            //СЛУ
-            if (chbx_слу_крит_совместности.Checked)
-                tbx_output.Text += "";
-            if (chbx_слу_гаусс.Checked)
-                tbx_output.Text += "";
-
-            //Несколько матриц
+            //действия с двумя матрицами
             int[,] B = new int[dgv_mtr2.Rows.Count, dgv_mtr2.Columns.Count];
             ReadMatr(dgv_mtr2, B);
 
-            if (gbx_две_матр_действия_сложение.Checked)
-                tbx_output.Text += AddMatrix(A, B);
-            if (gbx_две_матр_действия_вычитание.Checked)
-                tbx_output.Text += SubMatrix(A, B);
-            if (gbx_две_матр_действия_умножение.Checked)
-                tbx_output.Text += MultMatrix(A, B);
+            foreach (Control panel_control in splitContainerMatrix.Panel2.Controls)
+                if (panel_control is GroupBox)
+                    foreach (Control group_control in panel_control.Controls)
+                        if ((group_control is CheckBox) && ((CheckBox)group_control).Checked)
+                        {
+                            string function = group_control.Name.Substring(5);
+                            Type matr_utils = typeof(MatrixUtils);
+                            MethodInfo method = matr_utils.GetMethod(function);
 
-            MessageBox.Show("Готово!");
+                            Control[] controls = Controls.Find("cmbx_" + function, true);
+                            if (controls.Count() == 0)
+                                result += (string)method.Invoke(this, new object[] { A, B, this.chbx_details.Checked });
+                            else
+                                //тут проверка на выбранный индекс
+                                if (((ComboBox)controls[0]).SelectedIndex == 1)
+                                    result += (string)method.Invoke(this, new object[] { B, A, this.chbx_details.Checked });
+                                else
+                                    result += (string)method.Invoke(this, new object[] { A, B, this.chbx_details.Checked });
+                        }
+
+            //tbx_output.Text += result;
+            string[] temp = result.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            TexUtils.Render r1 = new TexUtils.Render("matrix_calc");
+            r1.StringToHTML(temp);
+            browser_results.Url = new Uri(String.Format("file:///{0}", r1.HTMLPath));
+            browser_results.Refresh();
         }
 
         private void ReadMatr(DataGridView dgv,int[,] matr)
@@ -171,186 +174,21 @@ namespace Algem_manual
                 splitContainerMatrix.Panel2Collapsed = true;
         }
 
-        //calculators
-        public static string DetMatrix(int[,] Matr)
+        private void show_hide_groupbox(object sender, EventArgs e)
         {
-            StringBuilder Result = new StringBuilder();
-            int det = 0;
-            det = Matr[0, 0] * Matr[1, 1] * Matr[2, 2] + Matr[0, 1] * Matr[1, 2] * Matr[2, 0] + Matr[0, 2] * Matr[1, 0] * Matr[2, 1] - Matr[0, 2] * Matr[1, 1] * Matr[2, 0] - Matr[0, 0] * Matr[1, 2] * Matr[2, 1] - Matr[0, 1] * Matr[1, 0] * Matr[2, 2];
-            Result.Append(Matr[0, 0] + "*" + Matr[1, 1] + "*" + Matr[2, 2] + " + " + Matr[0, 1] + "*" + Matr[1, 2] + "*" + Matr[2, 0] + " + " + Matr[0, 2] + "*" + Matr[1, 0] + "*" + Matr[2, 1] + " - " + Matr[0, 2] + "*" + Matr[1, 1] + "*" + Matr[2, 0] + " - " + Matr[0, 0] + "*" + Matr[1, 2] + "*" + Matr[2, 1] + " - " + Matr[0, 1] + "*" + Matr[1, 0] + "*" + Matr[2, 2] + " = ")
-                  .Append(Matr[0, 0] * Matr[1, 1] * Matr[2, 2] + " + " + Matr[0, 1] * Matr[1, 2] * Matr[2, 0] + " + " + Matr[0, 2] * Matr[1, 0] * Matr[2, 1] + " - " + Matr[0, 2] * Matr[1, 1] * Matr[2, 0] + " - " + Matr[0, 0] * Matr[1, 2] * Matr[2, 1] + " - " + Matr[0, 1] * Matr[1, 0] * Matr[2, 2] + " = ")
-                  .Append(det)
-                  .Append(Environment.NewLine);
-
-            return Result.ToString();
+            GroupBox parent = (GroupBox)((Button)sender).Parent;
+            if (parent.Height == 23)
+                parent.Height = 100;
+            else
+                parent.Height = 23;
         }
 
-        public static string AddMatrix(int[,] Matr1, int[,] Matr2)
+        private void btn_show_hide_Click(object sender, EventArgs e)
         {
-            int CountLines = Matr1.GetLength(0), CountCols = Matr1.GetLength(1);
-            StringBuilder Result = new StringBuilder();
-
-            for (int i = 0; i < CountLines; i++)
-            {
-                for (int j = 0; j < CountCols; j++)
-                    Result.Append(Matr1[i, j] + Matr2[i, j] + " ");
-                Result.Append(Environment.NewLine);
-            }
-            return Result.ToString();
-        }
-
-        public static string SubMatrix(int[,] Matr1, int[,] Matr2)
-        {
-            int CountLines = Matr1.GetLength(0), CountCols = Matr1.GetLength(1);
-            StringBuilder Result = new StringBuilder();
-
-            for (int i = 0; i < CountLines; i++)
-            {
-                for (int j = 0; j < CountCols; j++)
-                    Result.Append(Matr1[i, j] - Matr2[i, j] + " ");
-                Result.Append(Environment.NewLine);
-            }
-            return Result.ToString();
-        }
-
-        public static string MultMatrix(int[,] Matr1, int[,] Matr2)
-        {
-            int CountLines1 = Matr1.GetLength(0), CountCols1 = Matr1.GetLength(1),
-             CountLines2 = Matr2.GetLength(0), CountCols2 = Matr2.GetLength(1);
-            if (CountLines2 != CountCols1)
-                return null;
-            StringBuilder Result = new StringBuilder();
-
-            for (int i = 0; i < CountLines1; i++)
-            {
-                for (int j = 0; j < CountCols2; j++)
-                {
-                    int Current = 0;
-                    for (int k = 0; k < CountCols1; k++)
-                        Current += Matr1[i, k] * Matr2[k, j];
-                    Result.Append(Current + " ");
-                }
-                Result.Append(Environment.NewLine);
-            }
-            return Result.ToString();
-        }
-
-        //------------------------------Вспомогательные функции для вычисления ранга------------------------------//
-
-        static void SwapLines(double[,] Matr, int L1, int L2)
-        {
-            int CountCols = Matr.GetLength(1);
-            for (int j = 0; j < CountCols; j++)
-            {
-                double tmp = Matr[L1, j];
-                Matr[L1, j] = Matr[L2, j];
-                Matr[L2, j] = tmp;
-            }
-        }
-
-        static void SwapCols(double[,] Matr, int C1, int C2)
-        {
-            int CountLines = Matr.GetLength(0);
-            for (int i = 0; i < CountLines; i++)
-            {
-                double tmp = Matr[i, C1];
-                Matr[i, C1] = Matr[i, C2];
-                Matr[i, C2] = tmp;
-            }
-        }
-
-        static void CastString(double[,] Matr, int IndexSourceString, int IndexStr, int BeginIndex)
-        {
-            double tmp = -Matr[IndexStr, BeginIndex] / Matr[IndexSourceString, BeginIndex];
-            int CountCols = Matr.GetLength(1);
-            for (int i = 0; i < CountCols; i++)
-                Matr[IndexStr, i] += tmp * Matr[IndexSourceString, i];
-        }
-
-        static void FindMaxAbs(double[,] Matr, int BeginIndexForFind, ref int Line, ref int Col)
-        {
-            int CountLines = Matr.GetLength(0);
-            int CountCols = Matr.GetLength(1);
-            double MaxAbs = Math.Abs(Matr[BeginIndexForFind, BeginIndexForFind]), Abs;
-            for (int i = BeginIndexForFind; i < CountLines; i++)
-                for (int j = BeginIndexForFind + 1; j < CountCols; j++)
-                    if ((Abs = Math.Abs(Matr[i, j])) > MaxAbs)
-                    {
-                        MaxAbs = Abs;
-                        Line = i;
-                        Col = j;
-                    }
-        }
-
-        public static string RankMatrix(int[,] Matr)
-        {
-            int CountLines = Matr.GetLength(0), CountCols = Matr.GetLength(1);
-            double[,] HelpMatr = new double[CountLines, CountCols];
-            for (int i = 0; i < CountLines; i++)
-                for (int j = 0; j < CountCols; j++)
-                    HelpMatr[i, j] = Matr[i, j];
-
-            int LineMaxAbs = 0, ColMaxAbs = 0, BeginIndex = -1;
-            for (int i = 0; i < CountLines; i++)
-            {
-                FindMaxAbs(HelpMatr, ++BeginIndex, ref LineMaxAbs, ref ColMaxAbs);
-                SwapLines(HelpMatr, BeginIndex, LineMaxAbs);
-                SwapCols(HelpMatr, BeginIndex, ColMaxAbs);
-
-                if (HelpMatr[LineMaxAbs, ColMaxAbs] == 0)
-                    return BeginIndex.ToString();
-                else
-                    for (int j = BeginIndex + 1; j < CountLines; j++)
-                        if (HelpMatr[j, BeginIndex] != 0)
-                            CastString(HelpMatr, i, j, BeginIndex);
-            }
-            return CountLines.ToString();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            int[,] temp = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
-            ReadMatr(dgv_mtr1, temp);
-            tbx_output.Text = DetMatrix(temp);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            int[,] temp1 = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
-            ReadMatr(dgv_mtr1, temp1);
-            int[,] temp2 = new int[dgv_mtr2.Rows.Count, dgv_mtr2.Columns.Count];
-            ReadMatr(dgv_mtr2, temp2);
-            tbx_output.Text = AddMatrix(temp1, temp2);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            int[,] temp1 = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
-            ReadMatr(dgv_mtr1, temp1);
-            int[,] temp2 = new int[dgv_mtr2.Rows.Count, dgv_mtr2.Columns.Count];
-            ReadMatr(dgv_mtr2, temp2);
-            tbx_output.Text = SubMatrix(temp1, temp2);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            int[,] temp1 = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
-            ReadMatr(dgv_mtr1, temp1);
-            int[,] temp2 = new int[dgv_mtr2.Rows.Count, dgv_mtr2.Columns.Count];
-            ReadMatr(dgv_mtr2, temp2);
-            tbx_output.Text = MultMatrix(temp1, temp2);
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            int[,] temp = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
-            ReadMatr(dgv_mtr1, temp);
-            tbx_output.Text = RankMatrix(temp);
-        }
-
-        private void btn_определитель_Click(object sender, EventArgs e)
-        {
-            gbx_определитель.Height = 20;
+            if (splitContainerMatrix.Height > 0)
+                splitContainerMatrix.Height = 0;
+            else
+                splitContainerMatrix.Height = 372;
         }
     }
 }

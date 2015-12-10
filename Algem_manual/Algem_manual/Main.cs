@@ -40,8 +40,13 @@ namespace Algem_manual
 
             tex_writer.TexToHTML(Application.StartupPath + "\\test.tex");
             //browser_theory.Url = new Uri(String.Format("file:///{0}/main.html", tex_writer.ToString()));
-            
-            browser_theory.Url = new Uri(String.Format("file:///{0}",Application.StartupPath+ @"/Data/Temp/Images/main/main.html"));
+
+            //browser_theory.Url = new Uri(String.Format("file:///{0}",Application.StartupPath+ @"/Data/Temp/Images/main/main.html"));
+            browser_theory.Url = new Uri(String.Format("file:///{0}", tex_writer.HTMLPath));
+
+            //изменение цвета
+            browser_theory.Document.BackColor = Color.White;
+            //browser_theory.Document.BackColor = Color.LightYellow;
             //tex_writer.Clear();
         }
 
