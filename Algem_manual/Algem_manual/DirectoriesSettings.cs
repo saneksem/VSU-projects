@@ -12,4 +12,12 @@ namespace Algem_manual
         public static string LogsPath = Application.StartupPath + "\\Logs";
         public static string TempImagesPath = Application.StartupPath + "\\Data\\Temp\\Images";
     }
+    public static class TexSettings
+    {
+        public static string HTMLHeader = "<meta http-equiv=\"Content-Type\" content=\"text/html\"; charset=\"windows-1251\" />";
+        public static string HTMLImageStyle = "<style>img {display: inline-block; margin-right: 0px; vertical-align: middle;}</style>";
+        public static string[] Ignorable = { @"\documentclass{article}", @"\usepackage[cp1251]{inputenc}", @"\usepackage[russian]{babel}" };
+        public static string DocumentStart = @"\begin{document}";
+        public static string DocumentEnd = @"\end{document}";
+    }
 }
