@@ -17,26 +17,20 @@ namespace Algem_manual
     public partial class Main : Form
     {
         TexUtils.Render tex_writer;
+        TreeViewUtils.TreeRunner theory;
 
         public Main()
         {
             Logs.InitLogging();
 
             tex_writer = new TexUtils.Render("main");
+            
 
             Logs.WriteLine("Инициализация главной формы");
             InitializeComponent();
 
-            /*tex_writer.FormulaToRTB(@"$$ \color{black} \Huge \text{ A_f}=\left\{
-                                    \begin{array}{lll}
-                                    \lambda_1 & 0 & 0\\
-                                    0 & \lambda_1 & 0\\
-                                    0 & 0 & \lambda_2
-                                    \end{array}
-                                    \right\}
-                                     $$", rtf_theory);*/
-            
-            //tex_writer.FormulaToRTB(@"$$ \color{black} \Huge  \text x^2+z^2=0 $$", new RichTextBox());
+            theory = new TreeViewUtils.TreeRunner(Application.StartupPath + "\\Data\\Content", treeView1);
+            theory.Fill();
 
             tex_writer.TexToHTML(Application.StartupPath + "\\test.tex");
             //browser_theory.Url = new Uri(String.Format("file:///{0}/main.html", tex_writer.ToString()));
@@ -54,6 +48,19 @@ namespace Algem_manual
         {
             Calculations c = new Calculations();
             c.Show();
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            TreeNode current = treeView1.SelectedNode;
+            if (current.Tag.ToString() == "child")
+            {
+                string file = theory.GetFolder + "\\" + current.Parent.Text + "\\" + current.Text;
+                tex_writer.Clear();
+                tex_writer.TexToHTML(file);
+                browser_theory.Url = new Uri(String.Format("file:///{0}", tex_writer.HTMLPath));
+                browser_theory.Refresh();
+            }
         }
     }
 }

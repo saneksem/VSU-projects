@@ -68,6 +68,7 @@ namespace Algem_manual
                 {
                     Delete(i);
                 }
+                current = 0;
             }
 
             /// <summary>
