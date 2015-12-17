@@ -21,25 +21,36 @@ namespace Algem_manual
         public class Render
         {
             private int current;
-            private string subfolder;
-            public string Directory
+            private string fullpath;
+            public string GetDirectory
             { get
                 {
-                    return Path.Combine(DirectoriesSettings.TempImagesPath, subfolder);
+                    return fullpath;
+                }
+            }
+            public string SetDirectory
+            {
+                set
+                {
+                    fullpath = value;
                 }
             }
             public string HTMLPath
             {
                 get
                 {
-                    return Path.Combine(Directory, "main.html");
+                    return Path.Combine(GetDirectory, "main.html");
                 }
             }
             
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="folder">Полный путь каталогая для сохранения</param>
             public Render(string folder)
             {
                 Logs.WriteLine("Инициализиация рендера ТЕХ формул");
-                subfolder = folder;
+                fullpath = folder;
                 current = 0;
             }
 
@@ -51,7 +62,7 @@ namespace Algem_manual
             {
                 try
                 {
-                    File.Delete(Path.Combine(DirectoriesSettings.TempImagesPath, subfolder, String.Format("{0}.gif", FileNumber)));
+                    File.Delete(Path.Combine(DirectoriesSettings.TempImagesPath, fullpath, String.Format("{0}.gif", FileNumber)));
                 }
                 catch (Exception ex)
                 {
@@ -72,64 +83,12 @@ namespace Algem_manual
             }
 
             /// <summary>
-            /// Вставляет ТЕХ формулу в RichTextBox
-            /// </summary>
-            /// <param name="expression">Формула</param>
-            /// <param name="control">Компонент для вывода</param>
-            public void FormulaToRTB(string expression, RichTextBox control)
-            {
-                string filename = CreateImage(expression);
-                int width;
-                int height;
-                Image img;
-
-                using (Image image1 = Image.FromFile(filename))
-                {
-                    width = image1.Width;
-                    height = image1.Height;
-                    Logs.WriteLine("Получаю эскиз изображения "+filename);
-                    img = image1.GetThumbnailImage(width, height, null,IntPtr.Zero);
-                }
-                Bitmap myBitmap = new Bitmap(width, height);
-
-                System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(myBitmap);
-                g.SmoothingMode = SmoothingMode.HighQuality;
-                g.Clear(control.BackColor);
-                g.DrawImage(img, 0, 0);
-                g.Dispose();
-
-                // Copy the bitmap to the clipboard.
-                Clipboard.SetDataObject(myBitmap);
-                
-                
-                // Get the format for the object type.
-                DataFormats.Format myFormat = DataFormats.GetFormat(DataFormats.Bitmap);
-
-                // After verifying that the data can be pasted, paste
-                if (control.CanPaste(myFormat))
-                {
-                    Logs.WriteLine("Вставляю на форму изображение " + filename);
-                    control.Paste(myFormat);
-                }
-            }
-
-            /// <summary>
-            /// Выводит текст с отрисованными ТЕХ формулами в RichTextBox
-            /// </summary>
-            /// <param name="text">Текст с ТЕХ формулами</param>
-            /// <param name="control">Компонент для вывода</param>
-            public void StringToRTB(string text, RichTextBox control)
-            {
-                throw new NotImplementedException();
-            }
-
-            /// <summary>
             /// На основе .тех файла создаёт HTML страницу с картинками в текущем каталоге экземпляра
             /// </summary>
             /// <param name="filepath">Полный путь до .тех файла</param>
             public void TexToHTML(string filepath)
             {
-                string FilePath = Directory;
+                string FilePath = GetDirectory;
                 System.IO.Directory.CreateDirectory(FilePath);//проверка на существование не нужна!!! 100%!!!
                 FilePath = Path.Combine(FilePath, "main.html");
 
@@ -236,7 +195,7 @@ namespace Algem_manual
 
             public void StringToHTML(string[] strings)
             {
-                string FilePath = Directory;
+                string FilePath = GetDirectory;
                 System.IO.Directory.CreateDirectory(FilePath);//проверка на существование не нужна!!! 100%!!!
                 FilePath = Path.Combine(FilePath, "main.html");
 
@@ -345,7 +304,7 @@ namespace Algem_manual
                 try
                 {
                     Logs.WriteLine("Поиск или создание подкаталога для формулы");
-                    string FilePath = Directory;
+                    string FilePath = GetDirectory;
                     System.IO.Directory.CreateDirectory(FilePath);//проверка на существование не нужна!!! 100%!!!
                     FilePath = Path.Combine(FilePath, String.Format("{0}.gif", current));
 
@@ -369,7 +328,7 @@ namespace Algem_manual
 
             public override string ToString()
             {
-                return "";
+                return GetDirectory;
             }
         }
     }

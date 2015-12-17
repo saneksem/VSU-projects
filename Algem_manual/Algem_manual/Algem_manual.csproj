@@ -47,6 +47,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\TestConverter.cs" />
+    <Compile Include="Converters\TexConverter.cs" />
+    <Compile Include="Scanners\TestScanner.cs" />
+    <Compile Include="Scanners\TexScanner.cs" />
     <Compile Include="TreeViewUtils.cs" />
     <Compile Include="Calculators\MatrixCalculator\MatrixCalculator.cs">
       <SubType>Form</SubType>

@@ -29,27 +29,46 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Подтема1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Подтема2");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Тема1", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Подтема1");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Подтема2");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Тема2", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Подтема1");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Подтема2");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Тема1", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Подтема1");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Подтема2");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Тема2", new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11});
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.tree_Теория = new System.Windows.Forms.TreeView();
             this.tab_control_main = new System.Windows.Forms.TabControl();
-            this.tab_theory = new System.Windows.Forms.TabPage();
-            this.browser_theory = new System.Windows.Forms.WebBrowser();
-            this.tab_example = new System.Windows.Forms.TabPage();
-            this.tab_test = new System.Windows.Forms.TabPage();
+            this.tab_Теория = new System.Windows.Forms.TabPage();
+            this.split_Теория = new System.Windows.Forms.SplitContainer();
+            this.browser_Теория = new System.Windows.Forms.WebBrowser();
+            this.tab_Примеры = new System.Windows.Forms.TabPage();
+            this.split_Примеры = new System.Windows.Forms.SplitContainer();
+            this.tree_Примеры = new System.Windows.Forms.TreeView();
+            this.browser_Примеры = new System.Windows.Forms.WebBrowser();
+            this.tab_Тесты = new System.Windows.Forms.TabPage();
+            this.split_Тесты = new System.Windows.Forms.SplitContainer();
+            this.tree_Тесты = new System.Windows.Forms.TreeView();
             this.toolStripMain.SuspendLayout();
             this.tab_control_main.SuspendLayout();
-            this.tab_theory.SuspendLayout();
+            this.tab_Теория.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.split_Теория)).BeginInit();
+            this.split_Теория.Panel1.SuspendLayout();
+            this.split_Теория.Panel2.SuspendLayout();
+            this.split_Теория.SuspendLayout();
+            this.tab_Примеры.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.split_Примеры)).BeginInit();
+            this.split_Примеры.Panel1.SuspendLayout();
+            this.split_Примеры.Panel2.SuspendLayout();
+            this.split_Примеры.SuspendLayout();
+            this.tab_Тесты.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.split_Тесты)).BeginInit();
+            this.split_Тесты.Panel1.SuspendLayout();
+            this.split_Тесты.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripMain
@@ -59,7 +78,7 @@
             this.toolStripButton1});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(774, 27);
+            this.toolStripMain.Size = new System.Drawing.Size(982, 27);
             this.toolStripMain.TabIndex = 0;
             this.toolStripMain.Text = "toolStrip1";
             // 
@@ -72,93 +91,183 @@
             this.toolStripButton1.Text = "Калькулятор";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // treeView1
+            // tree_Теория
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.treeView1.Location = new System.Drawing.Point(0, 27);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node2";
-            treeNode1.Text = "Подтема1";
-            treeNode2.Name = "Node3";
-            treeNode2.Text = "Подтема2";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Тема1";
-            treeNode4.Name = "Node4";
-            treeNode4.Text = "Подтема1";
-            treeNode5.Name = "Node5";
-            treeNode5.Text = "Подтема2";
-            treeNode6.Name = "Node1";
-            treeNode6.Text = "Тема2";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode6});
-            this.treeView1.Size = new System.Drawing.Size(165, 327);
-            this.treeView1.TabIndex = 1;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.tree_Теория.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tree_Теория.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tree_Теория.HideSelection = false;
+            this.tree_Теория.Location = new System.Drawing.Point(0, 0);
+            this.tree_Теория.Name = "tree_Теория";
+            treeNode7.Name = "Node2";
+            treeNode7.Text = "Подтема1";
+            treeNode8.Name = "Node3";
+            treeNode8.Text = "Подтема2";
+            treeNode9.Name = "Node0";
+            treeNode9.Text = "Тема1";
+            treeNode10.Name = "Node4";
+            treeNode10.Text = "Подтема1";
+            treeNode11.Name = "Node5";
+            treeNode11.Text = "Подтема2";
+            treeNode12.Name = "Node1";
+            treeNode12.Text = "Тема2";
+            this.tree_Теория.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode12});
+            this.tree_Теория.Size = new System.Drawing.Size(176, 589);
+            this.tree_Теория.TabIndex = 1;
+            this.tree_Теория.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // tab_control_main
             // 
-            this.tab_control_main.Controls.Add(this.tab_theory);
-            this.tab_control_main.Controls.Add(this.tab_example);
-            this.tab_control_main.Controls.Add(this.tab_test);
+            this.tab_control_main.Controls.Add(this.tab_Теория);
+            this.tab_control_main.Controls.Add(this.tab_Примеры);
+            this.tab_control_main.Controls.Add(this.tab_Тесты);
             this.tab_control_main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tab_control_main.Location = new System.Drawing.Point(165, 27);
+            this.tab_control_main.Location = new System.Drawing.Point(0, 27);
             this.tab_control_main.Name = "tab_control_main";
             this.tab_control_main.SelectedIndex = 0;
-            this.tab_control_main.Size = new System.Drawing.Size(609, 327);
+            this.tab_control_main.Size = new System.Drawing.Size(982, 626);
             this.tab_control_main.TabIndex = 2;
             // 
-            // tab_theory
+            // tab_Теория
             // 
-            this.tab_theory.Controls.Add(this.browser_theory);
-            this.tab_theory.Location = new System.Drawing.Point(4, 25);
-            this.tab_theory.Name = "tab_theory";
-            this.tab_theory.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_theory.Size = new System.Drawing.Size(601, 298);
-            this.tab_theory.TabIndex = 0;
-            this.tab_theory.Text = "Теория";
-            this.tab_theory.UseVisualStyleBackColor = true;
+            this.tab_Теория.Controls.Add(this.split_Теория);
+            this.tab_Теория.Location = new System.Drawing.Point(4, 25);
+            this.tab_Теория.Name = "tab_Теория";
+            this.tab_Теория.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Теория.Size = new System.Drawing.Size(974, 597);
+            this.tab_Теория.TabIndex = 0;
+            this.tab_Теория.Text = "Теория";
+            this.tab_Теория.UseVisualStyleBackColor = true;
             // 
-            // browser_theory
+            // split_Теория
             // 
-            this.browser_theory.AllowNavigation = false;
-            this.browser_theory.AllowWebBrowserDrop = false;
-            this.browser_theory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browser_theory.IsWebBrowserContextMenuEnabled = false;
-            this.browser_theory.Location = new System.Drawing.Point(3, 3);
-            this.browser_theory.MinimumSize = new System.Drawing.Size(20, 20);
-            this.browser_theory.Name = "browser_theory";
-            this.browser_theory.Size = new System.Drawing.Size(595, 292);
-            this.browser_theory.TabIndex = 0;
-            this.browser_theory.WebBrowserShortcutsEnabled = false;
+            this.split_Теория.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.split_Теория.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.split_Теория.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.split_Теория.Location = new System.Drawing.Point(3, 3);
+            this.split_Теория.Name = "split_Теория";
             // 
-            // tab_example
+            // split_Теория.Panel1
             // 
-            this.tab_example.Location = new System.Drawing.Point(4, 25);
-            this.tab_example.Name = "tab_example";
-            this.tab_example.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_example.Size = new System.Drawing.Size(601, 298);
-            this.tab_example.TabIndex = 1;
-            this.tab_example.Text = "Примеры";
-            this.tab_example.UseVisualStyleBackColor = true;
+            this.split_Теория.Panel1.Controls.Add(this.tree_Теория);
             // 
-            // tab_test
+            // split_Теория.Panel2
             // 
-            this.tab_test.Location = new System.Drawing.Point(4, 25);
-            this.tab_test.Name = "tab_test";
-            this.tab_test.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_test.Size = new System.Drawing.Size(601, 298);
-            this.tab_test.TabIndex = 2;
-            this.tab_test.Text = "Тесты";
-            this.tab_test.UseVisualStyleBackColor = true;
+            this.split_Теория.Panel2.BackColor = System.Drawing.Color.Transparent;
+            this.split_Теория.Panel2.Controls.Add(this.browser_Теория);
+            this.split_Теория.Size = new System.Drawing.Size(968, 591);
+            this.split_Теория.SplitterDistance = 178;
+            this.split_Теория.TabIndex = 2;
+            // 
+            // browser_Теория
+            // 
+            this.browser_Теория.AllowNavigation = false;
+            this.browser_Теория.AllowWebBrowserDrop = false;
+            this.browser_Теория.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browser_Теория.IsWebBrowserContextMenuEnabled = false;
+            this.browser_Теория.Location = new System.Drawing.Point(0, 0);
+            this.browser_Теория.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser_Теория.Name = "browser_Теория";
+            this.browser_Теория.Size = new System.Drawing.Size(784, 589);
+            this.browser_Теория.TabIndex = 0;
+            this.browser_Теория.WebBrowserShortcutsEnabled = false;
+            // 
+            // tab_Примеры
+            // 
+            this.tab_Примеры.Controls.Add(this.split_Примеры);
+            this.tab_Примеры.Location = new System.Drawing.Point(4, 25);
+            this.tab_Примеры.Name = "tab_Примеры";
+            this.tab_Примеры.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Примеры.Size = new System.Drawing.Size(974, 597);
+            this.tab_Примеры.TabIndex = 1;
+            this.tab_Примеры.Text = "Примеры";
+            this.tab_Примеры.UseVisualStyleBackColor = true;
+            // 
+            // split_Примеры
+            // 
+            this.split_Примеры.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.split_Примеры.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.split_Примеры.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.split_Примеры.Location = new System.Drawing.Point(3, 3);
+            this.split_Примеры.Name = "split_Примеры";
+            // 
+            // split_Примеры.Panel1
+            // 
+            this.split_Примеры.Panel1.Controls.Add(this.tree_Примеры);
+            // 
+            // split_Примеры.Panel2
+            // 
+            this.split_Примеры.Panel2.Controls.Add(this.browser_Примеры);
+            this.split_Примеры.Size = new System.Drawing.Size(968, 591);
+            this.split_Примеры.SplitterDistance = 194;
+            this.split_Примеры.TabIndex = 0;
+            // 
+            // tree_Примеры
+            // 
+            this.tree_Примеры.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tree_Примеры.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tree_Примеры.HideSelection = false;
+            this.tree_Примеры.Location = new System.Drawing.Point(0, 0);
+            this.tree_Примеры.Name = "tree_Примеры";
+            this.tree_Примеры.Size = new System.Drawing.Size(192, 589);
+            this.tree_Примеры.TabIndex = 0;
+            // 
+            // browser_Примеры
+            // 
+            this.browser_Примеры.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browser_Примеры.Location = new System.Drawing.Point(0, 0);
+            this.browser_Примеры.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser_Примеры.Name = "browser_Примеры";
+            this.browser_Примеры.Size = new System.Drawing.Size(768, 589);
+            this.browser_Примеры.TabIndex = 0;
+            // 
+            // tab_Тесты
+            // 
+            this.tab_Тесты.Controls.Add(this.split_Тесты);
+            this.tab_Тесты.Location = new System.Drawing.Point(4, 25);
+            this.tab_Тесты.Name = "tab_Тесты";
+            this.tab_Тесты.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Тесты.Size = new System.Drawing.Size(974, 597);
+            this.tab_Тесты.TabIndex = 2;
+            this.tab_Тесты.Text = "Тесты";
+            this.tab_Тесты.UseVisualStyleBackColor = true;
+            // 
+            // split_Тесты
+            // 
+            this.split_Тесты.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.split_Тесты.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.split_Тесты.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.split_Тесты.Location = new System.Drawing.Point(3, 3);
+            this.split_Тесты.Name = "split_Тесты";
+            // 
+            // split_Тесты.Panel1
+            // 
+            this.split_Тесты.Panel1.Controls.Add(this.tree_Тесты);
+            // 
+            // split_Тесты.Panel2
+            // 
+            this.split_Тесты.Panel2.AutoScroll = true;
+            this.split_Тесты.Size = new System.Drawing.Size(968, 591);
+            this.split_Тесты.SplitterDistance = 161;
+            this.split_Тесты.TabIndex = 0;
+            // 
+            // tree_Тесты
+            // 
+            this.tree_Тесты.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tree_Тесты.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tree_Тесты.HideSelection = false;
+            this.tree_Тесты.Location = new System.Drawing.Point(0, 0);
+            this.tree_Тесты.Name = "tree_Тесты";
+            this.tree_Тесты.Size = new System.Drawing.Size(159, 589);
+            this.tree_Тесты.TabIndex = 0;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 354);
+            this.ClientSize = new System.Drawing.Size(982, 653);
             this.Controls.Add(this.tab_control_main);
-            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.toolStripMain);
             this.Name = "Main";
             this.ShowIcon = false;
@@ -166,7 +275,20 @@
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
             this.tab_control_main.ResumeLayout(false);
-            this.tab_theory.ResumeLayout(false);
+            this.tab_Теория.ResumeLayout(false);
+            this.split_Теория.Panel1.ResumeLayout(false);
+            this.split_Теория.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.split_Теория)).EndInit();
+            this.split_Теория.ResumeLayout(false);
+            this.tab_Примеры.ResumeLayout(false);
+            this.split_Примеры.Panel1.ResumeLayout(false);
+            this.split_Примеры.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.split_Примеры)).EndInit();
+            this.split_Примеры.ResumeLayout(false);
+            this.tab_Тесты.ResumeLayout(false);
+            this.split_Тесты.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.split_Тесты)).EndInit();
+            this.split_Тесты.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,12 +298,18 @@
 
         private System.Windows.Forms.ToolStrip toolStripMain;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView tree_Теория;
         private System.Windows.Forms.TabControl tab_control_main;
-        private System.Windows.Forms.TabPage tab_theory;
-        private System.Windows.Forms.TabPage tab_example;
-        private System.Windows.Forms.TabPage tab_test;
-        private System.Windows.Forms.WebBrowser browser_theory;
+        private System.Windows.Forms.TabPage tab_Теория;
+        private System.Windows.Forms.TabPage tab_Примеры;
+        private System.Windows.Forms.TabPage tab_Тесты;
+        private System.Windows.Forms.WebBrowser browser_Теория;
+        private System.Windows.Forms.SplitContainer split_Теория;
+        private System.Windows.Forms.SplitContainer split_Примеры;
+        private System.Windows.Forms.TreeView tree_Примеры;
+        private System.Windows.Forms.SplitContainer split_Тесты;
+        private System.Windows.Forms.TreeView tree_Тесты;
+        private System.Windows.Forms.WebBrowser browser_Примеры;
     }
 }
 
