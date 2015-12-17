@@ -13,6 +13,7 @@ namespace Algem_manual
         public static string TempImagesPath = Application.StartupPath + "\\Data\\Temp\\Images";
         public static string UnconvertedPath = Application.StartupPath + "\\Data\\Unconverted";
         public static string ConvertedPath = Application.StartupPath + "\\Data\\Content";
+        public static string TreeViewPath = Application.StartupPath + "\\Data\\Temp\\TreeView";
     }
     public static class TexSettings
     {

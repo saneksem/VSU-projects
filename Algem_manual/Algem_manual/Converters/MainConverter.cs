@@ -33,21 +33,21 @@ namespace Algem_manual.Converters
         /// 
         /// </summary>
         /// <param name="ContentPath">Директория, в которую сохраняем контент</param>
-        public void UpdateContent(string oldContentPath, string ContentPath)
+        public void UpdateContent(string ContentPath)
         {
             //сначала удаляем старые файлы
-            if (!Directory.Exists(oldContentPath))
+            if (!Directory.Exists(ContentPath))
                 Logs.WriteLine("Директория со старым контентом не найдена. Пропускаю удаление.");
             else
             {
                 try
                 {
-                    Directory.Delete(oldContentPath, true);
+                    Directory.Delete(ContentPath, true);
                 }
                 catch(Exception e)
                 {
                     Logs.WriteLine("При удалении старого контента возникла ошибка. Подробности:"+e.Message);
-                    MessageBox.Show("Ошибка при обновлении контента!"+Environment.NewLine+"Пожалуйста, закройте все открытые Вами файлы и перезапустите приложение."+Environment.NewLine+"Если ошибка продолжает появляться, отправьте логи разработчику.");
+                    MessageBox.Show("Ошибка при обновлении контента!"+Environment.NewLine+"Пожалуйста, закройте все открытые Вами файлы и папки и перезапустите приложение."+Environment.NewLine+"Если ошибка продолжает появляться, отправьте логи разработчику.");
                     Environment.Exit(0);
                 }
             }
@@ -58,10 +58,10 @@ namespace Algem_manual.Converters
             TestConverter tests = new TestConverter(path, ContentPath, "Тесты");
 
             Thread thread_theory = new Thread(theory.Run);
-            //thread_theory.Start();
+            thread_theory.Start();
 
             Thread thread_examples = new Thread(examples.Run);
-            //thread_examples.Start();
+            thread_examples.Start();
 
             Thread thread_tests = new Thread(tests.Run);
             thread_tests.Start();

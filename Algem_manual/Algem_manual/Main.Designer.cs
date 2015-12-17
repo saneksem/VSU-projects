@@ -29,16 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Подтема1");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Подтема2");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Тема1", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8});
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Подтема1");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Подтема2");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Тема2", new System.Windows.Forms.TreeNode[] {
-            treeNode10,
-            treeNode11});
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tree_Теория = new System.Windows.Forms.TreeView();
@@ -98,24 +88,9 @@
             this.tree_Теория.HideSelection = false;
             this.tree_Теория.Location = new System.Drawing.Point(0, 0);
             this.tree_Теория.Name = "tree_Теория";
-            treeNode7.Name = "Node2";
-            treeNode7.Text = "Подтема1";
-            treeNode8.Name = "Node3";
-            treeNode8.Text = "Подтема2";
-            treeNode9.Name = "Node0";
-            treeNode9.Text = "Тема1";
-            treeNode10.Name = "Node4";
-            treeNode10.Text = "Подтема1";
-            treeNode11.Name = "Node5";
-            treeNode11.Text = "Подтема2";
-            treeNode12.Name = "Node1";
-            treeNode12.Text = "Тема2";
-            this.tree_Теория.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode12});
             this.tree_Теория.Size = new System.Drawing.Size(176, 589);
             this.tree_Теория.TabIndex = 1;
-            this.tree_Теория.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.tree_Теория.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSelection);
             // 
             // tab_control_main
             // 
@@ -162,10 +137,8 @@
             // 
             // browser_Теория
             // 
-            this.browser_Теория.AllowNavigation = false;
             this.browser_Теория.AllowWebBrowserDrop = false;
             this.browser_Теория.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browser_Теория.IsWebBrowserContextMenuEnabled = false;
             this.browser_Теория.Location = new System.Drawing.Point(0, 0);
             this.browser_Теория.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser_Теория.Name = "browser_Теория";
@@ -212,6 +185,7 @@
             this.tree_Примеры.Name = "tree_Примеры";
             this.tree_Примеры.Size = new System.Drawing.Size(192, 589);
             this.tree_Примеры.TabIndex = 0;
+            this.tree_Примеры.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSelection);
             // 
             // browser_Примеры
             // 
@@ -261,6 +235,7 @@
             this.tree_Тесты.Name = "tree_Тесты";
             this.tree_Тесты.Size = new System.Drawing.Size(159, 589);
             this.tree_Тесты.TabIndex = 0;
+            this.tree_Тесты.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSelection);
             // 
             // Main
             // 
@@ -272,6 +247,7 @@
             this.Name = "Main";
             this.ShowIcon = false;
             this.Text = "Электронный учебник. Алгебра и геометрия";
+            this.Shown += new System.EventHandler(this.Main_Shown);
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
             this.tab_control_main.ResumeLayout(false);
