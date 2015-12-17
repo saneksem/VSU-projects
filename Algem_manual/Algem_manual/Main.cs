@@ -23,20 +23,38 @@ namespace Algem_manual
         {
             Logs.InitLogging();
 
-            tex_writer = new TexUtils.Render(Path.Combine(DirectoriesSettings.ConvertedPath,"main"));
+            //tex_writer = new TexUtils.Render(Path.Combine(DirectoriesSettings.ConvertedPath,"main"));
 
+            Logs.Write("Версия ОС: "+Environment.OSVersion);
+            if (Environment.Is64BitOperatingSystem)
+                Logs.Write(" х64; ");
+            else
+                Logs.Write(" х32; ");
+            Logs.WriteLine(Environment.ProcessorCount.ToString() + " ядер ЦП");
             
-
             Logs.WriteLine("Инициализация главной формы");
             InitializeComponent();
 
-            theory = new TreeViewUtils.TreeRunner(Application.StartupPath + "\\Data\\Content", tree_Теория);
-            theory.Fill();
+            Converters.MainConverter converter = new Converters.MainConverter(DirectoriesSettings.UnconvertedPath);
+            if (converter.CheckForUpdates())
+            {
+                Logs.WriteLine("Найдены обновления контента");
+                this.Enabled = false;
+                MessageBox.Show("Необходимо распаковать новый контент."+Environment.NewLine+"По окончании процесса программа запустится.");
+                converter.UpdateContent(DirectoriesSettings.TempImagesPath, DirectoriesSettings.TempImagesPath);
+                this.Enabled = true;
+            }
+            else
+                Logs.WriteLine("Обновления контента не найдены");
+
+            //theory = new TreeViewUtils.TreeRunner(Application.StartupPath + "\\Data\\Content", tree_Теория);
+            //theory.Fill();
 
             //Scanners.TestScanner scan = new Scanners.TestScanner(Application.StartupPath);
             //scan.TestWrite();
             //scan.TestRead();
-            TestTest();
+
+            //TestTest();
         }
 
         private void TestTest()

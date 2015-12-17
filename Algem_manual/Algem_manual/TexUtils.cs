@@ -55,6 +55,14 @@ namespace Algem_manual
             }
 
             /// <summary>
+            /// Сбрасывает счётчик картинок
+            /// </summary>
+            public void Reset()
+            {
+                current = 0;
+            }
+
+            /// <summary>
             /// Удаляет временное изображение
             /// </summary>
             /// <param name="FileNumber">Индекс изображения</param>
@@ -311,7 +319,11 @@ namespace Algem_manual
                     Logs.WriteLine(String.Format("Попытка отрендерить формулу №{0} : {1}", current, expression));
                     expression.Trim();
                     expression = expression.Insert(2, @"\color{black} \Huge ");
-                    TexUtils.CreateGifFromEq(expression, FilePath);
+
+                    lock("DLL")
+                    {
+                        TexUtils.CreateGifFromEq(expression, FilePath);
+                    }
 
                     Logs.WriteLine(String.Format("Успешно сохранена формула №{0} : {1}", current, expression));
                     current++;
