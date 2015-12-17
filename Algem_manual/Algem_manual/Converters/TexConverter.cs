@@ -34,7 +34,7 @@ namespace Algem_manual.Converters
                 string full = Path.Combine(path, current, keyWord);
                 if (Directory.EnumerateFileSystemEntries(folder).Any() && Directory.Exists(full) && Directory.EnumerateFileSystemEntries(full).Any())
                 {
-                    //каталог не пустой и в нём есть папка "теория", которая тоже не пуста
+                    //каталог не пустой и в нём есть папка "теория" или "примеры", которая тоже не пуста
                     //получаем список файлов и начинаем конвертацию
                     TexUtils.Render render = new TexUtils.Render("");
 

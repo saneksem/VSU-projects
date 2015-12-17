@@ -91,7 +91,7 @@ namespace Algem_manual
             }
 
             /// <summary>
-            /// На основе .тех файла создаёт HTML страницу с картинками в текущем каталоге экземпляра
+            /// На основе .тех файла создаёт HTML страницу с картинками в текущем каталоге
             /// </summary>
             /// <param name="filepath">Полный путь до .тех файла</param>
             public void TexToHTML(string filepath)
@@ -297,7 +297,7 @@ namespace Algem_manual
             }
 
             /// <summary>
-            /// Создаёт временное изображение для ТЕХ формулы
+            /// Создаёт изображение для ТЕХ формулы
             /// </summary>
             /// <param name="expression">Формула</param>
             /// <returns>Имя созданного изображения или NULL, если формула была пуста</returns>

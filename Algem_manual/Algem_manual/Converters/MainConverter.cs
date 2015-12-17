@@ -58,13 +58,13 @@ namespace Algem_manual.Converters
             TestConverter tests = new TestConverter(path, ContentPath, "Тесты");
 
             Thread thread_theory = new Thread(theory.Run);
-            thread_theory.Start();
+            //thread_theory.Start();
 
             Thread thread_examples = new Thread(examples.Run);
-            thread_examples.Start();
+            //thread_examples.Start();
 
             Thread thread_tests = new Thread(tests.Run);
-            //thread_tests.Start();
+            thread_tests.Start();
 
             while (thread_theory.ThreadState == ThreadState.Running || thread_examples.ThreadState == ThreadState.Running || thread_tests.ThreadState == ThreadState.Running)
             {
