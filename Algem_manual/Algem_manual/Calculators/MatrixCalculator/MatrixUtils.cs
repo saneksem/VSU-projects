@@ -9,52 +9,66 @@ namespace Algem_manual
 {
     static class MatrixUtils
     {
+
         public static string определитель_саррюс(int[,] Matr, bool ok)
         {
             StringBuilder Result = new StringBuilder();
             int det = 0;
             StringBuilder CurString = new StringBuilder();
+            CurString.Append("$$");
             det = Matr[0, 0] * Matr[1, 1] * Matr[2, 2] + Matr[0, 1] * Matr[1, 2] * Matr[2, 0] + Matr[0, 2] * Matr[1, 0] * Matr[2, 1] - Matr[0, 2] * Matr[1, 1] * Matr[2, 0] - Matr[0, 0] * Matr[1, 2] * Matr[2, 1] - Matr[0, 1] * Matr[1, 0] * Matr[2, 2];
             if (ok)
             {
-                CurString.Append(@"$$\left(\begin{array}{lll} $");
-                CurString.Append(@"$$\color{red}{" + Matr[0, 0] + @"}  + $$\color{blue}{" + Matr[0, 1] + @"} + $$\color{green}{" + Matr[0, 2] + @"} $" + Matr[0, 0] + Matr[0, 1]);
+                CurString.Append(@"\left(\begin{array}{lllll}");
+                CurString.Append(@"\fbox{" + Matr[0, 0] + @"} & \fbox{\fbox{" + Matr[0, 1] + @"}} & \fbox{\fbox{\fbox{" + Matr[0, 2] + @"}}} & " + Matr[0, 0] + @"& " + Matr[0, 1]);
                 CurString.Append(@"\\");
-                CurString.Append(@Matr[1, 0] + @"$$\color{red}{" + Matr[1, 1] + @"}  + $$\color{blue}{" + Matr[1, 2] + @"} + $$\color{green}{" + Matr[1, 0] + @"} $" + Matr[1, 1]);
+                CurString.Append(@Matr[1, 0] + @"& \fbox{" + Matr[1, 1] + @"} & \fbox{\fbox{" + Matr[1, 2] + @"}} & \fbox{\fbox{\fbox{" + Matr[1, 0] + @"}}} & " + Matr[1, 1]);
                 CurString.Append(@"\\");
-                CurString.Append(@Matr[2, 0] + Matr[2, 1] + @"$$\color{red}{" + Matr[2, 2] + @"}  + $$\color{blue}{" + Matr[2, 0] + @"} + $$\color{green}{" + Matr[2, 1] + @"} $");
+                CurString.Append(@Matr[2, 0] + @"& " + Matr[2, 1] + @"& \fbox{" + Matr[2, 2] + @"} & \fbox{\fbox{" + Matr[2, 0] + @"}} & \fbox{\fbox{\fbox{" + Matr[2, 1] + "}}}");
                 CurString.Append(@"\\");
                 CurString.Append(@"\end{array}\right)");
                 CurString.Append("");
                 CurString.Append("");
                 int det1 = Matr[0, 0] * Matr[1, 1] * Matr[2, 2] + Matr[0, 1] * Matr[1, 2] * Matr[2, 0] + Matr[0, 2] * Matr[1, 0] * Matr[2, 1];
-                CurString.Append(@"$$= $" + Matr[0, 0] + @"$$\cdot $" + Matr[1, 1] + @"$$\cdot $" + Matr[2, 2] + @"$$ + $" + Matr[0, 1] + @"$$\cdot $" + Matr[1, 2] + @"$$\cdot $" + Matr[2, 0] + @"$$+ $" + Matr[0, 2] + @"$$\cdot $" + Matr[1, 0] + @"$$\cdot $" + Matr[2, 1] + @"$$= $" + det1);
+                CurString.Append(@" = " + Matr[0, 0] + @"\cdot " + Matr[1, 1] + @"\cdot " + Matr[2, 2] + @" + " + Matr[0, 1] + @"\cdot " + Matr[1, 2] + @"\cdot " + Matr[2, 0] + @" + " + Matr[0, 2] + @"\cdot " + Matr[1, 0] + @"\cdot " + Matr[2, 1] + @" = " + det1);
                 CurString.Append("");
                 CurString.Append("");
-                CurString.Append(@"$$\left(\begin{array}{lll} $");
-                CurString.Append(@Matr[0, 0] + Matr[0, 1] + @"$$\color{red}{" + Matr[0, 2] + @"} + $$\color{blue}{" + Matr[0, 0] + @"} $" + @"$$\color{green}{" + Matr[0, 1] + @"} $");
+                CurString.Append(@"\left(\begin{array}{lllll}");
+                CurString.Append(@Matr[0, 0] + @"& " + Matr[0, 1] + @"& \fbox{" + Matr[0, 2] + @"} & \fbox{\fbox{" + Matr[0, 0] + @"}} & \fbox{\fbox{\fbox{" + Matr[0, 1] + "}}}");
                 CurString.Append(@"\\");
-                CurString.Append(@Matr[1, 0] + @"$$\color{red}{" + Matr[1, 1] + @"}  + $$\color{blue}{" + Matr[1, 2] + @"} + $$\color{green}{" + Matr[1, 0] + @"} $" + Matr[1, 1]);
+                CurString.Append(@Matr[1, 0] + @"& \fbox{" + Matr[1, 1] + @"} & \fbox{\fbox{" + Matr[1, 2] + @"}} & \fbox{\fbox{\fbox{" + Matr[1, 0] + @"}}} & " + Matr[1, 1]);
                 CurString.Append(@"\\");
-                CurString.Append(@"$$\color{red}{" + Matr[2, 0] + @"} + $$\color{blue}{" + Matr[2, 1] + @"$$\color{green}{" + Matr[2, 2] + @"} $$" + Matr[2, 0] + Matr[2, 1]);
+                CurString.Append(@"\\fbox{" + Matr[2, 0] + @"} & \fbox{\fbox{" + Matr[2, 1] + @"}} & \fbox{\fbox{\fbox{" + Matr[2, 2] + @"}} & " + Matr[2, 0] + @"& " + Matr[2, 1]);
                 CurString.Append(@"\\");
                 CurString.Append(@"\end{array}\right)");
                 CurString.Append("");
                 CurString.Append("");
                 int det2 = Matr[0, 2] * Matr[1, 1] * Matr[2, 0] + Matr[0, 0] * Matr[1, 2] * Matr[2, 1] + Matr[0, 1] * Matr[1, 0] * Matr[2, 2];
-                CurString.Append(@"$$= $" + Matr[0, 2] + @"$$\cdot $" + Matr[1, 1] + @"$$\cdot $" + Matr[2, 0] + @"$$+ $" + Matr[0, 0] + @"$$\cdot $" + Matr[1, 2] + @"$$\cdot $" + Matr[2, 1] + @"$$+ $" + Matr[0, 1] + @"$$\cdot $" + Matr[1, 0] + @"$$\cdot $" + Matr[2, 2] + @"$$= $" + det2);
+                CurString.Append(@" = " + Matr[0, 2] + @"\cdot " + Matr[1, 1] + @"\cdot " + Matr[2, 0] + @" + " + Matr[0, 0] + @"\cdot " + Matr[1, 2] + @"\cdot " + Matr[2, 1] + @" + " + Matr[0, 1] + @"\cdot " + Matr[1, 0] + @"\cdot " + Matr[2, 2] + @" = " + det2);
                 CurString.Append("");
                 CurString.Append("");
                 int det3 = det1 - det2;
-                CurString.Append(@"$$|A| = " + det1 + @"}  + $$ - {" + det2 + @"$$= $" + det3);
+                CurString.Append(@" |A| = " + det1 + @" - " + det2 + @" = " + det3);
             }
             else
-                CurString.Append(@"$$|A| = " + det);
-
-            MessageBox.Show("END");
+                CurString.Append(@" |A| = " + det);
+            CurString.Append("$$");
             return CurString.ToString();
         }
 
+        public static string определитель_разложение_строка(int[,] Matr,int row, bool ok)
+        {
+            MessageBox.Show("строка");
+            return DeterminantMain(Matr, Matr.GetLength(0), row, true, ok);
+        }
+
+        public static string определитель_разложение_столбец(int[,] Matr, int column, bool ok)
+        {
+            MessageBox.Show("столбец");
+            return DeterminantMain(Matr, Matr.GetLength(0), column, false, ok);
+        }
+
+        // ---------------------------------ранг
         public static string ранг(int[,] Matrix, bool flag)
         {
             CountRows = Matrix.GetLength(0);
@@ -672,6 +686,129 @@ namespace Algem_manual
                 CurString.Append(@"\\");
             }
             CurString.Append(@"\end{array}\right)$$");
+        }
+
+        //===============вспомогательное для разложения по строкам и столбцам
+
+        public static int[,] CreateMatrix(int[,] MatrIn, int size, int row, int coloumn)
+        {
+            int[,] result = new int[size - 1, size - 1];
+            int iRes = 0, jRes;
+            for (int i = 0; i < size; i++)
+            {
+                if (i != row)
+                {
+                    jRes = 0;
+                    for (int j = 0; j < size; j++)
+                    {
+                        if (j != coloumn)
+                        {
+                            result[iRes, jRes] = MatrIn[i, j];
+                            jRes++;
+                        }
+                    }
+                    iRes++;
+                }
+            }
+            return result;
+        }
+
+        public static int Determinant(int[,] MatrIn, int size)
+        {
+            int result = 0;
+            if (size == 1)
+                return MatrIn[0, 0];
+            else
+            {
+                int MatrSize = size - 1;
+                for (int i = 0; i < size; i++)
+                    if (i % 2 == 0)
+                        result += MatrIn[0, i] * Determinant(CreateMatrix(MatrIn, size, 0, i), MatrSize);
+                    else
+                        result -= MatrIn[0, i] * Determinant(CreateMatrix(MatrIn, size, 0, i), MatrSize);
+                return result;
+            }
+        }
+
+        public static string DeterminantMain(int[,] MatrIn, int size, int num, bool IsRow, bool ok)
+        {
+            int result = 0;
+            StringBuilder Result = new StringBuilder();
+            StringBuilder CurString = new StringBuilder();
+            CurString.Append("$$ |A| = ");
+            if (size == 1)
+                result = MatrIn[0, 0];
+            else
+            {
+                int MatrSize = size - 1;
+                for (int i = 0; i < size; i++)
+                {
+                    if (ok)
+                        CurString.Append(@"(-1)^{(" + (num + 1) + "+" + (i + 1) + @")}\cdot ");
+                    if (IsRow)
+                    {
+                        int[,] Matr = CreateMatrix(MatrIn, size, num, i);
+                        if (ok)
+                        {
+                            CurString.Append(MatrIn[num, i] + @"\cdot \left| \begin{array}{ + lll + } ");
+                            for (int l = 0; l < Matr.Rank; l++)
+                            {
+                                for (int k = 0; k < Matr.Rank - 1; k++)
+                                {
+                                    CurString.Append(Matr[l, k] + @" & ");
+                                }
+                                CurString.Append(Matr[l, Matr.Rank - 1] + @"\\");
+                            }
+                            int len = CurString.Length - 2;
+                            CurString.Remove(len, 2);
+                            CurString.Append(@"\end{array} \right| + ");
+                            CurString.Append("");
+                            CurString.Append("");
+                        }
+                        if ((i + num) % 2 == 0)
+                        {
+                            result += MatrIn[num, i] * Determinant(Matr, MatrSize);
+                        }
+                        else
+                        {
+                            result -= MatrIn[num, i] * Determinant(Matr, MatrSize);
+                        }
+                    }
+                    else
+                    {
+                        int[,] Matr = CreateMatrix(MatrIn, size, num, i);
+                        if (ok)
+                        {
+                            CurString.Append(MatrIn[num, i] + @"\cdot \left| \begin{array}{ + lll + } ");
+                            for (int l = 0; l < Matr.Rank; l++)
+                            {
+                                for (int k = 0; k < Matr.Rank - 1; k++)
+                                {
+                                    CurString.Append(Matr[l, k] + @" & ");
+                                }
+                                CurString.Append(Matr[l, Matr.Rank - 1] + @"\\");
+                            }
+                            int len = CurString.Length - 2;
+                            CurString.Remove(len, 2);
+                            CurString.Append(@"\end{array} \right| + ");
+                            CurString.Append("");
+                            CurString.Append("");
+                        }
+                        if ((i + num) % 2 == 0)
+                        {
+                            result += MatrIn[i, num] * Determinant(Matr, MatrSize);
+                        }
+                        else
+                        {
+                            result -= MatrIn[i, num] * Determinant(Matr, MatrSize);
+                        }
+                    }
+                }
+            }
+            CurString.Remove(CurString.Length - 2, 2);
+            CurString.Append("$$");
+            CurString.Append(" = " + result);
+            return CurString.ToString();
         }
     }
 }

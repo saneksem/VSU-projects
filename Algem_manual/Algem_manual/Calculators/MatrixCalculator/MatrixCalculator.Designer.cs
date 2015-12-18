@@ -303,7 +303,15 @@
             // 
             // cmbx_определитель_разложение_столбец
             // 
+            this.cmbx_определитель_разложение_столбец.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbx_определитель_разложение_столбец.FormattingEnabled = true;
+            this.cmbx_определитель_разложение_столбец.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
             this.cmbx_определитель_разложение_столбец.Location = new System.Drawing.Point(201, 48);
             this.cmbx_определитель_разложение_столбец.Name = "cmbx_определитель_разложение_столбец";
             this.cmbx_определитель_разложение_столбец.Size = new System.Drawing.Size(132, 24);
@@ -321,7 +329,15 @@
             // 
             // cmbx_определитель_разложение_строка
             // 
+            this.cmbx_определитель_разложение_строка.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbx_определитель_разложение_строка.FormattingEnabled = true;
+            this.cmbx_определитель_разложение_строка.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
             this.cmbx_определитель_разложение_строка.Location = new System.Drawing.Point(201, 20);
             this.cmbx_определитель_разложение_строка.Name = "cmbx_определитель_разложение_строка";
             this.cmbx_определитель_разложение_строка.Size = new System.Drawing.Size(132, 24);

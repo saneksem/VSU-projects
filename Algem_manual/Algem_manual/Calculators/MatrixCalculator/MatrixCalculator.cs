@@ -149,9 +149,12 @@ namespace Algem_manual
                                     result += (string)method.Invoke(this, new object[] { A, B, this.chbx_details.Checked });
                         }
 
-            //tbx_output.Text += result;
             string[] temp = result.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            TexUtils.Render r1 = new TexUtils.Render("matrix_calc");
+
+            //!очистка директории
+            //!создание директории
+
+            TexUtils.Render r1 = new TexUtils.Render(DirectoriesSettings.MatrixCalculatorPath);
             r1.StringToHTML(temp);
             browser_results.Url = new Uri(String.Format("file:///{0}", r1.HTMLPath));
             browser_results.Refresh();

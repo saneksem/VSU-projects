@@ -14,6 +14,8 @@ namespace Algem_manual
         public static string UnconvertedPath = Application.StartupPath + "\\Data\\Unconverted";
         public static string ConvertedPath = Application.StartupPath + "\\Data\\Content";
         public static string TreeViewPath = Application.StartupPath + "\\Data\\Temp\\TreeView";
+        public static string CalculatorsTempPath = Application.StartupPath + "\\Data\\Temp\\Calculators";
+        public static string MatrixCalculatorPath = CalculatorsTempPath + "\\Matrix";
     }
     public static class TexSettings
     {
