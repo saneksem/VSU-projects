@@ -139,7 +139,7 @@ namespace Algem_manual
             TreeNode current = tree.SelectedNode;
             if (current.Tag.ToString() == "child")
             {
-                String htmlpath = Path.Combine(DirectoriesSettings.TempImagesPath, current.Parent.Name, current.Text);
+                String htmlpath = Path.Combine(DirectoriesSettings.ConvertedPath, current.Parent.Name, current.Text);
 
                 if (tree.Name == "tree_Теория")
                 {
