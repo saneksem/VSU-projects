@@ -10,11 +10,170 @@ namespace Algem_manual
     static class MatrixUtils
     {
 
+        public static double[,] NewMatr(double[,] Matr1, double[,] Matr2)
+        {
+            int Size = Matr1.GetLength(0);
+            double[,] Result = new double[Size, 2 * Size];
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    Result[i, j] = Matr1[i, j];
+                }
+            }
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    Result[i, j + Size] = Matr2[i, j];
+                }
+            }
+            return Result;
+        }
+
+        public static string обратная_матрица_приписывание(int[,] Matr, bool flag)
+        {
+            string str = "";
+            int Size = Matr.GetLength(0);
+            double[,] help = new double[Size, Size];
+            double[,] res = new double[Size, Size];
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    if (i == j)
+                    {
+                        res[i, j] = 1;
+                    }
+                    else
+                    {
+                        res[i, j] = 0;
+                    }
+                }
+            }
+
+
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    help[i, j] = (double)Matr[i, j];
+                }
+            }
+
+            double[,] nm = NewMatr(help, res);
+            if (flag)
+            {
+                str += @"Шаг 1: Приписываем к исходной матрице справа единичную матрицу, получаем $$A=\left(\begin{array}{lllllll}";
+                for (int i = 0; i < Size; i++)
+                {
+                    for (int j = 0; j < 2 * Size; j++)
+                    {
+                        str += Convert.ToString(nm[i, j]) + "&";
+                    }
+                    str += "\\" + "\\ ";
+                }
+
+                str += @"\end{array}\right)$$" + Environment.NewLine;
+
+            }
+
+            double buf;
+            try
+            {
+                for (int i = 0; i < Size; i++)
+                {
+                    buf = help[i, i];
+                    for (int j = Size - 1; j >= i; j--)
+                    {
+                        help[i, j] /= buf;
+                    }
+                    for (int k = 0; k < Size; k++)
+                    {
+                        res[i, k] /= buf;
+                    }
+                    for (int j = i + 1; j < Size; j++)
+                    {
+                        buf = help[j, i];
+                        for (int k = Size - 1; k >= i; k--)
+                            help[j, k] -= buf * help[i, k];
+                        for (int k = 0; k < Size; k++)
+                            res[j, k] -= buf * res[i, k];
+                    }
+                }
+                nm = NewMatr(help, res);
+                if (flag)
+                {
+                    str += @"Шаг 2: Приводим матрицу A к верхнетреугольному виду с помощью элементарных преобраований, получаем $$A=\left(\begin{array}{lllllll}";
+                    for (int i = 0; i < Size; i++)
+                    {
+                        for (int j = 0; j < 2 * Size; j++)
+                        {
+                            str += Convert.ToString(nm[i, j]) + " & ";
+                        }
+                        str += "\\" + "\\ ";
+                    }
+                    str += @"\end{array}\right)$$" + Environment.NewLine;
+
+                }
+                if (flag)
+                {
+
+                }
+                for (int kk = Size - 1; kk > 0; kk--)
+                {
+                    help[kk, Size - 1] /= help[kk, kk];
+                    res[kk, Size - 1] /= help[kk, kk];
+
+                    for (int i = kk - 1; i + 1 > 0; i--)
+                    {
+                        double multi2 = help[i, kk];
+                        for (int j = 0; j < Size; j++)
+                        {
+                            help[i, j] -= multi2 * help[kk, j];
+                            res[i, j] -= multi2 * res[kk, j];
+                        }
+                    }
+                }
+                if (flag)
+                {
+                    str += @"Шаг 3: Приводим матрицу A к единчной матрице виду с помощью элементарных преобраований. Таким образом, справа, на месте единичной матрицы, была получена обратная матрица.
+                    $$A=\left(\begin{array}{lllllll}";
+                    for (int i = 0; i < Size; i++)
+                    {
+                        for (int j = 0; j < 2 * Size; j++)
+                        {
+                            str += Convert.ToString(nm[i, j]) + " & ";
+                        }
+                        str += "\\" + "\\ ";
+                    }
+                    str += @"\end{array}\right)$$" + Environment.NewLine;
+
+                }
+            }
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine("Обнаружено деление на 0");
+            }
+            str += @"Обратная матрица: $$A^{-1} = \left(\begin{array}{lllllll}";
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    str += Convert.ToString(res[i, j]) + " & ";
+                }
+                str += "\\" + "\\ ";
+            }
+            str += @"\end{array}\right)$$" + Environment.NewLine;
+            return str;
+        }
+
         public static string определитель_саррюс(int[,] Matr, bool ok)
         {
             StringBuilder Result = new StringBuilder();
             int det = 0;
             StringBuilder CurString = new StringBuilder();
+            CurString.Append("Разложение определителя матрицы на правилу Саррюса: ");
             CurString.Append("$$");
             det = Matr[0, 0] * Matr[1, 1] * Matr[2, 2] + Matr[0, 1] * Matr[1, 2] * Matr[2, 0] + Matr[0, 2] * Matr[1, 0] * Matr[2, 1] - Matr[0, 2] * Matr[1, 1] * Matr[2, 0] - Matr[0, 0] * Matr[1, 2] * Matr[2, 1] - Matr[0, 1] * Matr[1, 0] * Matr[2, 2];
             if (ok)
@@ -38,7 +197,7 @@ namespace Algem_manual
                 CurString.Append(@"\\");
                 CurString.Append(@Matr[1, 0] + @"& \fbox{" + Matr[1, 1] + @"} & \fbox{\fbox{" + Matr[1, 2] + @"}} & \fbox{\fbox{\fbox{" + Matr[1, 0] + @"}}} & " + Matr[1, 1]);
                 CurString.Append(@"\\");
-                CurString.Append(@"\\fbox{" + Matr[2, 0] + @"} & \fbox{\fbox{" + Matr[2, 1] + @"}} & \fbox{\fbox{\fbox{" + Matr[2, 2] + @"}} & " + Matr[2, 0] + @"& " + Matr[2, 1]);
+                CurString.Append(@"\fbox{" + Matr[2, 0] + @"} & \fbox{\fbox{" + Matr[2, 1] + @"}} & \fbox{\fbox{\fbox{" + Matr[2, 2] + @"}}}& " + Matr[2, 0] + @"& " + Matr[2, 1]);
                 CurString.Append(@"\\");
                 CurString.Append(@"\end{array}\right)");
                 CurString.Append("");
@@ -56,16 +215,16 @@ namespace Algem_manual
             return CurString.ToString();
         }
 
-        public static string определитель_разложение_строка(int[,] Matr,int row, bool ok)
+        public static string определитель_разложение_строка(int[,] Matr, int row, bool ok)
         {
-            MessageBox.Show("строка");
-            return DeterminantMain(Matr, Matr.GetLength(0), row, true, ok);
+            MessageBox.Show("строка:" + row);
+            return DeterminantMain(Matr, row, true, ok);
         }
 
         public static string определитель_разложение_столбец(int[,] Matr, int column, bool ok)
         {
-            MessageBox.Show("столбец");
-            return DeterminantMain(Matr, Matr.GetLength(0), column, false, ok);
+            MessageBox.Show("столбец:" + column);
+            return DeterminantMain(Matr, column, false, ok);
         }
 
         // ---------------------------------ранг
@@ -730,12 +889,62 @@ namespace Algem_manual
             }
         }
 
-        public static string DeterminantMain(int[,] MatrIn, int size, int num, bool IsRow, bool ok)
+        public static string DeterminantMain(int[,] MatrIn, int num, bool IsRow, bool ok)
         {
+            int size = MatrIn.GetLength(0);
             int result = 0;
             StringBuilder Result = new StringBuilder();
             StringBuilder CurString = new StringBuilder();
+            CurString.Append("Разложение определителя по " + (num + 1));
+            if (IsRow)
+                CurString.Append(" строке: ");
+            else
+                CurString.Append(" столбцу: ");
             CurString.Append("$$ |A| = ");
+            if (ok)
+            {
+                CurString.Append(@"\left| \begin{array}{ + lll + } ");
+                if (IsRow)
+                {
+                    for (int l = 0; l < size; l++)
+                    {
+                        for (int k = 0; k < size; k++)
+                        {
+                            if (l == num)
+                            {
+                                CurString.Append(@"\fbox{" + MatrIn[l, k] + @"} & ");
+                                //CurString.Append(MatrIn[l, k] + @" & ");
+                            }
+                            else
+                                CurString.Append(MatrIn[l, k] + @" & ");
+                        }
+                        CurString.Append(@"\\");
+                    }
+                }
+                else
+                {
+                    for (int l = 0; l < size; l++)
+                    {
+                        for (int k = 0; k < size - 1; k++)
+                        {
+                            if (k == num)
+                            {
+                                CurString.Append(@" \fbox{");
+                                CurString.Append(MatrIn[l, k] + @"} & ");
+                            }
+                            else
+                                CurString.Append(MatrIn[l, k] + @" & ");
+                        }
+                        CurString.Append(MatrIn[l, size - 1] + @"\\");
+                    }
+                }
+                int len = CurString.Length - 2;
+                CurString.Remove(len, 2);
+                CurString.Append(@"\end{array} \right| = ");
+                CurString.Append("");
+                CurString.Append("");
+            }
+
             if (size == 1)
                 result = MatrIn[0, 0];
             else
@@ -751,13 +960,13 @@ namespace Algem_manual
                         if (ok)
                         {
                             CurString.Append(MatrIn[num, i] + @"\cdot \left| \begin{array}{ + lll + } ");
-                            for (int l = 0; l < Matr.Rank; l++)
+                            for (int l = 0; l < size - 1; l++)
                             {
-                                for (int k = 0; k < Matr.Rank - 1; k++)
+                                for (int k = 0; k < size - 2; k++)
                                 {
                                     CurString.Append(Matr[l, k] + @" & ");
                                 }
-                                CurString.Append(Matr[l, Matr.Rank - 1] + @"\\");
+                                CurString.Append(Matr[l, size - 2] + @"\\");
                             }
                             int len = CurString.Length - 2;
                             CurString.Remove(len, 2);
@@ -776,17 +985,17 @@ namespace Algem_manual
                     }
                     else
                     {
-                        int[,] Matr = CreateMatrix(MatrIn, size, num, i);
+                        int[,] Matr = CreateMatrix(MatrIn, size, i, num);
                         if (ok)
                         {
-                            CurString.Append(MatrIn[num, i] + @"\cdot \left| \begin{array}{ + lll + } ");
-                            for (int l = 0; l < Matr.Rank; l++)
+                            CurString.Append(MatrIn[i, num] + @"\cdot \left| \begin{array}{ + lll + } ");
+                            for (int l = 0; l < size - 1; l++)
                             {
-                                for (int k = 0; k < Matr.Rank - 1; k++)
+                                for (int k = 0; k < size - 2; k++)
                                 {
                                     CurString.Append(Matr[l, k] + @" & ");
                                 }
-                                CurString.Append(Matr[l, Matr.Rank - 1] + @"\\");
+                                CurString.Append(Matr[l, size - 2] + @"\\");
                             }
                             int len = CurString.Length - 2;
                             CurString.Remove(len, 2);
@@ -806,9 +1015,12 @@ namespace Algem_manual
                 }
             }
             CurString.Remove(CurString.Length - 2, 2);
-            CurString.Append("$$");
             CurString.Append(" = " + result);
+            CurString.Append("$$");
+            CurString.Append(Environment.NewLine);
+            CurString.Append(Environment.NewLine);
             return CurString.ToString();
         }
+
     }
 }
