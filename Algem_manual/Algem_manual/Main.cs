@@ -34,6 +34,7 @@ namespace Algem_manual
             Logs.WriteLine("Инициализация главной формы");
 
             InitializeComponent();
+
         }
 
         private void TestTextBoxChanged(object sender, EventArgs e)
@@ -145,6 +146,13 @@ namespace Algem_manual
                 {
                     htmlpath = Path.Combine(htmlpath, "main.html");
                     browser_Теория.Navigate(String.Format("file:///{0}", htmlpath));
+
+                    while (browser_Теория.ReadyState != WebBrowserReadyState.Complete)
+                    { Application.DoEvents(); }
+                    //MessageBox.Show("TEST");
+                    browser_Теория.Document.Body.Style = "font-size:14pt;";
+                    if (browser_Теория.Document != null)
+                        browser_Теория.Document.BackColor = Color.LightYellow;
                 }
                     
 
