@@ -9,6 +9,10 @@ namespace Algem_manual
 {
     static class MatrixUtils
     {
+        public static string определитель_лаплас(int[,] Matr,int i,int j, bool flag)
+        {
+            return "Определитель Лапласа получил параметры:"+i.ToString()+","+j.ToString()+Environment.NewLine;
+        }
 
         public static double[,] NewMatr(double[,] Matr1, double[,] Matr2)
         {
@@ -233,13 +237,13 @@ namespace Algem_manual
 
         public static string определитель_разложение_строка(int[,] Matr, int row, bool ok)
         {
-            MessageBox.Show("строка:" + row);
+            //MessageBox.Show("строка:" + row);
             return DeterminantMain(Matr, row, true, ok);
         }
 
         public static string определитель_разложение_столбец(int[,] Matr, int column, bool ok)
         {
-            MessageBox.Show("столбец:" + column);
+            //MessageBox.Show("столбец:" + column);
             return DeterminantMain(Matr, column, false, ok);
         }
 

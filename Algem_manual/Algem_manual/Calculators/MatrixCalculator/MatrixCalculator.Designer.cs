@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mtr1row = new System.Windows.Forms.NumericUpDown();
             this.mtr1col = new System.Windows.Forms.NumericUpDown();
             this.dgv_mtr1 = new System.Windows.Forms.DataGridView();
@@ -71,6 +71,8 @@
             this.browser_results = new System.Windows.Forms.WebBrowser();
             this.btn_show_hide = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbx_определитель_лаплас = new System.Windows.Forms.ComboBox();
+            this.cmbx_определитель_лаплас_2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.mtr1row)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtr1col)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_mtr1)).BeginInit();
@@ -147,16 +149,16 @@
             this.dgv_mtr1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv_mtr1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_mtr1.ColumnHeadersVisible = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Turquoise;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_mtr1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Turquoise;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_mtr1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_mtr1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_mtr1.Location = new System.Drawing.Point(0, 44);
             this.dgv_mtr1.MultiSelect = false;
@@ -255,6 +257,8 @@
             // 
             // gbx_определитель
             // 
+            this.gbx_определитель.Controls.Add(this.cmbx_определитель_лаплас_2);
+            this.gbx_определитель.Controls.Add(this.cmbx_определитель_лаплас);
             this.gbx_определитель.Controls.Add(this.chbx_определитель_саррюс);
             this.gbx_определитель.Controls.Add(this.btn_определитель);
             this.gbx_определитель.Controls.Add(this.chbx_определитель_лаплас);
@@ -643,6 +647,36 @@
             this.panel1.Size = new System.Drawing.Size(753, 52);
             this.panel1.TabIndex = 10;
             // 
+            // cmbx_определитель_лаплас
+            // 
+            this.cmbx_определитель_лаплас.FormattingEnabled = true;
+            this.cmbx_определитель_лаплас.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.cmbx_определитель_лаплас.Location = new System.Drawing.Point(201, 78);
+            this.cmbx_определитель_лаплас.Name = "cmbx_определитель_лаплас";
+            this.cmbx_определитель_лаплас.Size = new System.Drawing.Size(58, 24);
+            this.cmbx_определитель_лаплас.TabIndex = 7;
+            // 
+            // cmbx_определитель_лаплас_2
+            // 
+            this.cmbx_определитель_лаплас_2.FormattingEnabled = true;
+            this.cmbx_определитель_лаплас_2.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.cmbx_определитель_лаплас_2.Location = new System.Drawing.Point(265, 78);
+            this.cmbx_определитель_лаплас_2.Name = "cmbx_определитель_лаплас_2";
+            this.cmbx_определитель_лаплас_2.Size = new System.Drawing.Size(68, 24);
+            this.cmbx_определитель_лаплас_2.TabIndex = 8;
+            // 
             // Calculations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -728,5 +762,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox cmbx_определитель_лаплас_2;
+        private System.Windows.Forms.ComboBox cmbx_определитель_лаплас;
     }
 }

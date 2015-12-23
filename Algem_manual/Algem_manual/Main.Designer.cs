@@ -43,6 +43,7 @@
             this.tab_Тесты = new System.Windows.Forms.TabPage();
             this.split_Тесты = new System.Windows.Forms.SplitContainer();
             this.tree_Тесты = new System.Windows.Forms.TreeView();
+            this.tool_settings = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain.SuspendLayout();
             this.tab_control_main.SuspendLayout();
             this.tab_Теория.SuspendLayout();
@@ -65,7 +66,8 @@
             // 
             this.toolStripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.tool_settings});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(982, 27);
@@ -237,6 +239,15 @@
             this.tree_Тесты.TabIndex = 0;
             this.tree_Тесты.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSelection);
             // 
+            // tool_settings
+            // 
+            this.tool_settings.Image = ((System.Drawing.Image)(resources.GetObject("tool_settings.Image")));
+            this.tool_settings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tool_settings.Name = "tool_settings";
+            this.tool_settings.Size = new System.Drawing.Size(108, 24);
+            this.tool_settings.Text = "Настройки";
+            this.tool_settings.Click += new System.EventHandler(this.tool_settings_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -286,6 +297,7 @@
         private System.Windows.Forms.SplitContainer split_Тесты;
         private System.Windows.Forms.TreeView tree_Тесты;
         private System.Windows.Forms.WebBrowser browser_Примеры;
+        private System.Windows.Forms.ToolStripButton tool_settings;
     }
 }
 

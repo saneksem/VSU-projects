@@ -121,8 +121,18 @@ namespace Algem_manual
                                 //MessageBox.Show(String.Format("Для чекбокса {0} не найден привязанный комбобокс", group_control.Name));
                                 result += (string)method.Invoke(this, new object[] { A, this.chbx_details.Checked });
                             else
-                                //MessageBox.Show(String.Format("Для чекбокса {0} НАШЁЛСЯ привязанный комбобокс", group_control.Name));
-                                result += (string)method.Invoke(this, new object[] { A, ((ComboBox)controls[0]).SelectedIndex, this.chbx_details.Checked });
+                            {
+                                //вызов для одного или двух комбобоксов
+                                Control[] controls2 = Controls.Find("cmbx_" + function+"_2", true);
+                                if (controls2.Count() == 0)
+                                    //один комбобокс
+                                    //MessageBox.Show(String.Format("Для чекбокса {0} НАШЁЛСЯ привязанный комбобокс", group_control.Name));
+                                    result += (string)method.Invoke(this, new object[] { A, ((ComboBox)controls[0]).SelectedIndex, this.chbx_details.Checked });
+                                else
+                                    //два комбобокса
+                                    result += (string)method.Invoke(this, new object[] { A, ((ComboBox)controls[0]).SelectedIndex, ((ComboBox)controls2[0]).SelectedIndex, this.chbx_details.Checked });
+                            }
+                                
                         }
 
             //действия с двумя матрицами

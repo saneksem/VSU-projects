@@ -19,6 +19,7 @@ namespace Algem_manual
     public partial class Main : Form
     {
         List<object> answers;
+        Settings settings;
 
         public Main()
         {
@@ -32,6 +33,27 @@ namespace Algem_manual
             Logs.WriteLine(Environment.ProcessorCount.ToString() + " ядер ЦП");
             
             Logs.WriteLine("Инициализация главной формы");
+
+            
+            Settings temp = Settings.Load();
+            if (temp == null)
+            {
+                //создать настройки по умолчанию и сохранить
+                settings = new Settings();
+                try
+                {
+                    settings.Save();
+                }
+                catch
+                {
+                    MessageBox.Show("Невозможно сохранить настройки по умолчанию."+Environment.NewLine+"Возможно, приложение нужно запустить с правами администратора." + Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                //MessageBox.Show("успешно загружено");
+                settings = temp;
+            }
 
             InitializeComponent();
 
@@ -86,7 +108,14 @@ namespace Algem_manual
                 b.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
                 b.Width = split_Тесты.Panel2.Width - 25;
                 b.Height = 500;
-                
+
+                //установка стиля согласно настройкам
+                while (b.ReadyState != WebBrowserReadyState.Complete)
+                { Application.DoEvents(); }
+                b.Document.Body.Style = String.Format("font-size:{0}pt;", settings.FontSize);
+                if (b.Document != null)
+                    b.Document.BackColor = settings.BackgroundColor;
+
                 /* Размер по документу
                 while (b.Document.Body == null)
                 {
@@ -137,6 +166,8 @@ namespace Algem_manual
         {
             TreeView tree = (TreeView)sender;
 
+            WebBrowser browser = null;
+
             TreeNode current = tree.SelectedNode;
             if (current.Tag.ToString() == "child")
             {
@@ -147,12 +178,14 @@ namespace Algem_manual
                     htmlpath = Path.Combine(htmlpath, "main.html");
                     browser_Теория.Navigate(String.Format("file:///{0}", htmlpath));
 
+                    browser = browser_Теория;
+                    /*
                     while (browser_Теория.ReadyState != WebBrowserReadyState.Complete)
                     { Application.DoEvents(); }
                     //MessageBox.Show("TEST");
                     browser_Теория.Document.Body.Style = "font-size:14pt;";
                     if (browser_Теория.Document != null)
-                        browser_Теория.Document.BackColor = Color.LightYellow;
+                        browser_Теория.Document.BackColor = Color.LightYellow;*/
                 }
                     
 
@@ -160,6 +193,8 @@ namespace Algem_manual
                 {
                     htmlpath = Path.Combine(htmlpath, "main.html");
                     browser_Примеры.Navigate(String.Format("file:///{0}", htmlpath));
+
+                    browser = browser_Примеры;
                 }
                     
 
@@ -187,6 +222,16 @@ namespace Algem_manual
                     FillTest(answers.Count,htmlpath);
 
                     UnlockControls();
+                }
+
+                if (browser!=null)
+                {
+                    while (browser.ReadyState != WebBrowserReadyState.Complete)
+                    { Application.DoEvents(); }
+
+                    browser.Document.Body.Style = String.Format("font-size:{0}pt;", settings.FontSize);
+                    if (browser.Document != null)
+                        browser.Document.BackColor = settings.BackgroundColor;
                 }
             }
         }
@@ -241,6 +286,12 @@ namespace Algem_manual
             tree_Тесты.ExpandAll();
 
             UnlockControls();
+        }
+
+        private void tool_settings_Click(object sender, EventArgs e)
+        {
+            SettingsForm frm = new SettingsForm(settings);
+            frm.ShowDialog();
         }
     }
 }
