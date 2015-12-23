@@ -69,12 +69,12 @@ namespace Algem_manual
                 {
                     for (int j = 0; j < 2 * Size; j++)
                     {
-                        str += Convert.ToString(nm[i, j]) + "&";
+                        str += Convert.ToString(Math.Round(nm[i, j], 2)) + "& ";
                     }
                     str += "\\" + "\\ ";
                 }
 
-                str += @"\end{array}\right)$$" + Environment.NewLine;
+                str += @"\end{array}\right)$$" + Environment.NewLine + Environment.NewLine;
 
             }
 
@@ -109,11 +109,11 @@ namespace Algem_manual
                     {
                         for (int j = 0; j < 2 * Size; j++)
                         {
-                            str += Convert.ToString(nm[i, j]) + " & ";
+                            str += Convert.ToString(Math.Round(nm[i, j], 2)) + " & ";
                         }
                         str += "\\" + "\\ ";
                     }
-                    str += @"\end{array}\right)$$" + Environment.NewLine;
+                    str += @"\end{array}\right)$$" + Environment.NewLine + Environment.NewLine;
 
                 }
                 if (flag)
@@ -143,11 +143,11 @@ namespace Algem_manual
                     {
                         for (int j = 0; j < 2 * Size; j++)
                         {
-                            str += Convert.ToString(nm[i, j]) + " & ";
+                            str += Convert.ToString(Math.Round(nm[i, j], 2)) + " & ";
                         }
                         str += "\\" + "\\ ";
                     }
-                    str += @"\end{array}\right)$$" + Environment.NewLine;
+                    str += @"\end{array}\right)$$" + Environment.NewLine + Environment.NewLine;
 
                 }
             }
@@ -160,12 +160,28 @@ namespace Algem_manual
             {
                 for (int j = 0; j < Size; j++)
                 {
-                    str += Convert.ToString(res[i, j]) + " & ";
+                    str += Convert.ToString(Math.Round(res[i, j], 2)) + " & ";
                 }
                 str += "\\" + "\\ ";
             }
-            str += @"\end{array}\right)$$" + Environment.NewLine;
-            return str;
+            str += @"\end{array}\right)$$" + Environment.NewLine + Environment.NewLine;
+            int p = 0;
+            int q = 0;
+            bool OK = true;
+            while (p < Size && OK)
+            {
+                while (q < Size && OK)
+                {
+                    if ((double.IsNaN(res[p, q])) || (Convert.ToString(res[p, q]) == "?") || Double.IsInfinity(res[p, q]))
+                        OK = false;
+                    q++;
+                }
+                p++;
+            }
+            if (OK)
+                return str;
+            else
+                return "Не удалось найти обратную матрицу. Есть зависимые строки.";
         }
 
         public static string определитель_саррюс(int[,] Matr, bool ok)
