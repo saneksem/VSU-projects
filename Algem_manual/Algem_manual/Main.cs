@@ -21,10 +21,14 @@ namespace Algem_manual
         List<object> answers;
         Settings settings;
 
-        private void UpdateAllWebBrowsersStyle()
+        private void UpdateAllStyles()
         {
             settings.ApplyWebBrowserStyle(browser_Теория);
             settings.ApplyWebBrowserStyle(browser_Примеры);
+
+            foreach (Control c in split_Тесты.Panel2.Controls)
+                if (c is WebBrowser)
+                    settings.ApplyWebBrowserStyle((WebBrowser)c);
 
             settings.ApplyTreeViewStyle(tree_Теория);
             settings.ApplyTreeViewStyle(tree_Примеры);
@@ -169,7 +173,7 @@ namespace Algem_manual
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Calculations c = new Calculations();
+            Calculations c = new Calculations(settings);
             c.Show();
         }
 
@@ -294,7 +298,7 @@ namespace Algem_manual
             browser_Теория.Navigate("about:blank");
             browser_Примеры.Navigate("about:blank");
 
-            UpdateAllWebBrowsersStyle();
+            UpdateAllStyles();
 
             this.ControlBox = true;
             UnlockControls();
@@ -304,12 +308,8 @@ namespace Algem_manual
         {
             SettingsForm frm = new SettingsForm(settings);
             frm.ShowDialog();
-            if (frm.DialogResult!=DialogResult.Cancel)
-            {
-                UpdateAllWebBrowsersStyle();
-                if (tree_Тесты.SelectedNode != null)
-                    MessageBox.Show("Настройки текста для тестов будут применены только после выбора нового теста", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            if (frm.DialogResult != DialogResult.Cancel)
+                UpdateAllStyles();
         }
     }
 }

@@ -13,8 +13,11 @@ namespace Algem_manual
 {
     public partial class Calculations : Form
     {
-        public Calculations()
+        Settings settings;
+
+        public Calculations(Settings global)
         {
+            settings = global;
             InitializeComponent();
 
             splitContainerMatrix.Panel2Collapsed = true;
@@ -35,6 +38,8 @@ namespace Algem_manual
             cmbx_определитель_лаплас_2.SelectedIndex = 0;
 
             CheckSizes();
+            browser_results.Navigate("about:blank");
+            settings.ApplyWebBrowserStyle(browser_results);
         }
 
         private void mtr_index_changed(object sender, EventArgs e)
@@ -245,8 +250,10 @@ namespace Algem_manual
 
             TexUtils.Render r1 = new TexUtils.Render(DirectoriesSettings.MatrixCalculatorPath);
             r1.StringToHTML(temp);
-            browser_results.Url = new Uri(String.Format("file:///{0}", r1.HTMLPath));
-            browser_results.Refresh();
+            //browser_results.Url = new Uri(String.Format("file:///{0}", r1.HTMLPath));
+            browser_results.Navigate(String.Format("file:///{0}", r1.HTMLPath));
+            settings.ApplyWebBrowserStyle(browser_results);
+            //browser_results.Refresh();
         }
 
         private void ReadMatr(DataGridView dgv,int[,] matr)
