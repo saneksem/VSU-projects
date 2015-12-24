@@ -19,43 +19,68 @@ namespace Algem_manual
 
         public void UpdateStyle()
         {
-            while (browser_test.ReadyState != WebBrowserReadyState.Complete)
-            { Application.DoEvents(); }
-
-            browser_test.Document.Body.Style = String.Format("font-size:{0}pt;", settings.FontSize);
-            if (browser_test.Document != null)
-                browser_test.Document.BackColor = settings.BackgroundColor;
+            settings.ApplyWebBrowserStyle(browser_test);
         }
 
         public SettingsForm(Settings global)
         {
+            backup = new Settings();
+            global.CopyTo(backup);
+
             settings = global;
 
-            backup = new Settings();
-            backup.FontSize = settings.FontSize;
-            backup.BackgroundColor = settings.BackgroundColor;
-
             InitializeComponent();
+
             browser_test.Navigate(String.Format("file:///{0}", DirectoriesSettings.SettingsTestHTMLPath));
+            numeric_font.Value = Convert.ToDecimal(settings.FontSize);
+
+            for (int i = 0; i < colors.GetLength(0); i++)
+                if (colors[i] == settings.BackgroundColor)
+                    lbx_color.SelectedIndex = i;
 
             UpdateStyle();
-
-            this.DialogResult = DialogResult.None;
         }
 
         private void cmbx_font_SelectedIndexChanged(object sender, EventArgs e)
         {
             //MessageBox.Show(cmbx_font.SelectedItem.ToString());
-            settings.FontSize = Convert.ToInt32(cmbx_font.SelectedItem);
+            //settings.FontSize = Convert.ToInt32(cmbx_font.SelectedItem);
             UpdateStyle();
         }
 
         private void lbx_color_SelectedIndexChanged(object sender, EventArgs e)
         {
-            settings.BackgroundColor = colors[lbx_color.SelectedIndex];
-            UpdateStyle();
+            if (lbx_color.SelectedIndex!=-1)
+            {
+                settings.BackgroundColor = colors[lbx_color.SelectedIndex];
+                UpdateStyle();
+            }
+            //this.DialogResult = DialogResult.Cancel;
+        }
 
+        private void numeric_font_ValueChanged(object sender, EventArgs e)
+        {
+            settings.FontSize = Convert.ToInt32(numeric_font.Value);
+            UpdateStyle();
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            backup.CopyTo(settings);
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                settings.Save();
+            }
+            catch
+            {
+                MessageBox.Show("Невозможно сохранить настройки." + Environment.NewLine + "Возможно, приложение нужно запустить с правами администратора." + Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

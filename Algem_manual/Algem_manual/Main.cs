@@ -21,6 +21,18 @@ namespace Algem_manual
         List<object> answers;
         Settings settings;
 
+        private void UpdateAllWebBrowsersStyle()
+        {
+            settings.ApplyWebBrowserStyle(browser_Теория);
+            settings.ApplyWebBrowserStyle(browser_Примеры);
+
+            settings.ApplyTreeViewStyle(tree_Теория);
+            settings.ApplyTreeViewStyle(tree_Примеры);
+            settings.ApplyTreeViewStyle(tree_Тесты);
+
+            split_Тесты.Panel2.BackColor = settings.BackgroundColor;
+        }
+
         public Main()
         {
             Logs.InitLogging();
@@ -110,11 +122,7 @@ namespace Algem_manual
                 b.Height = 500;
 
                 //установка стиля согласно настройкам
-                while (b.ReadyState != WebBrowserReadyState.Complete)
-                { Application.DoEvents(); }
-                b.Document.Body.Style = String.Format("font-size:{0}pt;", settings.FontSize);
-                if (b.Document != null)
-                    b.Document.BackColor = settings.BackgroundColor;
+                settings.ApplyWebBrowserStyle(b);
 
                 /* Размер по документу
                 while (b.Document.Body == null)
@@ -224,15 +232,8 @@ namespace Algem_manual
                     UnlockControls();
                 }
 
-                if (browser!=null)
-                {
-                    while (browser.ReadyState != WebBrowserReadyState.Complete)
-                    { Application.DoEvents(); }
-
-                    browser.Document.Body.Style = String.Format("font-size:{0}pt;", settings.FontSize);
-                    if (browser.Document != null)
-                        browser.Document.BackColor = settings.BackgroundColor;
-                }
+                if (browser != null)
+                    settings.ApplyWebBrowserStyle(browser);
             }
         }
 
@@ -285,6 +286,11 @@ namespace Algem_manual
             tree_Примеры.ExpandAll();
             tree_Тесты.ExpandAll();
 
+            browser_Теория.Navigate("about:blank");
+            browser_Примеры.Navigate("about:blank");
+
+            UpdateAllWebBrowsersStyle();
+
             UnlockControls();
         }
 
@@ -292,6 +298,13 @@ namespace Algem_manual
         {
             SettingsForm frm = new SettingsForm(settings);
             frm.ShowDialog();
+            if (frm.DialogResult!=DialogResult.Cancel)
+            {
+                UpdateAllWebBrowsersStyle();
+                if (tree_Тесты.SelectedNode != null)
+                    MessageBox.Show("Настройки текста для тестов будут применены только после выбора нового теста", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+                
         }
     }
 }

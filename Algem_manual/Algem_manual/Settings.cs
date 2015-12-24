@@ -48,5 +48,26 @@ namespace Algem_manual
                 return null;
             }
         }
+
+        public void ApplyWebBrowserStyle(WebBrowser browser)
+        {
+            while (browser.ReadyState != WebBrowserReadyState.Complete)
+            { Application.DoEvents(); }
+
+            browser.Document.Body.Style = String.Format("font-size:{0}pt;", this.FontSize);
+            if (browser.Document != null)
+                browser.Document.BackColor = this.BackgroundColor;
+        }
+
+        public void ApplyTreeViewStyle(TreeView tree)
+        {
+            tree.BackColor = this.BackgroundColor;
+        }
+
+        public void CopyTo(Settings other)
+        {
+            other.BackgroundColor = this.BackgroundColor;
+            other.FontSize = this.FontSize;
+        }
     }
 }
