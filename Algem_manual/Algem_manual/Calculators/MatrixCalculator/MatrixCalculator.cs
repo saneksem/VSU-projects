@@ -26,6 +26,15 @@ namespace Algem_manual
             dgv_mtr2.Columns.Add(col, col);
             dgv_mtr2.Columns.Add(col, col);
             dgv_mtr2.Rows.Add(2);
+
+            cmbx_две_матр_действия_вычитание.SelectedIndex = 0;
+            cmbx_две_матр_действия_умножение.SelectedIndex = 0;
+            cmbx_определитель_разложение_строка.SelectedIndex = 0;
+            cmbx_определитель_разложение_столбец.SelectedIndex = 0;
+            cmbx_определитель_лаплас.SelectedIndex = 0;
+            cmbx_определитель_лаплас_2.SelectedIndex = 0;
+
+            CheckSizes();
         }
 
         private void mtr_index_changed(object sender, EventArgs e)
@@ -66,12 +75,58 @@ namespace Algem_manual
             }
         }
 
+        private void addItems(ComboBox cmbx, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                cmbx.Items.Add((cmbx.Items.Count + 1).ToString());
+            }
+        }
+
+        private void delItems(ComboBox cmbx, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                cmbx.Items.RemoveAt(cmbx.Items.Count - 1);
+            }
+        }
+
+        //проверка доступности чекбоксов
+        private void CheckSizes()
+        {
+            //саррюс
+            if ((mtr1row.Value == mtr1col.Value) && (mtr1row.Value >= 3))
+                chbx_определитель_саррюс.Enabled = true;
+            else
+            {
+                chbx_определитель_саррюс.Enabled = false;
+                chbx_определитель_саррюс.Checked = false;
+            }
+        }
+
         private void mtr1row_changed(object sender, EventArgs e)
         {
             if (mtr1row.Value > dgv_mtr1.Rows.Count)
                 addRows(dgv_mtr1, Convert.ToInt32(mtr1row.Value) - dgv_mtr1.Rows.Count);
             else
                 delRows(dgv_mtr1, dgv_mtr1.Rows.Count - Convert.ToInt32(mtr1row.Value));
+
+            if (mtr1row.Value > cmbx_определитель_разложение_строка.Items.Count)
+                addItems(cmbx_определитель_разложение_строка, Convert.ToInt32(mtr1row.Value) - cmbx_определитель_разложение_строка.Items.Count);
+            else
+                delItems(cmbx_определитель_разложение_строка, cmbx_определитель_разложение_строка.Items.Count - Convert.ToInt32(mtr1row.Value));
+
+            if(mtr1row.Value > cmbx_определитель_лаплас.Items.Count)
+                addItems(cmbx_определитель_лаплас, Convert.ToInt32(mtr1row.Value) - cmbx_определитель_лаплас.Items.Count);
+            else
+                delItems(cmbx_определитель_лаплас, cmbx_определитель_лаплас.Items.Count - Convert.ToInt32(mtr1row.Value));
+
+            if (mtr1row.Value > cmbx_определитель_лаплас_2.Items.Count)
+                addItems(cmbx_определитель_лаплас_2, Convert.ToInt32(mtr1row.Value) - cmbx_определитель_лаплас_2.Items.Count);
+            else
+                delItems(cmbx_определитель_лаплас_2, cmbx_определитель_лаплас_2.Items.Count - Convert.ToInt32(mtr1row.Value));
+
+            CheckSizes();
         }
 
         private void mtr1col_changed(object sender,EventArgs e)
@@ -80,6 +135,13 @@ namespace Algem_manual
                 addCols(dgv_mtr1, Convert.ToInt32(mtr1col.Value) - dgv_mtr1.Columns.Count);
             else
                 delCols(dgv_mtr1, dgv_mtr1.Columns.Count - Convert.ToInt32(mtr1col.Value));
+
+            if (mtr1col.Value > cmbx_определитель_разложение_столбец.Items.Count)
+                addItems(cmbx_определитель_разложение_столбец, Convert.ToInt32(mtr1col.Value) - cmbx_определитель_разложение_столбец.Items.Count);
+            else
+                delItems(cmbx_определитель_разложение_столбец, cmbx_определитель_разложение_столбец.Items.Count - Convert.ToInt32(mtr1col.Value));
+
+            CheckSizes();
         }
 
         private void mtr2row_changed(object sender, EventArgs e)
@@ -105,8 +167,16 @@ namespace Algem_manual
 
             //действия с одной матрицей
             int[,] A = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
-            ReadMatr(dgv_mtr1, A);
-
+            try
+            {
+                ReadMatr(dgv_mtr1, A);
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка при считывании первой матрицы", "Ошибка матрицы", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
             foreach (Control panel_control in splitContainerMatrix.Panel1.Controls)
                 if (panel_control is GroupBox)
                     foreach (Control group_control in panel_control.Controls)
@@ -137,7 +207,16 @@ namespace Algem_manual
 
             //действия с двумя матрицами
             int[,] B = new int[dgv_mtr2.Rows.Count, dgv_mtr2.Columns.Count];
-            ReadMatr(dgv_mtr2, B);
+            try
+            {
+                ReadMatr(dgv_mtr2, B);
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка при считывании второй матрицы", "Ошибка матрицы", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
 
             foreach (Control panel_control in splitContainerMatrix.Panel2.Controls)
                 if (panel_control is GroupBox)
@@ -190,10 +269,23 @@ namespace Algem_manual
         private void show_hide_groupbox(object sender, EventArgs e)
         {
             GroupBox parent = (GroupBox)((Button)sender).Parent;
+            Button current = (Button)sender;
             if (parent.Height == 23)
-                parent.Height = 100;
+            {
+                //parent.Height = 100;
+                int checkboxes = 0;
+                foreach (Control cnt in parent.Controls)
+                    if (cnt is CheckBox)
+                        checkboxes++;
+                parent.Height += (checkboxes + 1) * 5 + checkboxes * 20;
+                current.Text = "Скрыть";
+            }
             else
+            {
                 parent.Height = 23;
+                current.Text = "Показать";
+            }
+                
         }
 
         private void btn_show_hide_Click(object sender, EventArgs e)

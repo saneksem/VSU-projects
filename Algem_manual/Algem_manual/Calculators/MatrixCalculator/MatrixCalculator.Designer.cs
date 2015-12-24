@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mtr1row = new System.Windows.Forms.NumericUpDown();
             this.mtr1col = new System.Windows.Forms.NumericUpDown();
             this.dgv_mtr1 = new System.Windows.Forms.DataGridView();
@@ -38,6 +38,8 @@
             this.splitContainerMatrix = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gbx_определитель = new System.Windows.Forms.GroupBox();
+            this.cmbx_определитель_лаплас_2 = new System.Windows.Forms.ComboBox();
+            this.cmbx_определитель_лаплас = new System.Windows.Forms.ComboBox();
             this.chbx_определитель_саррюс = new System.Windows.Forms.CheckBox();
             this.btn_определитель = new System.Windows.Forms.Button();
             this.chbx_определитель_лаплас = new System.Windows.Forms.CheckBox();
@@ -71,8 +73,6 @@
             this.browser_results = new System.Windows.Forms.WebBrowser();
             this.btn_show_hide = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cmbx_определитель_лаплас = new System.Windows.Forms.ComboBox();
-            this.cmbx_определитель_лаплас_2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.mtr1row)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtr1col)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_mtr1)).BeginInit();
@@ -149,23 +149,23 @@
             this.dgv_mtr1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgv_mtr1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_mtr1.ColumnHeadersVisible = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Turquoise;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_mtr1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Turquoise;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_mtr1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_mtr1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_mtr1.Location = new System.Drawing.Point(0, 44);
             this.dgv_mtr1.MultiSelect = false;
             this.dgv_mtr1.Name = "dgv_mtr1";
             this.dgv_mtr1.RowHeadersVisible = false;
             this.dgv_mtr1.RowTemplate.Height = 24;
-            this.dgv_mtr1.Size = new System.Drawing.Size(357, 0);
+            this.dgv_mtr1.Size = new System.Drawing.Size(357, 101);
             this.dgv_mtr1.TabIndex = 0;
             // 
             // dgv_mtr2
@@ -253,7 +253,7 @@
             this.groupBox1.Size = new System.Drawing.Size(357, 44);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Матрица 1";
             // 
             // gbx_определитель
             // 
@@ -267,17 +267,41 @@
             this.gbx_определитель.Controls.Add(this.cmbx_определитель_разложение_строка);
             this.gbx_определитель.Controls.Add(this.chbx_определитель_разложение_строка);
             this.gbx_определитель.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gbx_определитель.Location = new System.Drawing.Point(0, 44);
+            this.gbx_определитель.Location = new System.Drawing.Point(0, 145);
             this.gbx_определитель.Name = "gbx_определитель";
-            this.gbx_определитель.Size = new System.Drawing.Size(357, 129);
+            this.gbx_определитель.Size = new System.Drawing.Size(357, 128);
             this.gbx_определитель.TabIndex = 3;
             this.gbx_определитель.TabStop = false;
             this.gbx_определитель.Text = "Определитель";
             // 
+            // cmbx_определитель_лаплас_2
+            // 
+            this.cmbx_определитель_лаплас_2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbx_определитель_лаплас_2.FormattingEnabled = true;
+            this.cmbx_определитель_лаплас_2.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.cmbx_определитель_лаплас_2.Location = new System.Drawing.Point(265, 101);
+            this.cmbx_определитель_лаплас_2.Name = "cmbx_определитель_лаплас_2";
+            this.cmbx_определитель_лаплас_2.Size = new System.Drawing.Size(68, 24);
+            this.cmbx_определитель_лаплас_2.TabIndex = 8;
+            // 
+            // cmbx_определитель_лаплас
+            // 
+            this.cmbx_определитель_лаплас.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbx_определитель_лаплас.FormattingEnabled = true;
+            this.cmbx_определитель_лаплас.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.cmbx_определитель_лаплас.Location = new System.Drawing.Point(201, 101);
+            this.cmbx_определитель_лаплас.Name = "cmbx_определитель_лаплас";
+            this.cmbx_определитель_лаплас.Size = new System.Drawing.Size(58, 24);
+            this.cmbx_определитель_лаплас.TabIndex = 7;
+            // 
             // chbx_определитель_саррюс
             // 
             this.chbx_определитель_саррюс.AutoSize = true;
-            this.chbx_определитель_саррюс.Location = new System.Drawing.Point(7, 104);
+            this.chbx_определитель_саррюс.Location = new System.Drawing.Point(7, 21);
             this.chbx_определитель_саррюс.Name = "chbx_определитель_саррюс";
             this.chbx_определитель_саррюс.Size = new System.Drawing.Size(109, 21);
             this.chbx_определитель_саррюс.TabIndex = 6;
@@ -287,9 +311,9 @@
             // btn_определитель
             // 
             this.btn_определитель.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_определитель.Location = new System.Drawing.Point(283, -1);
+            this.btn_определитель.Location = new System.Drawing.Point(280, 0);
             this.btn_определитель.Name = "btn_определитель";
-            this.btn_определитель.Size = new System.Drawing.Size(75, 25);
+            this.btn_определитель.Size = new System.Drawing.Size(78, 23);
             this.btn_определитель.TabIndex = 5;
             this.btn_определитель.Text = "Скрыть";
             this.btn_определитель.UseVisualStyleBackColor = true;
@@ -298,7 +322,7 @@
             // chbx_определитель_лаплас
             // 
             this.chbx_определитель_лаплас.AutoSize = true;
-            this.chbx_определитель_лаплас.Location = new System.Drawing.Point(7, 77);
+            this.chbx_определитель_лаплас.Location = new System.Drawing.Point(7, 100);
             this.chbx_определитель_лаплас.Name = "chbx_определитель_лаплас";
             this.chbx_определитель_лаплас.Size = new System.Drawing.Size(108, 21);
             this.chbx_определитель_лаплас.TabIndex = 4;
@@ -311,12 +335,8 @@
             this.cmbx_определитель_разложение_столбец.FormattingEnabled = true;
             this.cmbx_определитель_разложение_столбец.Items.AddRange(new object[] {
             "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cmbx_определитель_разложение_столбец.Location = new System.Drawing.Point(201, 48);
+            "2"});
+            this.cmbx_определитель_разложение_столбец.Location = new System.Drawing.Point(201, 71);
             this.cmbx_определитель_разложение_столбец.Name = "cmbx_определитель_разложение_столбец";
             this.cmbx_определитель_разложение_столбец.Size = new System.Drawing.Size(132, 24);
             this.cmbx_определитель_разложение_столбец.TabIndex = 3;
@@ -324,7 +344,7 @@
             // chbx_определитель_разложение_столбец
             // 
             this.chbx_определитель_разложение_столбец.AutoSize = true;
-            this.chbx_определитель_разложение_столбец.Location = new System.Drawing.Point(7, 50);
+            this.chbx_определитель_разложение_столбец.Location = new System.Drawing.Point(7, 73);
             this.chbx_определитель_разложение_столбец.Name = "chbx_определитель_разложение_столбец";
             this.chbx_определитель_разложение_столбец.Size = new System.Drawing.Size(188, 21);
             this.chbx_определитель_разложение_столбец.TabIndex = 2;
@@ -337,12 +357,8 @@
             this.cmbx_определитель_разложение_строка.FormattingEnabled = true;
             this.cmbx_определитель_разложение_строка.Items.AddRange(new object[] {
             "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cmbx_определитель_разложение_строка.Location = new System.Drawing.Point(201, 20);
+            "2"});
+            this.cmbx_определитель_разложение_строка.Location = new System.Drawing.Point(201, 43);
             this.cmbx_определитель_разложение_строка.Name = "cmbx_определитель_разложение_строка";
             this.cmbx_определитель_разложение_строка.Size = new System.Drawing.Size(132, 24);
             this.cmbx_определитель_разложение_строка.TabIndex = 1;
@@ -350,7 +366,7 @@
             // chbx_определитель_разложение_строка
             // 
             this.chbx_определитель_разложение_строка.AutoSize = true;
-            this.chbx_определитель_разложение_строка.Location = new System.Drawing.Point(7, 22);
+            this.chbx_определитель_разложение_строка.Location = new System.Drawing.Point(7, 46);
             this.chbx_определитель_разложение_строка.Name = "chbx_определитель_разложение_строка";
             this.chbx_определитель_разложение_строка.Size = new System.Drawing.Size(180, 21);
             this.chbx_определитель_разложение_строка.TabIndex = 0;
@@ -362,7 +378,7 @@
             this.gbx_ранг.Controls.Add(this.button1);
             this.gbx_ранг.Controls.Add(this.chbx_ранг);
             this.gbx_ранг.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gbx_ранг.Location = new System.Drawing.Point(0, 173);
+            this.gbx_ранг.Location = new System.Drawing.Point(0, 273);
             this.gbx_ранг.Name = "gbx_ранг";
             this.gbx_ранг.Size = new System.Drawing.Size(357, 53);
             this.gbx_ранг.TabIndex = 4;
@@ -372,9 +388,9 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(283, -1);
+            this.button1.Location = new System.Drawing.Point(280, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 25);
+            this.button1.Size = new System.Drawing.Size(78, 23);
             this.button1.TabIndex = 6;
             this.button1.Text = "Скрыть";
             this.button1.UseVisualStyleBackColor = true;
@@ -396,9 +412,9 @@
             this.gbx_слу.Controls.Add(this.chbx_слу_гаусс);
             this.gbx_слу.Controls.Add(this.chbx_слу_крит_совместности);
             this.gbx_слу.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gbx_слу.Location = new System.Drawing.Point(0, 226);
+            this.gbx_слу.Location = new System.Drawing.Point(0, 326);
             this.gbx_слу.Name = "gbx_слу";
-            this.gbx_слу.Size = new System.Drawing.Size(357, 77);
+            this.gbx_слу.Size = new System.Drawing.Size(357, 23);
             this.gbx_слу.TabIndex = 6;
             this.gbx_слу.TabStop = false;
             this.gbx_слу.Text = "Система линейных уравнений (СЛУ)";
@@ -406,11 +422,11 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(282, 0);
+            this.button2.Location = new System.Drawing.Point(280, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 25);
+            this.button2.Size = new System.Drawing.Size(78, 23);
             this.button2.TabIndex = 6;
-            this.button2.Text = "Скрыть";
+            this.button2.Text = "Показать";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.show_hide_groupbox);
             // 
@@ -440,9 +456,9 @@
             this.gbx_обратная_матрица.Controls.Add(this.chbx_обратная_матрица_алг_дополнение);
             this.gbx_обратная_матрица.Controls.Add(this.chbx_обратная_матрица_приписывание);
             this.gbx_обратная_матрица.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gbx_обратная_матрица.Location = new System.Drawing.Point(0, 303);
+            this.gbx_обратная_матрица.Location = new System.Drawing.Point(0, 349);
             this.gbx_обратная_матрица.Name = "gbx_обратная_матрица";
-            this.gbx_обратная_матрица.Size = new System.Drawing.Size(357, 69);
+            this.gbx_обратная_матрица.Size = new System.Drawing.Size(357, 23);
             this.gbx_обратная_матрица.TabIndex = 5;
             this.gbx_обратная_матрица.TabStop = false;
             this.gbx_обратная_матрица.Text = "Обратная матрица";
@@ -450,11 +466,11 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(283, 0);
+            this.button3.Location = new System.Drawing.Point(280, 0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 25);
+            this.button3.Size = new System.Drawing.Size(78, 23);
             this.button3.TabIndex = 6;
-            this.button3.Text = "Скрыть";
+            this.button3.Text = "Показать";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.show_hide_groupbox);
             // 
@@ -488,7 +504,7 @@
             this.groupBox2.Size = new System.Drawing.Size(381, 48);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "Матрица 2";
             // 
             // gbx_две_матр_действия
             // 
@@ -509,9 +525,9 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(306, 6);
+            this.button4.Location = new System.Drawing.Point(304, 0);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 25);
+            this.button4.Size = new System.Drawing.Size(78, 23);
             this.button4.TabIndex = 6;
             this.button4.Text = "Скрыть";
             this.button4.UseVisualStyleBackColor = true;
@@ -564,7 +580,7 @@
             // chbx_две_матр_действия_сложение
             // 
             this.chbx_две_матр_действия_сложение.AutoSize = true;
-            this.chbx_две_матр_действия_сложение.Location = new System.Drawing.Point(6, 20);
+            this.chbx_две_матр_действия_сложение.Location = new System.Drawing.Point(6, 22);
             this.chbx_две_матр_действия_сложение.Name = "chbx_две_матр_действия_сложение";
             this.chbx_две_матр_действия_сложение.Size = new System.Drawing.Size(96, 21);
             this.chbx_две_матр_действия_сложение.TabIndex = 0;
@@ -646,36 +662,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(753, 52);
             this.panel1.TabIndex = 10;
-            // 
-            // cmbx_определитель_лаплас
-            // 
-            this.cmbx_определитель_лаплас.FormattingEnabled = true;
-            this.cmbx_определитель_лаплас.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cmbx_определитель_лаплас.Location = new System.Drawing.Point(201, 78);
-            this.cmbx_определитель_лаплас.Name = "cmbx_определитель_лаплас";
-            this.cmbx_определитель_лаплас.Size = new System.Drawing.Size(58, 24);
-            this.cmbx_определитель_лаплас.TabIndex = 7;
-            // 
-            // cmbx_определитель_лаплас_2
-            // 
-            this.cmbx_определитель_лаплас_2.FormattingEnabled = true;
-            this.cmbx_определитель_лаплас_2.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"});
-            this.cmbx_определитель_лаплас_2.Location = new System.Drawing.Point(265, 78);
-            this.cmbx_определитель_лаплас_2.Name = "cmbx_определитель_лаплас_2";
-            this.cmbx_определитель_лаплас_2.Size = new System.Drawing.Size(68, 24);
-            this.cmbx_определитель_лаплас_2.TabIndex = 8;
             // 
             // Calculations
             // 

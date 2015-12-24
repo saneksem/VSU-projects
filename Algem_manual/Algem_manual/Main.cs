@@ -69,6 +69,9 @@ namespace Algem_manual
 
             InitializeComponent();
 
+            split_Теория.SplitterWidth = 10;
+            split_Примеры.SplitterWidth = 10;
+            split_Тесты.SplitterWidth = 10;
         }
 
         private void TestTextBoxChanged(object sender, EventArgs e)
@@ -252,13 +255,14 @@ namespace Algem_manual
         private void Main_Shown(object sender, EventArgs e)
         {
             LockControls();
+            this.ControlBox = false;
 
             Converters.MainConverter converter = new Converters.MainConverter(DirectoriesSettings.UnconvertedPath);
             if (converter.CheckForUpdates())
             {
                 Logs.WriteLine("Найдены обновления контента");
-                
-                MessageBox.Show("Необходимо распаковать новый контент." + Environment.NewLine + "Главный элемент с вкладками будет временно доступен.");
+
+                MessageBox.Show("Начинается распаковка нового контента" + Environment.NewLine + "Главный элемент с вкладками будет временно недоступен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
                 //обновляем контент
                 converter.UpdateContent(DirectoriesSettings.ConvertedPath);
@@ -273,6 +277,7 @@ namespace Algem_manual
                 TreeViewUtils.Serialize(DirectoriesSettings.TreeViewPath, tree_Тесты);
 
                 File.Delete(Path.Combine(DirectoriesSettings.UnconvertedPath, "update.conf"));
+                MessageBox.Show("Распаковка нового контента успешно завершена", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -291,6 +296,7 @@ namespace Algem_manual
 
             UpdateAllWebBrowsersStyle();
 
+            this.ControlBox = true;
             UnlockControls();
         }
 
@@ -304,7 +310,6 @@ namespace Algem_manual
                 if (tree_Тесты.SelectedNode != null)
                     MessageBox.Show("Настройки текста для тестов будут применены только после выбора нового теста", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-                
         }
     }
 }
