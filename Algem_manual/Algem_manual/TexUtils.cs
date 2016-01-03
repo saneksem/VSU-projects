@@ -151,7 +151,7 @@ namespace Algem_manual
 
                                     //MessageBox.Show("Конец незакрытой формулы: " + formula);
 
-                                    string finished_formula = "<img src=\"" + CreateImage(formula) + "\">";
+                                    string finished_formula = "<img src=\"" + CreateImage(formula,"файла "+Path.GetFileName(filepath)) + "\">";
                                     current = current.Insert(0, finished_formula);
                                     
 
@@ -176,7 +176,7 @@ namespace Algem_manual
                                     current = current.Remove(pred_index, cur_index + 2 - pred_index);
                                     //MessageBox.Show("after delete строка:" + current);
                                     //MessageBox.Show("Найдена формула: " + formula);
-                                    string expression = "<img src=\"" + CreateImage(formula) + "\">";
+                                    string expression = "<img src=\"" + CreateImage(formula,"файла " + Path.GetFileName(filepath)) + "\">";
                                     //MessageBox.Show("Добавляем:" + expression);
                                     current = current.Insert(pred_index, expression);
                                     //MessageBox.Show("Новая строка:" + current);
@@ -201,7 +201,12 @@ namespace Algem_manual
                 }
             }
 
-            public void StringToHTML(string[] strings)
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="strings">Массив строк, который нужно вывести в HTML</param>
+            /// <param name="source">Источник (в родительном падеже, нужно для логов)</param>
+            public void StringToHTML(string[] strings,string source)
             {
                 string FilePath = GetDirectory;
                 System.IO.Directory.CreateDirectory(FilePath);//проверка на существование не нужна!!! 100%!!!
@@ -246,7 +251,7 @@ namespace Algem_manual
 
                                     //MessageBox.Show("Конец незакрытой формулы: " + formula);
 
-                                    string finished_formula = "<img src=\"" + CreateImage(formula) + "\">";
+                                    string finished_formula = "<img src=\"" + CreateImage(formula,source) + "\">";
                                     current = current.Insert(0, finished_formula);
 
 
@@ -271,7 +276,7 @@ namespace Algem_manual
                                     current = current.Remove(pred_index, cur_index + 2 - pred_index);
                                     //MessageBox.Show("after delete строка:" + current);
                                     //MessageBox.Show("Найдена формула: " + formula);
-                                    string expression = "<img src=\"" + CreateImage(formula) + "\">";
+                                    string expression = "<img src=\"" + CreateImage(formula,source) + "\">";
                                     //MessageBox.Show("Добавляем:" + expression);
                                     current = current.Insert(pred_index, expression);
                                     //MessageBox.Show("Новая строка:" + current);
@@ -300,23 +305,24 @@ namespace Algem_manual
             /// Создаёт изображение для ТЕХ формулы
             /// </summary>
             /// <param name="expression">Формула</param>
+            /// <param name="source">Источник (в родительном падеже, нужно для логов)</param>
             /// <returns>Имя созданного изображения или NULL, если формула была пуста</returns>
-            private string CreateImage(string expression)
+            private string CreateImage(string expression, string source)
             {
-                if (expression.Trim() == "")
+                if (expression.Trim() == "" || expression.Trim() =="$$$$")
                 {
-                    Logs.WriteLine(String.Format("Формула №{0} была пустой", current));
+                    Logs.WriteLine(String.Format("Формула №{0} из {1} была пустой", (current+1), source));
                     return null;
                 }
 
                 try
                 {
-                    Logs.WriteLine("Поиск или создание подкаталога для формулы");
+                    //Logs.WriteLine("Поиск или создание подкаталога для формулы");
                     string FilePath = GetDirectory;
                     System.IO.Directory.CreateDirectory(FilePath);//проверка на существование не нужна!!! 100%!!!
                     FilePath = Path.Combine(FilePath, String.Format("{0}.gif", current));
 
-                    Logs.WriteLine(String.Format("Попытка отрендерить формулу №{0} : {1}", current, expression));
+                    Logs.WriteLine(String.Format("Попытка отрендерить формулу №{0} из {1} : {2}", (current+1), source, expression));
                     expression.Trim();
                     expression = expression.Insert(2, @"\color{black} \Huge ");
 
@@ -325,7 +331,7 @@ namespace Algem_manual
                         TexUtils.CreateGifFromEq(expression, FilePath);
                     }
 
-                    Logs.WriteLine(String.Format("Успешно сохранена формула №{0} : {1}", current, expression));
+                    //Logs.WriteLine(String.Format("Успешно сохранена формула №{0} : {1}", current, expression));
                     current++;
 
                     //return FilePath;
@@ -333,7 +339,7 @@ namespace Algem_manual
                 }
                 catch (Exception ex)
                 {
-                    Logs.WriteLine(String.Format("Ошибка при рендере формулы №{0} : {1}. Подробности:{2}", current, expression, ex.Message));
+                    Logs.WriteLine(String.Format("Ошибка при рендере формулы №{0} из {1} : {2}. Подробности:{3}", current, source, expression, ex.Message));
                     return null;
                 }
             }

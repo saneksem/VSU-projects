@@ -249,7 +249,7 @@ namespace Algem_manual
             //!создание директории
 
             TexUtils.Render r1 = new TexUtils.Render(DirectoriesSettings.MatrixCalculatorPath);
-            r1.StringToHTML(temp);
+            r1.StringToHTML(temp,"калькулятора матриц");
             //browser_results.Url = new Uri(String.Format("file:///{0}", r1.HTMLPath));
             browser_results.Navigate(String.Format("file:///{0}", r1.HTMLPath));
             settings.ApplyWebBrowserStyle(browser_results);
