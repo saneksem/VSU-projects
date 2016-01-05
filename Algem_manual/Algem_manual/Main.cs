@@ -12,12 +12,41 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
 
 namespace Algem_manual
 {
-
     public partial class Main : Form
     {
+        //WIN32 - отключение крестика и скроллбар для тестов
+        [DllImport("user32")]
+        private static extern int GetSystemMenu(IntPtr hWnd, bool bRevert);
+        [DllImport("user32")]
+        private static extern bool DeleteMenu(int hMenu, int uPosition, int uFlags);
+        private int s_SystemMenuHandle = 0;
+        private void cmdDisableX_Click(object sender, EventArgs e)
+        {
+            this.s_SystemMenuHandle = GetSystemMenu(this.Handle, false);
+            DeleteMenu(this.s_SystemMenuHandle, 6, 1024);
+        }
+        private void cmdEnableX_Click(object sender, EventArgs e)
+        {
+            this.s_SystemMenuHandle = GetSystemMenu(this.Handle, true);
+            DeleteMenu(this.s_SystemMenuHandle, 6, 1024);
+        }
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool ShowScrollBar(IntPtr hWnd, int wBar, bool bShow);
+        private enum ScrollBarDirection
+        {
+            SB_HORZ = 0,
+            SB_VERT = 1,
+            SB_CTL = 2,
+            SB_BOTH = 3
+        }
+        //конец WIN32
+
         List<object> answers;
         Settings settings;
 
@@ -71,11 +100,14 @@ namespace Algem_manual
                 settings = temp;
             }
 
+            
             InitializeComponent();
 
             split_Теория.SplitterWidth = 10;
             split_Примеры.SplitterWidth = 10;
             split_Тесты.SplitterWidth = 10;
+
+            
         }
 
         private void TestTextBoxChanged(object sender, EventArgs e)
@@ -114,9 +146,10 @@ namespace Algem_manual
         private void FillTest(int count,string path)
         {
             int currentpos = 10;
-            int buttonsize = 150;
-            int buttonstart = split_Тесты.Panel2.Width - 20 - buttonsize;
-            int buttonwidth = split_Тесты.Panel2.Width - 20 - buttonstart;
+            const int buttonsize = 150;
+            int buttonstart = split_Тесты.Panel2.Width - 40 - buttonsize;
+            int buttonwidth = split_Тесты.Panel2.Width - 40 - buttonstart;
+            int browserwidth = split_Тесты.Panel2.Width - 45;
             for (int i = 0; i < count; i++)
             {
                 WebBrowser b = new WebBrowser();
@@ -125,8 +158,10 @@ namespace Algem_manual
                 b.Visible = true;
                 b.Name = "WebBrowser" + i.ToString();
                 b.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-                b.Width = split_Тесты.Panel2.Width - 25;
-                b.Height = 500;
+                b.Invalidate();
+                b.Width = browserwidth;
+                b.Height = 250;
+                
 
                 //установка стиля согласно настройкам
                 settings.ApplyWebBrowserStyle(b);
@@ -150,6 +185,7 @@ namespace Algem_manual
                 t.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
                 t.Parent = split_Тесты.Panel2;
                 t.TextChanged += TestTextBoxChanged;
+                
 
                 Button btn = new Button();
                 btn.Location = new Point(buttonstart + 10, currentpos - 1);
@@ -234,6 +270,7 @@ namespace Algem_manual
                     }
 
                     ClearTest();
+                    ShowScrollBar(split_Тесты.Panel2.Handle, (int)ScrollBarDirection.SB_VERT, true);
                     FillTest(answers.Count,htmlpath);
 
                     UnlockControls();
@@ -259,7 +296,9 @@ namespace Algem_manual
         private void Main_Shown(object sender, EventArgs e)
         {
             LockControls();
-            this.ControlBox = false;
+            
+            
+            cmdDisableX_Click(sender, e);
 
             Converters.MainConverter converter = new Converters.MainConverter(DirectoriesSettings.UnconvertedPath);
             if (converter.CheckForUpdates())
@@ -300,13 +339,14 @@ namespace Algem_manual
 
             UpdateAllStyles();
 
-            this.ControlBox = true;
+            cmdEnableX_Click(sender, e);
             UnlockControls();
         }
 
         private void tool_settings_Click(object sender, EventArgs e)
         {
             SettingsForm frm = new SettingsForm(settings);
+            
             frm.ShowDialog();
             if (frm.DialogResult != DialogResult.Cancel)
                 UpdateAllStyles();

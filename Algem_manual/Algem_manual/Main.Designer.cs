@@ -42,8 +42,8 @@
             this.tree_Тесты = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.калькуляторыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.матрицыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tab_control_main.SuspendLayout();
             this.tab_Теория.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.split_Теория)).BeginInit();
@@ -70,7 +70,7 @@
             this.tree_Теория.HideSelection = false;
             this.tree_Теория.Location = new System.Drawing.Point(0, 0);
             this.tree_Теория.Name = "tree_Теория";
-            this.tree_Теория.Size = new System.Drawing.Size(273, 585);
+            this.tree_Теория.Size = new System.Drawing.Size(273, 584);
             this.tree_Теория.TabIndex = 1;
             this.tree_Теория.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSelection);
             // 
@@ -93,7 +93,7 @@
             this.tab_Теория.Location = new System.Drawing.Point(4, 29);
             this.tab_Теория.Name = "tab_Теория";
             this.tab_Теория.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Теория.Size = new System.Drawing.Size(974, 593);
+            this.tab_Теория.Size = new System.Drawing.Size(974, 592);
             this.tab_Теория.TabIndex = 0;
             this.tab_Теория.Text = "Теория";
             this.tab_Теория.UseVisualStyleBackColor = true;
@@ -114,7 +114,7 @@
             // 
             this.split_Теория.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.split_Теория.Panel2.Controls.Add(this.browser_Теория);
-            this.split_Теория.Size = new System.Drawing.Size(968, 587);
+            this.split_Теория.Size = new System.Drawing.Size(968, 586);
             this.split_Теория.SplitterDistance = 275;
             this.split_Теория.SplitterWidth = 10;
             this.split_Теория.TabIndex = 2;
@@ -126,7 +126,7 @@
             this.browser_Теория.Location = new System.Drawing.Point(0, 0);
             this.browser_Теория.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser_Теория.Name = "browser_Теория";
-            this.browser_Теория.Size = new System.Drawing.Size(681, 585);
+            this.browser_Теория.Size = new System.Drawing.Size(681, 584);
             this.browser_Теория.TabIndex = 0;
             this.browser_Теория.WebBrowserShortcutsEnabled = false;
             // 
@@ -136,7 +136,7 @@
             this.tab_Примеры.Location = new System.Drawing.Point(4, 29);
             this.tab_Примеры.Name = "tab_Примеры";
             this.tab_Примеры.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Примеры.Size = new System.Drawing.Size(974, 593);
+            this.tab_Примеры.Size = new System.Drawing.Size(974, 592);
             this.tab_Примеры.TabIndex = 1;
             this.tab_Примеры.Text = "Примеры";
             this.tab_Примеры.UseVisualStyleBackColor = true;
@@ -156,7 +156,7 @@
             // split_Примеры.Panel2
             // 
             this.split_Примеры.Panel2.Controls.Add(this.browser_Примеры);
-            this.split_Примеры.Size = new System.Drawing.Size(968, 587);
+            this.split_Примеры.Size = new System.Drawing.Size(968, 586);
             this.split_Примеры.SplitterDistance = 275;
             this.split_Примеры.SplitterWidth = 10;
             this.split_Примеры.TabIndex = 0;
@@ -169,7 +169,7 @@
             this.tree_Примеры.HideSelection = false;
             this.tree_Примеры.Location = new System.Drawing.Point(0, 0);
             this.tree_Примеры.Name = "tree_Примеры";
-            this.tree_Примеры.Size = new System.Drawing.Size(273, 585);
+            this.tree_Примеры.Size = new System.Drawing.Size(273, 584);
             this.tree_Примеры.TabIndex = 0;
             this.tree_Примеры.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSelection);
             // 
@@ -179,7 +179,7 @@
             this.browser_Примеры.Location = new System.Drawing.Point(0, 0);
             this.browser_Примеры.MinimumSize = new System.Drawing.Size(20, 20);
             this.browser_Примеры.Name = "browser_Примеры";
-            this.browser_Примеры.Size = new System.Drawing.Size(681, 585);
+            this.browser_Примеры.Size = new System.Drawing.Size(681, 584);
             this.browser_Примеры.TabIndex = 0;
             // 
             // tab_Тесты
@@ -226,6 +226,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.калькуляторыToolStripMenuItem,
@@ -244,19 +245,19 @@
             this.калькуляторыToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
             this.калькуляторыToolStripMenuItem.Text = "Калькуляторы";
             // 
+            // матрицыToolStripMenuItem
+            // 
+            this.матрицыToolStripMenuItem.Name = "матрицыToolStripMenuItem";
+            this.матрицыToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.матрицыToolStripMenuItem.Text = "Матрицы";
+            this.матрицыToolStripMenuItem.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // настройкиToolStripMenuItem
             // 
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.настройкиToolStripMenuItem.Text = "Настройки";
             this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.tool_settings_Click);
-            // 
-            // матрицыToolStripMenuItem
-            // 
-            this.матрицыToolStripMenuItem.Name = "матрицыToolStripMenuItem";
-            this.матрицыToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.матрицыToolStripMenuItem.Text = "Матрицы";
-            this.матрицыToolStripMenuItem.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // Main
             // 
