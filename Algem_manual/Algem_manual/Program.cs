@@ -25,6 +25,7 @@ namespace Algem_manual
                 System.Environment.Exit(0);
             }
 
+            //проверка папки Data
             if (!Directory.Exists(Path.Combine(Application.StartupPath,"Data")))
             {
                 MessageBox.Show("Не найдена папка Data", "Критическая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

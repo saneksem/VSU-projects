@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tree_Теория = new System.Windows.Forms.TreeView();
             this.tab_control_main = new System.Windows.Forms.TabControl();
             this.tab_Теория = new System.Windows.Forms.TabPage();
@@ -266,9 +267,9 @@
             this.ClientSize = new System.Drawing.Size(982, 653);
             this.Controls.Add(this.tab_control_main);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
-            this.ShowIcon = false;
             this.Text = "Электронный учебник. Алгебра и геометрия";
             this.Shown += new System.EventHandler(this.Main_Shown);
             this.tab_control_main.ResumeLayout(false);
