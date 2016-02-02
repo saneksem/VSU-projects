@@ -16,6 +16,7 @@ namespace Algem_manual
         public static string TreeViewPath = Application.StartupPath + "\\Data\\Temp\\TreeView";
         public static string CalculatorsTempPath = Application.StartupPath + "\\Data\\Temp\\Calculators";
         public static string MatrixCalculatorPath = CalculatorsTempPath + "\\Matrix";
+        public static string ComplexCalculatorPath = CalculatorsTempPath + "\\Complex";
         public static string SettingsTestHTMLPath = Application.StartupPath + "\\Data\\test.html";
     }
     public static class TexSettings

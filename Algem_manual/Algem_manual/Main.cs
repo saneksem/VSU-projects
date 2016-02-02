@@ -226,10 +226,12 @@ namespace Algem_manual
 
                 if (tree.Name == "tree_Теория")
                 {
+                    
+                    browser = browser_Теория;
+                    ((Control)browser).Enabled = false;
+
                     htmlpath = Path.Combine(htmlpath, "main.html");
                     browser_Теория.Navigate(String.Format("file:///{0}", htmlpath));
-
-                    browser = browser_Теория;
                     /*
                     while (browser_Теория.ReadyState != WebBrowserReadyState.Complete)
                     { Application.DoEvents(); }
@@ -238,14 +240,15 @@ namespace Algem_manual
                     if (browser_Теория.Document != null)
                         browser_Теория.Document.BackColor = Color.LightYellow;*/
                 }
-                    
+
 
                 if (tree.Name == "tree_Примеры")
                 {
+                    browser = browser_Примеры;
+                    ((Control)browser).Enabled = false;
+
                     htmlpath = Path.Combine(htmlpath, "main.html");
                     browser_Примеры.Navigate(String.Format("file:///{0}", htmlpath));
-
-                    browser = browser_Примеры;
                 }
                     
 
@@ -277,7 +280,13 @@ namespace Algem_manual
                 }
 
                 if (browser != null)
+                {
+                    
                     settings.ApplyWebBrowserStyle(browser);
+                    ((Control)browser).Enabled = true;
+                    
+                }
+                    
             }
         }
 
@@ -350,6 +359,12 @@ namespace Algem_manual
             frm.ShowDialog();
             if (frm.DialogResult != DialogResult.Cancel)
                 UpdateAllStyles();
+        }
+
+        private void комплексныеЧислаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Calculators.ComplexCalculator.ComplexCalculator c = new Calculators.ComplexCalculator.ComplexCalculator(settings);
+            c.Show();
         }
     }
 }

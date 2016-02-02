@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -17,14 +18,20 @@ namespace Algem_manual
 
         public Calculations(Settings global)
         {
+
             //загрузка настроек
             settings = global;
 
             //инициализация компонентов формы
             InitializeComponent();
 
+            this.MinimumSize = new Size(this.Width, this.Height);
+            this.splitContainerMain.Panel2MinSize = this.splitContainerMain.Panel2.Width;
+            //AutoScaleMode = AutoScaleMode.None;
+
             splitContainer1.Panel2Collapsed = true;
             splitContainer1.SplitterWidth = 15;
+            splitContainerMain.SplitterWidth = 13;
 
             //по умолчанию грузится матрица 2 на 2
             string col = "";
@@ -231,10 +238,9 @@ namespace Algem_manual
             CheckBothSizes();
         }
 
+        //Процедура кнопки "посчитать"
         private void btn_calculate_Click(object sender, EventArgs e)
         {
-            string result = "";
-
             //считывание первой матрицы
             int[,] A = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
             try
@@ -261,7 +267,9 @@ namespace Algem_manual
                     return;
                 }
             }
-            
+
+            string result = "";
+
             //вызов соответствующих процедур
             foreach (Control panel_control in splitContainerMatrix.Panel2.Controls)
                 if (panel_control is GroupBox)
@@ -311,22 +319,27 @@ namespace Algem_manual
                                             //два комбобокса
                                             result += (string)method.Invoke(this, new object[] { A, ((ComboBox)controls[0]).SelectedIndex, ((ComboBox)controls2[0]).SelectedIndex, this.chbx_details.Checked });
                                     }
-
                                 }
                             break;
                     }
 
             string[] temp = result.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
-            //!очистка директории
-            //!создание директории
+            //очистка временной директории
+            try
+            {
+                Directory.Delete(DirectoriesSettings.MatrixCalculatorPath, true);
+            }
+            catch (Exception ex)
+            {
+                Logs.WriteLine("При удалении старых файлов калькулятора матриц. Подробности:" + ex.Message);
+            }
 
             TexUtils.Render r1 = new TexUtils.Render(DirectoriesSettings.MatrixCalculatorPath);
             r1.StringToHTML(temp,"калькулятора матриц");
-            //browser_results.Url = new Uri(String.Format("file:///{0}", r1.HTMLPath));
             browser_results.Navigate(String.Format("file:///{0}", r1.HTMLPath));
             settings.ApplyWebBrowserStyle(browser_results);
-            //browser_results.Refresh();
+            
         }
 
         private void ReadMatr(DataGridView dgv,int[,] matr)
@@ -365,20 +378,28 @@ namespace Algem_manual
         {
             if (chbx_две_матр.Checked == true)
             {
-                gbx_две_матр_действия.Enabled = true;
+                chbx_две_матр_действия_сложение.Enabled = true;
+                chbx_две_матр_действия_вычитание.Enabled = true;
+                chbx_две_матр_действия_умножение.Enabled = true;
+
+                button1.Enabled = true;
+                button2.Enabled = true; cmbx_две_матр_действия_вычитание.Enabled = true;
+                button3.Enabled = true; cmbx_две_матр_действия_умножение.Enabled = true;
+
                 splitContainer1.Panel2Collapsed = false;
                 CheckBothSizes();
-                button1.Enabled = true;
-                button2.Enabled = true;
-                button3.Enabled = true;
             }
             else
             {
-                gbx_две_матр_действия.Enabled = false;
-                splitContainer1.Panel2Collapsed = true;
+                chbx_две_матр_действия_сложение.Enabled = false;
+                chbx_две_матр_действия_вычитание.Enabled = false;
+                chbx_две_матр_действия_умножение.Enabled = false;
+                
                 button1.Enabled = false;
-                button2.Enabled = false;
-                button3.Enabled = false;
+                button2.Enabled = false; cmbx_две_матр_действия_вычитание.Enabled = false;
+                button3.Enabled = false; cmbx_две_матр_действия_умножение.Enabled = false;
+
+                splitContainer1.Panel2Collapsed = true;
             }
         }
 
@@ -444,6 +465,11 @@ namespace Algem_manual
                 dgv_mtr2.Rows.Add(row);
             mtr2row.Value = Convert.ToDecimal(dgv_mtr2.Rows.Count);
             mtr2col.Value = Convert.ToDecimal(dgv_mtr2.Columns.Count);
+        }
+
+        private void splitContainerMain_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
         }
     }
 }

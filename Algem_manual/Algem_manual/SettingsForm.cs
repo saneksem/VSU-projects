@@ -31,6 +31,8 @@ namespace Algem_manual
 
             InitializeComponent();
 
+            this.ClientSize = new Size(this.Width,this.Height);
+
             browser_test.Navigate(String.Format("file:///{0}", DirectoriesSettings.SettingsTestHTMLPath));
             numeric_font.Value = Convert.ToDecimal(settings.FontSize);
 
