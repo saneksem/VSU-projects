@@ -40,33 +40,40 @@
             this.splitContainerMatrix = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.gbx_две_матр_действия = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.chbx_две_матр = new System.Windows.Forms.CheckBox();
             this.cmbx_две_матр_действия_умножение = new System.Windows.Forms.ComboBox();
-            this.chbx_две_матр_действия_умножение = new System.Windows.Forms.CheckBox();
-            this.cmbx_две_матр_действия_вычитание = new System.Windows.Forms.ComboBox();
-            this.chbx_две_матр_действия_вычитание = new System.Windows.Forms.CheckBox();
             this.chbx_две_матр_действия_сложение = new System.Windows.Forms.CheckBox();
+            this.chbx_две_матр_действия_умножение = new System.Windows.Forms.CheckBox();
+            this.chbx_две_матр_действия_вычитание = new System.Windows.Forms.CheckBox();
+            this.cmbx_две_матр_действия_вычитание = new System.Windows.Forms.ComboBox();
             this.gbx_обратная_матрица = new System.Windows.Forms.GroupBox();
-            this.chbx_обратная_матрица_алг_дополнение = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.chbx_обратная_матрица_приписывание = new System.Windows.Forms.CheckBox();
+            this.chbx_обратная_матрица_алг_дополнение = new System.Windows.Forms.CheckBox();
             this.gbx_слу = new System.Windows.Forms.GroupBox();
-            this.chbx_слу_гаусс = new System.Windows.Forms.CheckBox();
+            this.table_слу = new System.Windows.Forms.TableLayoutPanel();
             this.chbx_слу_крит_совместности = new System.Windows.Forms.CheckBox();
+            this.chbx_слу_гаусс = new System.Windows.Forms.CheckBox();
             this.gbx_ранг = new System.Windows.Forms.GroupBox();
+            this.table_ранг = new System.Windows.Forms.TableLayoutPanel();
             this.chbx_ранг = new System.Windows.Forms.CheckBox();
             this.gbx_определитель = new System.Windows.Forms.GroupBox();
-            this.cmbx_определитель_лаплас_2 = new System.Windows.Forms.ComboBox();
-            this.cmbx_определитель_лаплас = new System.Windows.Forms.ComboBox();
+            this.table_определитель = new System.Windows.Forms.TableLayoutPanel();
             this.chbx_определитель_саррюс = new System.Windows.Forms.CheckBox();
-            this.chbx_определитель_лаплас = new System.Windows.Forms.CheckBox();
-            this.cmbx_определитель_разложение_столбец = new System.Windows.Forms.ComboBox();
-            this.chbx_определитель_разложение_столбец = new System.Windows.Forms.CheckBox();
-            this.cmbx_определитель_разложение_строка = new System.Windows.Forms.ComboBox();
+            this.cmbx_определитель_лаплас_2 = new System.Windows.Forms.ComboBox();
             this.chbx_определитель_разложение_строка = new System.Windows.Forms.CheckBox();
+            this.cmbx_определитель_лаплас = new System.Windows.Forms.ComboBox();
+            this.cmbx_определитель_разложение_строка = new System.Windows.Forms.ComboBox();
+            this.cmbx_определитель_разложение_столбец = new System.Windows.Forms.ComboBox();
+            this.chbx_определитель_лаплас = new System.Windows.Forms.CheckBox();
+            this.chbx_определитель_разложение_столбец = new System.Windows.Forms.CheckBox();
             this.btn_calculate = new System.Windows.Forms.Button();
             this.chbx_details = new System.Windows.Forms.CheckBox();
             this.browser_results = new System.Windows.Forms.WebBrowser();
@@ -77,8 +84,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.mtr1row)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtr1col)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_mtr1)).BeginInit();
@@ -94,26 +99,31 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.gbx_две_матр_действия.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.gbx_обратная_матрица.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.gbx_слу.SuspendLayout();
+            this.table_слу.SuspendLayout();
             this.gbx_ранг.SuspendLayout();
+            this.table_ранг.SuspendLayout();
             this.gbx_определитель.SuspendLayout();
+            this.table_определитель.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // mtr1row
             // 
             this.mtr1row.Location = new System.Drawing.Point(6, 4);
-            this.mtr1row.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtr1row.Margin = new System.Windows.Forms.Padding(2);
             this.mtr1row.Maximum = new decimal(new int[] {
             25,
             0,
@@ -137,7 +147,7 @@
             // mtr1col
             // 
             this.mtr1col.Location = new System.Drawing.Point(68, 4);
-            this.mtr1col.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtr1col.Margin = new System.Windows.Forms.Padding(2);
             this.mtr1col.Maximum = new decimal(new int[] {
             25,
             0,
@@ -181,12 +191,12 @@
             this.dgv_mtr1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_mtr1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_mtr1.Location = new System.Drawing.Point(5, 47);
-            this.dgv_mtr1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgv_mtr1.Margin = new System.Windows.Forms.Padding(2);
             this.dgv_mtr1.MultiSelect = false;
             this.dgv_mtr1.Name = "dgv_mtr1";
             this.dgv_mtr1.RowHeadersVisible = false;
             this.dgv_mtr1.RowTemplate.Height = 24;
-            this.dgv_mtr1.Size = new System.Drawing.Size(137, 120);
+            this.dgv_mtr1.Size = new System.Drawing.Size(168, 120);
             this.dgv_mtr1.TabIndex = 0;
             // 
             // dgv_mtr2
@@ -212,18 +222,18 @@
             this.dgv_mtr2.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_mtr2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_mtr2.Location = new System.Drawing.Point(2, 41);
-            this.dgv_mtr2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgv_mtr2.Margin = new System.Windows.Forms.Padding(2);
             this.dgv_mtr2.MultiSelect = false;
             this.dgv_mtr2.Name = "dgv_mtr2";
             this.dgv_mtr2.RowHeadersVisible = false;
             this.dgv_mtr2.RowTemplate.Height = 24;
-            this.dgv_mtr2.Size = new System.Drawing.Size(143, 137);
+            this.dgv_mtr2.Size = new System.Drawing.Size(174, 137);
             this.dgv_mtr2.TabIndex = 0;
             // 
             // mtr2row
             // 
             this.mtr2row.Location = new System.Drawing.Point(3, 3);
-            this.mtr2row.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtr2row.Margin = new System.Windows.Forms.Padding(2);
             this.mtr2row.Minimum = new decimal(new int[] {
             2,
             0,
@@ -242,7 +252,7 @@
             // mtr2col
             // 
             this.mtr2col.Location = new System.Drawing.Point(71, 3);
-            this.mtr2col.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtr2col.Margin = new System.Windows.Forms.Padding(2);
             this.mtr2col.Minimum = new decimal(new int[] {
             2,
             0,
@@ -264,7 +274,7 @@
             this.splitContainerMatrix.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainerMatrix.IsSplitterFixed = true;
             this.splitContainerMatrix.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerMatrix.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainerMatrix.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainerMatrix.Name = "splitContainerMatrix";
             // 
             // splitContainerMatrix.Panel1
@@ -279,17 +289,18 @@
             this.splitContainerMatrix.Panel2.Controls.Add(this.gbx_слу);
             this.splitContainerMatrix.Panel2.Controls.Add(this.gbx_ранг);
             this.splitContainerMatrix.Panel2.Controls.Add(this.gbx_определитель);
-            this.splitContainerMatrix.Panel2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.splitContainerMatrix.Panel2.Padding = new System.Windows.Forms.Padding(5);
             this.splitContainerMatrix.Panel2MinSize = 0;
             this.splitContainerMatrix.Size = new System.Drawing.Size(446, 368);
-            this.splitContainerMatrix.SplitterDistance = 147;
+            this.splitContainerMatrix.SplitterDistance = 178;
+            this.splitContainerMatrix.SplitterWidth = 1;
             this.splitContainerMatrix.TabIndex = 0;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -300,7 +311,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(147, 368);
+            this.splitContainer1.Size = new System.Drawing.Size(178, 368);
             this.splitContainer1.SplitterDistance = 172;
             this.splitContainer1.SplitterWidth = 16;
             this.splitContainer1.TabIndex = 3;
@@ -311,13 +322,24 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox1.Size = new System.Drawing.Size(147, 172);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox1.Size = new System.Drawing.Size(178, 172);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Матрица 1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.mtr1row);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.mtr1col);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(5, 18);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(168, 29);
+            this.panel1.TabIndex = 4;
             // 
             // label2
             // 
@@ -335,13 +357,24 @@
             this.groupBox2.Controls.Add(this.panel2);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(147, 180);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Size = new System.Drawing.Size(178, 180);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Матрица 2";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.mtr2row);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.mtr2col);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(2, 15);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(174, 26);
+            this.panel2.TabIndex = 5;
             // 
             // label3
             // 
@@ -355,31 +388,47 @@
             // 
             // gbx_две_матр_действия
             // 
-            this.gbx_две_матр_действия.Controls.Add(this.chbx_две_матр);
-            this.gbx_две_матр_действия.Controls.Add(this.cmbx_две_матр_действия_умножение);
-            this.gbx_две_матр_действия.Controls.Add(this.chbx_две_матр_действия_умножение);
-            this.gbx_две_матр_действия.Controls.Add(this.cmbx_две_матр_действия_вычитание);
-            this.gbx_две_матр_действия.Controls.Add(this.chbx_две_матр_действия_вычитание);
-            this.gbx_две_матр_действия.Controls.Add(this.chbx_две_матр_действия_сложение);
+            this.gbx_две_матр_действия.Controls.Add(this.tableLayoutPanel2);
             this.gbx_две_матр_действия.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbx_две_матр_действия.Location = new System.Drawing.Point(5, 261);
-            this.gbx_две_матр_действия.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbx_две_матр_действия.Location = new System.Drawing.Point(5, 281);
+            this.gbx_две_матр_действия.Margin = new System.Windows.Forms.Padding(2);
             this.gbx_две_матр_действия.Name = "gbx_две_матр_действия";
-            this.gbx_две_матр_действия.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gbx_две_матр_действия.Size = new System.Drawing.Size(285, 98);
+            this.gbx_две_матр_действия.Padding = new System.Windows.Forms.Padding(2);
+            this.gbx_две_матр_действия.Size = new System.Drawing.Size(240, 113);
             this.gbx_две_матр_действия.TabIndex = 12;
             this.gbx_две_матр_действия.TabStop = false;
             this.gbx_две_матр_действия.Text = "Действия с двумя матрицами";
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.chbx_две_матр, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cmbx_две_матр_действия_умножение, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.chbx_две_матр_действия_сложение, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.chbx_две_матр_действия_умножение, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.chbx_две_матр_действия_вычитание, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.cmbx_две_матр_действия_вычитание, 1, 2);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 15);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(236, 96);
+            this.tableLayoutPanel2.TabIndex = 6;
+            // 
             // chbx_две_матр
             // 
-            this.chbx_две_матр.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.chbx_две_матр.AutoSize = true;
-            this.chbx_две_матр.Location = new System.Drawing.Point(5, 15);
-            this.chbx_две_матр.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chbx_две_матр.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_две_матр.Location = new System.Drawing.Point(2, 2);
+            this.chbx_две_матр.Margin = new System.Windows.Forms.Padding(2);
             this.chbx_две_матр.Name = "chbx_две_матр";
-            this.chbx_две_матр.Size = new System.Drawing.Size(75, 17);
+            this.chbx_две_матр.Size = new System.Drawing.Size(90, 20);
             this.chbx_две_матр.TabIndex = 5;
             this.chbx_две_матр.Text = "Включить";
             this.chbx_две_матр.UseVisualStyleBackColor = true;
@@ -387,285 +436,364 @@
             // 
             // cmbx_две_матр_действия_умножение
             // 
+            this.cmbx_две_матр_действия_умножение.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbx_две_матр_действия_умножение.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbx_две_матр_действия_умножение.Enabled = false;
             this.cmbx_две_матр_действия_умножение.FormattingEnabled = true;
             this.cmbx_две_матр_действия_умножение.Items.AddRange(new object[] {
             "Первую на вторую",
             "Вторую на первую"});
-            this.cmbx_две_матр_действия_умножение.Location = new System.Drawing.Point(105, 72);
-            this.cmbx_две_матр_действия_умножение.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbx_две_матр_действия_умножение.Location = new System.Drawing.Point(96, 74);
+            this.cmbx_две_матр_действия_умножение.Margin = new System.Windows.Forms.Padding(2);
             this.cmbx_две_матр_действия_умножение.Name = "cmbx_две_матр_действия_умножение";
-            this.cmbx_две_матр_действия_умножение.Size = new System.Drawing.Size(141, 21);
+            this.cmbx_две_матр_действия_умножение.Size = new System.Drawing.Size(138, 21);
             this.cmbx_две_матр_действия_умножение.TabIndex = 4;
             this.cmbx_две_матр_действия_умножение.SelectedIndexChanged += new System.EventHandler(this.cmbx_две_матр_действия_умножение_SelectedIndexChanged);
+            // 
+            // chbx_две_матр_действия_сложение
+            // 
+            this.chbx_две_матр_действия_сложение.AutoSize = true;
+            this.chbx_две_матр_действия_сложение.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_две_матр_действия_сложение.Enabled = false;
+            this.chbx_две_матр_действия_сложение.Location = new System.Drawing.Point(2, 26);
+            this.chbx_две_матр_действия_сложение.Margin = new System.Windows.Forms.Padding(2);
+            this.chbx_две_матр_действия_сложение.Name = "chbx_две_матр_действия_сложение";
+            this.chbx_две_матр_действия_сложение.Size = new System.Drawing.Size(90, 20);
+            this.chbx_две_матр_действия_сложение.TabIndex = 0;
+            this.chbx_две_матр_действия_сложение.Text = "Сложение";
+            this.chbx_две_матр_действия_сложение.UseVisualStyleBackColor = true;
             // 
             // chbx_две_матр_действия_умножение
             // 
             this.chbx_две_матр_действия_умножение.AutoSize = true;
+            this.chbx_две_матр_действия_умножение.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chbx_две_матр_действия_умножение.Enabled = false;
-            this.chbx_две_матр_действия_умножение.Location = new System.Drawing.Point(5, 74);
-            this.chbx_две_матр_действия_умножение.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chbx_две_матр_действия_умножение.Location = new System.Drawing.Point(2, 74);
+            this.chbx_две_матр_действия_умножение.Margin = new System.Windows.Forms.Padding(2);
             this.chbx_две_матр_действия_умножение.Name = "chbx_две_матр_действия_умножение";
-            this.chbx_две_матр_действия_умножение.Size = new System.Drawing.Size(86, 17);
+            this.chbx_две_матр_действия_умножение.Size = new System.Drawing.Size(90, 20);
             this.chbx_две_матр_действия_умножение.TabIndex = 3;
             this.chbx_две_матр_действия_умножение.Text = "Умножение";
             this.chbx_две_матр_действия_умножение.UseVisualStyleBackColor = true;
             // 
+            // chbx_две_матр_действия_вычитание
+            // 
+            this.chbx_две_матр_действия_вычитание.AutoSize = true;
+            this.chbx_две_матр_действия_вычитание.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_две_матр_действия_вычитание.Enabled = false;
+            this.chbx_две_матр_действия_вычитание.Location = new System.Drawing.Point(2, 50);
+            this.chbx_две_матр_действия_вычитание.Margin = new System.Windows.Forms.Padding(2);
+            this.chbx_две_матр_действия_вычитание.Name = "chbx_две_матр_действия_вычитание";
+            this.chbx_две_матр_действия_вычитание.Size = new System.Drawing.Size(90, 20);
+            this.chbx_две_матр_действия_вычитание.TabIndex = 1;
+            this.chbx_две_матр_действия_вычитание.Text = "Вычитание";
+            this.chbx_две_матр_действия_вычитание.UseVisualStyleBackColor = true;
+            // 
             // cmbx_две_матр_действия_вычитание
             // 
+            this.cmbx_две_матр_действия_вычитание.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbx_две_матр_действия_вычитание.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbx_две_матр_действия_вычитание.Enabled = false;
             this.cmbx_две_матр_действия_вычитание.FormattingEnabled = true;
             this.cmbx_две_матр_действия_вычитание.Items.AddRange(new object[] {
             "Из первой вторую",
             "Из второй первую"});
-            this.cmbx_две_матр_действия_вычитание.Location = new System.Drawing.Point(105, 51);
-            this.cmbx_две_матр_действия_вычитание.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbx_две_матр_действия_вычитание.Location = new System.Drawing.Point(96, 50);
+            this.cmbx_две_матр_действия_вычитание.Margin = new System.Windows.Forms.Padding(2);
             this.cmbx_две_матр_действия_вычитание.Name = "cmbx_две_матр_действия_вычитание";
-            this.cmbx_две_матр_действия_вычитание.Size = new System.Drawing.Size(141, 21);
+            this.cmbx_две_матр_действия_вычитание.Size = new System.Drawing.Size(138, 21);
             this.cmbx_две_матр_действия_вычитание.TabIndex = 2;
-            // 
-            // chbx_две_матр_действия_вычитание
-            // 
-            this.chbx_две_матр_действия_вычитание.AutoSize = true;
-            this.chbx_две_матр_действия_вычитание.Enabled = false;
-            this.chbx_две_матр_действия_вычитание.Location = new System.Drawing.Point(5, 54);
-            this.chbx_две_матр_действия_вычитание.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chbx_две_матр_действия_вычитание.Name = "chbx_две_матр_действия_вычитание";
-            this.chbx_две_матр_действия_вычитание.Size = new System.Drawing.Size(81, 17);
-            this.chbx_две_матр_действия_вычитание.TabIndex = 1;
-            this.chbx_две_матр_действия_вычитание.Text = "Вычитание";
-            this.chbx_две_матр_действия_вычитание.UseVisualStyleBackColor = true;
-            // 
-            // chbx_две_матр_действия_сложение
-            // 
-            this.chbx_две_матр_действия_сложение.AutoSize = true;
-            this.chbx_две_матр_действия_сложение.Enabled = false;
-            this.chbx_две_матр_действия_сложение.Location = new System.Drawing.Point(5, 34);
-            this.chbx_две_матр_действия_сложение.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chbx_две_матр_действия_сложение.Name = "chbx_две_матр_действия_сложение";
-            this.chbx_две_матр_действия_сложение.Size = new System.Drawing.Size(77, 17);
-            this.chbx_две_матр_действия_сложение.TabIndex = 0;
-            this.chbx_две_матр_действия_сложение.Text = "Сложение";
-            this.chbx_две_матр_действия_сложение.UseVisualStyleBackColor = true;
             // 
             // gbx_обратная_матрица
             // 
-            this.gbx_обратная_матрица.Controls.Add(this.chbx_обратная_матрица_алг_дополнение);
-            this.gbx_обратная_матрица.Controls.Add(this.chbx_обратная_матрица_приписывание);
+            this.gbx_обратная_матрица.Controls.Add(this.tableLayoutPanel1);
             this.gbx_обратная_матрица.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbx_обратная_матрица.Location = new System.Drawing.Point(5, 207);
-            this.gbx_обратная_матрица.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbx_обратная_матрица.Location = new System.Drawing.Point(5, 217);
+            this.gbx_обратная_матрица.Margin = new System.Windows.Forms.Padding(2);
             this.gbx_обратная_матрица.Name = "gbx_обратная_матрица";
-            this.gbx_обратная_матрица.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gbx_обратная_матрица.Size = new System.Drawing.Size(285, 54);
+            this.gbx_обратная_матрица.Padding = new System.Windows.Forms.Padding(2);
+            this.gbx_обратная_матрица.Size = new System.Drawing.Size(240, 64);
             this.gbx_обратная_матрица.TabIndex = 5;
             this.gbx_обратная_матрица.TabStop = false;
             this.gbx_обратная_матрица.Text = "Обратная матрица";
             // 
-            // chbx_обратная_матрица_алг_дополнение
+            // tableLayoutPanel1
             // 
-            this.chbx_обратная_матрица_алг_дополнение.AutoSize = true;
-            this.chbx_обратная_матрица_алг_дополнение.Location = new System.Drawing.Point(6, 34);
-            this.chbx_обратная_матрица_алг_дополнение.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chbx_обратная_матрица_алг_дополнение.Name = "chbx_обратная_матрица_алг_дополнение";
-            this.chbx_обратная_матрица_алг_дополнение.Size = new System.Drawing.Size(209, 17);
-            this.chbx_обратная_матрица_алг_дополнение.TabIndex = 1;
-            this.chbx_обратная_матрица_алг_дополнение.Text = "Через алгебраическое дополнение ";
-            this.chbx_обратная_матрица_алг_дополнение.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.chbx_обратная_матрица_приписывание, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.chbx_обратная_матрица_алг_дополнение, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 15);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(236, 47);
+            this.tableLayoutPanel1.TabIndex = 2;
             // 
             // chbx_обратная_матрица_приписывание
             // 
             this.chbx_обратная_матрица_приписывание.AutoSize = true;
-            this.chbx_обратная_матрица_приписывание.Location = new System.Drawing.Point(6, 17);
-            this.chbx_обратная_матрица_приписывание.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chbx_обратная_матрица_приписывание.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_обратная_матрица_приписывание.Location = new System.Drawing.Point(2, 2);
+            this.chbx_обратная_матрица_приписывание.Margin = new System.Windows.Forms.Padding(2);
             this.chbx_обратная_матрица_приписывание.Name = "chbx_обратная_матрица_приписывание";
-            this.chbx_обратная_матрица_приписывание.Size = new System.Drawing.Size(213, 17);
+            this.chbx_обратная_матрица_приписывание.Size = new System.Drawing.Size(232, 19);
             this.chbx_обратная_матрица_приписывание.TabIndex = 0;
             this.chbx_обратная_матрица_приписывание.Text = "Нахождение приписыванием справа";
             this.chbx_обратная_матрица_приписывание.UseVisualStyleBackColor = true;
             // 
+            // chbx_обратная_матрица_алг_дополнение
+            // 
+            this.chbx_обратная_матрица_алг_дополнение.AutoSize = true;
+            this.chbx_обратная_матрица_алг_дополнение.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_обратная_матрица_алг_дополнение.Location = new System.Drawing.Point(2, 25);
+            this.chbx_обратная_матрица_алг_дополнение.Margin = new System.Windows.Forms.Padding(2);
+            this.chbx_обратная_матрица_алг_дополнение.Name = "chbx_обратная_матрица_алг_дополнение";
+            this.chbx_обратная_матрица_алг_дополнение.Size = new System.Drawing.Size(232, 20);
+            this.chbx_обратная_матрица_алг_дополнение.TabIndex = 1;
+            this.chbx_обратная_матрица_алг_дополнение.Text = "Через алгебраическое дополнение ";
+            this.chbx_обратная_матрица_алг_дополнение.UseVisualStyleBackColor = true;
+            // 
             // gbx_слу
             // 
-            this.gbx_слу.Controls.Add(this.chbx_слу_гаусс);
-            this.gbx_слу.Controls.Add(this.chbx_слу_крит_совместности);
+            this.gbx_слу.Controls.Add(this.table_слу);
             this.gbx_слу.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbx_слу.Location = new System.Drawing.Point(5, 150);
-            this.gbx_слу.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbx_слу.Location = new System.Drawing.Point(5, 158);
+            this.gbx_слу.Margin = new System.Windows.Forms.Padding(2);
             this.gbx_слу.Name = "gbx_слу";
-            this.gbx_слу.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gbx_слу.Size = new System.Drawing.Size(285, 57);
+            this.gbx_слу.Padding = new System.Windows.Forms.Padding(2);
+            this.gbx_слу.Size = new System.Drawing.Size(240, 59);
             this.gbx_слу.TabIndex = 6;
             this.gbx_слу.TabStop = false;
             this.gbx_слу.Text = "Система линейных уравнений (СЛУ)";
             // 
-            // chbx_слу_гаусс
+            // table_слу
             // 
-            this.chbx_слу_гаусс.AutoSize = true;
-            this.chbx_слу_гаусс.Location = new System.Drawing.Point(6, 35);
-            this.chbx_слу_гаусс.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chbx_слу_гаусс.Name = "chbx_слу_гаусс";
-            this.chbx_слу_гаусс.Size = new System.Drawing.Size(77, 17);
-            this.chbx_слу_гаусс.TabIndex = 1;
-            this.chbx_слу_гаусс.Text = "По Гауссу";
-            this.chbx_слу_гаусс.UseVisualStyleBackColor = true;
+            this.table_слу.ColumnCount = 1;
+            this.table_слу.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.table_слу.Controls.Add(this.chbx_слу_крит_совместности, 0, 0);
+            this.table_слу.Controls.Add(this.chbx_слу_гаусс, 0, 1);
+            this.table_слу.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.table_слу.Location = new System.Drawing.Point(2, 15);
+            this.table_слу.Name = "table_слу";
+            this.table_слу.RowCount = 2;
+            this.table_слу.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.table_слу.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.table_слу.Size = new System.Drawing.Size(236, 42);
+            this.table_слу.TabIndex = 2;
             // 
             // chbx_слу_крит_совместности
             // 
             this.chbx_слу_крит_совместности.AutoSize = true;
-            this.chbx_слу_крит_совместности.Location = new System.Drawing.Point(6, 18);
-            this.chbx_слу_крит_совместности.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chbx_слу_крит_совместности.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_слу_крит_совместности.Location = new System.Drawing.Point(2, 2);
+            this.chbx_слу_крит_совместности.Margin = new System.Windows.Forms.Padding(2);
             this.chbx_слу_крит_совместности.Name = "chbx_слу_крит_совместности";
-            this.chbx_слу_крит_совместности.Size = new System.Drawing.Size(201, 17);
+            this.chbx_слу_крит_совместности.Size = new System.Drawing.Size(232, 17);
             this.chbx_слу_крит_совместности.TabIndex = 0;
             this.chbx_слу_крит_совместности.Text = "Проверка критерия совместности";
             this.chbx_слу_крит_совместности.UseVisualStyleBackColor = true;
             // 
+            // chbx_слу_гаусс
+            // 
+            this.chbx_слу_гаусс.AutoSize = true;
+            this.chbx_слу_гаусс.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_слу_гаусс.Location = new System.Drawing.Point(2, 23);
+            this.chbx_слу_гаусс.Margin = new System.Windows.Forms.Padding(2);
+            this.chbx_слу_гаусс.Name = "chbx_слу_гаусс";
+            this.chbx_слу_гаусс.Size = new System.Drawing.Size(232, 17);
+            this.chbx_слу_гаусс.TabIndex = 1;
+            this.chbx_слу_гаусс.Text = "По Гауссу";
+            this.chbx_слу_гаусс.UseVisualStyleBackColor = true;
+            // 
             // gbx_ранг
             // 
-            this.gbx_ранг.Controls.Add(this.chbx_ранг);
+            this.gbx_ранг.Controls.Add(this.table_ранг);
             this.gbx_ранг.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gbx_ранг.Location = new System.Drawing.Point(5, 110);
-            this.gbx_ранг.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbx_ранг.Location = new System.Drawing.Point(5, 123);
+            this.gbx_ранг.Margin = new System.Windows.Forms.Padding(2);
             this.gbx_ранг.Name = "gbx_ранг";
-            this.gbx_ранг.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gbx_ранг.Size = new System.Drawing.Size(285, 40);
+            this.gbx_ранг.Padding = new System.Windows.Forms.Padding(2);
+            this.gbx_ранг.Size = new System.Drawing.Size(240, 35);
             this.gbx_ранг.TabIndex = 4;
             this.gbx_ранг.TabStop = false;
             this.gbx_ранг.Text = "Ранг";
             // 
+            // table_ранг
+            // 
+            this.table_ранг.ColumnCount = 1;
+            this.table_ранг.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.table_ранг.Controls.Add(this.chbx_ранг, 0, 0);
+            this.table_ранг.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.table_ранг.Location = new System.Drawing.Point(2, 15);
+            this.table_ранг.Name = "table_ранг";
+            this.table_ранг.RowCount = 1;
+            this.table_ранг.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.table_ранг.Size = new System.Drawing.Size(236, 18);
+            this.table_ранг.TabIndex = 1;
+            // 
             // chbx_ранг
             // 
             this.chbx_ранг.AutoSize = true;
-            this.chbx_ранг.Location = new System.Drawing.Point(5, 17);
-            this.chbx_ранг.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chbx_ранг.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_ранг.Location = new System.Drawing.Point(2, 2);
+            this.chbx_ранг.Margin = new System.Windows.Forms.Padding(2);
             this.chbx_ранг.Name = "chbx_ранг";
-            this.chbx_ранг.Size = new System.Drawing.Size(120, 17);
+            this.chbx_ранг.Size = new System.Drawing.Size(232, 17);
             this.chbx_ранг.TabIndex = 0;
             this.chbx_ранг.Text = "Вычисление ранга";
             this.chbx_ранг.UseVisualStyleBackColor = true;
             // 
             // gbx_определитель
             // 
-            this.gbx_определитель.Controls.Add(this.cmbx_определитель_лаплас_2);
-            this.gbx_определитель.Controls.Add(this.cmbx_определитель_лаплас);
-            this.gbx_определитель.Controls.Add(this.chbx_определитель_саррюс);
-            this.gbx_определитель.Controls.Add(this.chbx_определитель_лаплас);
-            this.gbx_определитель.Controls.Add(this.cmbx_определитель_разложение_столбец);
-            this.gbx_определитель.Controls.Add(this.chbx_определитель_разложение_столбец);
-            this.gbx_определитель.Controls.Add(this.cmbx_определитель_разложение_строка);
-            this.gbx_определитель.Controls.Add(this.chbx_определитель_разложение_строка);
+            this.gbx_определитель.Controls.Add(this.table_определитель);
             this.gbx_определитель.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbx_определитель.Location = new System.Drawing.Point(5, 5);
-            this.gbx_определитель.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbx_определитель.Margin = new System.Windows.Forms.Padding(2);
             this.gbx_определитель.Name = "gbx_определитель";
-            this.gbx_определитель.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gbx_определитель.Size = new System.Drawing.Size(285, 105);
+            this.gbx_определитель.Padding = new System.Windows.Forms.Padding(2);
+            this.gbx_определитель.Size = new System.Drawing.Size(240, 118);
             this.gbx_определитель.TabIndex = 3;
             this.gbx_определитель.TabStop = false;
             this.gbx_определитель.Text = "Определитель";
             // 
+            // table_определитель
+            // 
+            this.table_определитель.ColumnCount = 3;
+            this.table_определитель.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.table_определитель.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.table_определитель.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.table_определитель.Controls.Add(this.chbx_определитель_саррюс, 0, 0);
+            this.table_определитель.Controls.Add(this.cmbx_определитель_лаплас_2, 2, 3);
+            this.table_определитель.Controls.Add(this.chbx_определитель_разложение_строка, 0, 1);
+            this.table_определитель.Controls.Add(this.cmbx_определитель_лаплас, 1, 3);
+            this.table_определитель.Controls.Add(this.cmbx_определитель_разложение_строка, 1, 1);
+            this.table_определитель.Controls.Add(this.cmbx_определитель_разложение_столбец, 1, 2);
+            this.table_определитель.Controls.Add(this.chbx_определитель_лаплас, 0, 3);
+            this.table_определитель.Controls.Add(this.chbx_определитель_разложение_столбец, 0, 2);
+            this.table_определитель.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.table_определитель.Location = new System.Drawing.Point(2, 15);
+            this.table_определитель.Name = "table_определитель";
+            this.table_определитель.RowCount = 4;
+            this.table_определитель.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.table_определитель.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.table_определитель.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.table_определитель.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.table_определитель.Size = new System.Drawing.Size(236, 101);
+            this.table_определитель.TabIndex = 9;
+            // 
+            // chbx_определитель_саррюс
+            // 
+            this.chbx_определитель_саррюс.AutoSize = true;
+            this.chbx_определитель_саррюс.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_определитель_саррюс.Location = new System.Drawing.Point(2, 2);
+            this.chbx_определитель_саррюс.Margin = new System.Windows.Forms.Padding(2);
+            this.chbx_определитель_саррюс.Name = "chbx_определитель_саррюс";
+            this.chbx_определитель_саррюс.Size = new System.Drawing.Size(156, 21);
+            this.chbx_определитель_саррюс.TabIndex = 6;
+            this.chbx_определитель_саррюс.Text = "По Саррюсу";
+            this.chbx_определитель_саррюс.UseVisualStyleBackColor = true;
+            // 
             // cmbx_определитель_лаплас_2
             // 
+            this.cmbx_определитель_лаплас_2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbx_определитель_лаплас_2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbx_определитель_лаплас_2.FormattingEnabled = true;
             this.cmbx_определитель_лаплас_2.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.cmbx_определитель_лаплас_2.Location = new System.Drawing.Point(212, 81);
-            this.cmbx_определитель_лаплас_2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbx_определитель_лаплас_2.Location = new System.Drawing.Point(200, 77);
+            this.cmbx_определитель_лаплас_2.Margin = new System.Windows.Forms.Padding(2);
             this.cmbx_определитель_лаплас_2.Name = "cmbx_определитель_лаплас_2";
             this.cmbx_определитель_лаплас_2.Size = new System.Drawing.Size(34, 21);
             this.cmbx_определитель_лаплас_2.TabIndex = 8;
             // 
+            // chbx_определитель_разложение_строка
+            // 
+            this.chbx_определитель_разложение_строка.AutoSize = true;
+            this.chbx_определитель_разложение_строка.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_определитель_разложение_строка.Location = new System.Drawing.Point(2, 27);
+            this.chbx_определитель_разложение_строка.Margin = new System.Windows.Forms.Padding(2);
+            this.chbx_определитель_разложение_строка.Name = "chbx_определитель_разложение_строка";
+            this.chbx_определитель_разложение_строка.Size = new System.Drawing.Size(156, 21);
+            this.chbx_определитель_разложение_строка.TabIndex = 0;
+            this.chbx_определитель_разложение_строка.Text = "Разложение по строке";
+            this.chbx_определитель_разложение_строка.UseVisualStyleBackColor = true;
+            // 
             // cmbx_определитель_лаплас
             // 
+            this.cmbx_определитель_лаплас.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbx_определитель_лаплас.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbx_определитель_лаплас.FormattingEnabled = true;
             this.cmbx_определитель_лаплас.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.cmbx_определитель_лаплас.Location = new System.Drawing.Point(161, 81);
-            this.cmbx_определитель_лаплас.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbx_определитель_лаплас.Location = new System.Drawing.Point(162, 77);
+            this.cmbx_определитель_лаплас.Margin = new System.Windows.Forms.Padding(2);
             this.cmbx_определитель_лаплас.Name = "cmbx_определитель_лаплас";
-            this.cmbx_определитель_лаплас.Size = new System.Drawing.Size(47, 21);
+            this.cmbx_определитель_лаплас.Size = new System.Drawing.Size(34, 21);
             this.cmbx_определитель_лаплас.TabIndex = 7;
-            // 
-            // chbx_определитель_саррюс
-            // 
-            this.chbx_определитель_саррюс.AutoSize = true;
-            this.chbx_определитель_саррюс.Location = new System.Drawing.Point(6, 17);
-            this.chbx_определитель_саррюс.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chbx_определитель_саррюс.Name = "chbx_определитель_саррюс";
-            this.chbx_определитель_саррюс.Size = new System.Drawing.Size(87, 17);
-            this.chbx_определитель_саррюс.TabIndex = 6;
-            this.chbx_определитель_саррюс.Text = "По Саррюсу";
-            this.chbx_определитель_саррюс.UseVisualStyleBackColor = true;
-            // 
-            // chbx_определитель_лаплас
-            // 
-            this.chbx_определитель_лаплас.AutoSize = true;
-            this.chbx_определитель_лаплас.Location = new System.Drawing.Point(6, 82);
-            this.chbx_определитель_лаплас.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chbx_определитель_лаплас.Name = "chbx_определитель_лаплас";
-            this.chbx_определитель_лаплас.Size = new System.Drawing.Size(86, 17);
-            this.chbx_определитель_лаплас.TabIndex = 4;
-            this.chbx_определитель_лаплас.Text = "По Лапласу";
-            this.chbx_определитель_лаплас.UseVisualStyleBackColor = true;
-            // 
-            // cmbx_определитель_разложение_столбец
-            // 
-            this.cmbx_определитель_разложение_столбец.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbx_определитель_разложение_столбец.FormattingEnabled = true;
-            this.cmbx_определитель_разложение_столбец.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.cmbx_определитель_разложение_столбец.Location = new System.Drawing.Point(161, 57);
-            this.cmbx_определитель_разложение_столбец.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cmbx_определитель_разложение_столбец.Name = "cmbx_определитель_разложение_столбец";
-            this.cmbx_определитель_разложение_столбец.Size = new System.Drawing.Size(85, 21);
-            this.cmbx_определитель_разложение_столбец.TabIndex = 3;
-            // 
-            // chbx_определитель_разложение_столбец
-            // 
-            this.chbx_определитель_разложение_столбец.AutoSize = true;
-            this.chbx_определитель_разложение_столбец.Location = new System.Drawing.Point(6, 58);
-            this.chbx_определитель_разложение_столбец.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chbx_определитель_разложение_столбец.Name = "chbx_определитель_разложение_столбец";
-            this.chbx_определитель_разложение_столбец.Size = new System.Drawing.Size(147, 17);
-            this.chbx_определитель_разложение_столбец.TabIndex = 2;
-            this.chbx_определитель_разложение_столбец.Text = "Разложение по столбцу";
-            this.chbx_определитель_разложение_столбец.UseVisualStyleBackColor = true;
             // 
             // cmbx_определитель_разложение_строка
             // 
+            this.table_определитель.SetColumnSpan(this.cmbx_определитель_разложение_строка, 2);
+            this.cmbx_определитель_разложение_строка.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbx_определитель_разложение_строка.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbx_определитель_разложение_строка.FormattingEnabled = true;
             this.cmbx_определитель_разложение_строка.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.cmbx_определитель_разложение_строка.Location = new System.Drawing.Point(161, 34);
-            this.cmbx_определитель_разложение_строка.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbx_определитель_разложение_строка.Location = new System.Drawing.Point(162, 27);
+            this.cmbx_определитель_разложение_строка.Margin = new System.Windows.Forms.Padding(2);
             this.cmbx_определитель_разложение_строка.Name = "cmbx_определитель_разложение_строка";
-            this.cmbx_определитель_разложение_строка.Size = new System.Drawing.Size(85, 21);
+            this.cmbx_определитель_разложение_строка.Size = new System.Drawing.Size(72, 21);
             this.cmbx_определитель_разложение_строка.TabIndex = 1;
             // 
-            // chbx_определитель_разложение_строка
+            // cmbx_определитель_разложение_столбец
             // 
-            this.chbx_определитель_разложение_строка.AutoSize = true;
-            this.chbx_определитель_разложение_строка.Location = new System.Drawing.Point(6, 36);
-            this.chbx_определитель_разложение_строка.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chbx_определитель_разложение_строка.Name = "chbx_определитель_разложение_строка";
-            this.chbx_определитель_разложение_строка.Size = new System.Drawing.Size(142, 17);
-            this.chbx_определитель_разложение_строка.TabIndex = 0;
-            this.chbx_определитель_разложение_строка.Text = "Разложение по строке";
-            this.chbx_определитель_разложение_строка.UseVisualStyleBackColor = true;
+            this.table_определитель.SetColumnSpan(this.cmbx_определитель_разложение_столбец, 2);
+            this.cmbx_определитель_разложение_столбец.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbx_определитель_разложение_столбец.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbx_определитель_разложение_столбец.FormattingEnabled = true;
+            this.cmbx_определитель_разложение_столбец.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.cmbx_определитель_разложение_столбец.Location = new System.Drawing.Point(162, 52);
+            this.cmbx_определитель_разложение_столбец.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbx_определитель_разложение_столбец.Name = "cmbx_определитель_разложение_столбец";
+            this.cmbx_определитель_разложение_столбец.Size = new System.Drawing.Size(72, 21);
+            this.cmbx_определитель_разложение_столбец.TabIndex = 3;
+            // 
+            // chbx_определитель_лаплас
+            // 
+            this.chbx_определитель_лаплас.AutoSize = true;
+            this.chbx_определитель_лаплас.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_определитель_лаплас.Location = new System.Drawing.Point(2, 77);
+            this.chbx_определитель_лаплас.Margin = new System.Windows.Forms.Padding(2);
+            this.chbx_определитель_лаплас.Name = "chbx_определитель_лаплас";
+            this.chbx_определитель_лаплас.Size = new System.Drawing.Size(156, 22);
+            this.chbx_определитель_лаплас.TabIndex = 4;
+            this.chbx_определитель_лаплас.Text = "По Лапласу";
+            this.chbx_определитель_лаплас.UseVisualStyleBackColor = true;
+            // 
+            // chbx_определитель_разложение_столбец
+            // 
+            this.chbx_определитель_разложение_столбец.AutoSize = true;
+            this.chbx_определитель_разложение_столбец.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chbx_определитель_разложение_столбец.Location = new System.Drawing.Point(2, 52);
+            this.chbx_определитель_разложение_столбец.Margin = new System.Windows.Forms.Padding(2);
+            this.chbx_определитель_разложение_столбец.Name = "chbx_определитель_разложение_столбец";
+            this.chbx_определитель_разложение_столбец.Size = new System.Drawing.Size(156, 21);
+            this.chbx_определитель_разложение_столбец.TabIndex = 2;
+            this.chbx_определитель_разложение_столбец.Text = "Разложение по столбцу";
+            this.chbx_определитель_разложение_столбец.UseVisualStyleBackColor = true;
             // 
             // btn_calculate
             // 
             this.btn_calculate.Location = new System.Drawing.Point(6, 38);
-            this.btn_calculate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_calculate.Margin = new System.Windows.Forms.Padding(2);
             this.btn_calculate.Name = "btn_calculate";
             this.btn_calculate.Size = new System.Drawing.Size(134, 22);
             this.btn_calculate.TabIndex = 2;
@@ -679,7 +807,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chbx_details.AutoSize = true;
             this.chbx_details.Location = new System.Drawing.Point(7, 17);
-            this.chbx_details.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chbx_details.Margin = new System.Windows.Forms.Padding(2);
             this.chbx_details.Name = "chbx_details";
             this.chbx_details.Size = new System.Drawing.Size(129, 17);
             this.chbx_details.TabIndex = 7;
@@ -692,7 +820,7 @@
             this.browser_results.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browser_results.IsWebBrowserContextMenuEnabled = false;
             this.browser_results.Location = new System.Drawing.Point(5, 18);
-            this.browser_results.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.browser_results.Margin = new System.Windows.Forms.Padding(2);
             this.browser_results.MinimumSize = new System.Drawing.Size(16, 16);
             this.browser_results.Name = "browser_results";
             this.browser_results.Size = new System.Drawing.Size(452, 271);
@@ -701,7 +829,7 @@
             // btn_show_hide
             // 
             this.btn_show_hide.Location = new System.Drawing.Point(303, 38);
-            this.btn_show_hide.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_show_hide.Margin = new System.Windows.Forms.Padding(2);
             this.btn_show_hide.Name = "btn_show_hide";
             this.btn_show_hide.Size = new System.Drawing.Size(152, 22);
             this.btn_show_hide.TabIndex = 9;
@@ -713,7 +841,7 @@
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerMain.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel1
@@ -725,7 +853,7 @@
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.groupBox3);
             this.splitContainerMain.Panel2.Controls.Add(this.groupBox4);
-            this.splitContainerMain.Panel2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainerMain.Panel2.Padding = new System.Windows.Forms.Padding(4);
             this.splitContainerMain.Panel2MinSize = 470;
             this.splitContainerMain.Size = new System.Drawing.Size(925, 368);
             this.splitContainerMain.SplitterDistance = 446;
@@ -738,9 +866,9 @@
             this.groupBox3.Controls.Add(this.browser_results);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(4, 70);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(5);
             this.groupBox3.Size = new System.Drawing.Size(462, 294);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
@@ -756,9 +884,9 @@
             this.groupBox4.Controls.Add(this.btn_calculate);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.Location = new System.Drawing.Point(4, 4);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(462, 66);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
@@ -768,7 +896,7 @@
             // 
             this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(303, 13);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(152, 22);
             this.button3.TabIndex = 12;
@@ -780,7 +908,7 @@
             // 
             this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(146, 13);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(152, 22);
             this.button2.TabIndex = 11;
@@ -792,35 +920,13 @@
             // 
             this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(146, 38);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 22);
             this.button1.TabIndex = 10;
             this.button1.Text = "Копировать из 2-й в 1-ю";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.mtr1row);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.mtr1col);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(5, 18);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(137, 29);
-            this.panel1.TabIndex = 4;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.mtr2row);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.mtr2col);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(2, 15);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(143, 26);
-            this.panel2.TabIndex = 5;
             // 
             // Calculations
             // 
@@ -829,7 +935,7 @@
             this.ClientSize = new System.Drawing.Size(925, 368);
             this.Controls.Add(this.splitContainerMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Calculations";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Калькулятор матриц";
@@ -848,17 +954,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.gbx_две_матр_действия.ResumeLayout(false);
-            this.gbx_две_матр_действия.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.gbx_обратная_матрица.ResumeLayout(false);
-            this.gbx_обратная_матрица.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.gbx_слу.ResumeLayout(false);
-            this.gbx_слу.PerformLayout();
+            this.table_слу.ResumeLayout(false);
+            this.table_слу.PerformLayout();
             this.gbx_ранг.ResumeLayout(false);
-            this.gbx_ранг.PerformLayout();
+            this.table_ранг.ResumeLayout(false);
+            this.table_ранг.PerformLayout();
             this.gbx_определитель.ResumeLayout(false);
-            this.gbx_определитель.PerformLayout();
+            this.table_определитель.ResumeLayout(false);
+            this.table_определитель.PerformLayout();
             this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
@@ -866,10 +981,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -923,5 +1034,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TableLayoutPanel table_определитель;
+        private System.Windows.Forms.TableLayoutPanel table_ранг;
+        private System.Windows.Forms.TableLayoutPanel table_слу;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

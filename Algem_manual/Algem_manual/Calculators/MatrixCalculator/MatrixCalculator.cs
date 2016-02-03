@@ -25,8 +25,17 @@ namespace Algem_manual
             //инициализация компонентов формы
             InitializeComponent();
 
+            //размеры в зависимости от dpi
+            using (Graphics myGraphics = this.CreateGraphics())
+            {
+                float dpi = myGraphics.DpiX;
+                if (dpi > 96)
+                    this.splitContainerMatrix.SplitterDistance -= Convert.ToInt32(dpi)*3/2 - 96;
+            }
+
             this.MinimumSize = new Size(this.Width, this.Height);
             this.splitContainerMain.Panel2MinSize = this.splitContainerMain.Panel2.Width;
+            this.splitContainerMain.Panel1MinSize = this.mtr1col.Location.X + this.mtr1col.Width + this.splitContainerMatrix.Panel2.Width;
             //AutoScaleMode = AutoScaleMode.None;
 
             splitContainer1.Panel2Collapsed = true;
