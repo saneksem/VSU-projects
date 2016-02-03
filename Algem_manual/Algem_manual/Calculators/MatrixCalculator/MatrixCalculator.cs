@@ -287,48 +287,52 @@ namespace Algem_manual
                         case "gbx_две_матр_действия":
                             if (chbx_две_матр.Checked == true)
                                 foreach (Control group_control in panel_control.Controls)
-                                    if ((group_control is CheckBox) && ((CheckBox)group_control).Checked)
-                                    {
-                                        string function = group_control.Name.Substring(5);
-                                        Type matr_utils = typeof(MatrixUtils);
-                                        MethodInfo method = matr_utils.GetMethod(function);
+                                    if (group_control is TableLayoutPanel)
+                                        foreach (Control table_control in group_control.Controls)
+                                            if ((table_control is CheckBox) && ((CheckBox)table_control).Checked && ((CheckBox)table_control).Name!="chbx_две_матр")
+                                            {
+                                                string function = table_control.Name.Substring(5);
+                                                Type matr_utils = typeof(MatrixUtils);
+                                                MethodInfo method = matr_utils.GetMethod(function);
 
-                                        Control[] controls = Controls.Find("cmbx_" + function, true);
-                                        if (controls.Count() == 0)
-                                            result += (string)method.Invoke(this, new object[] { A, B, this.chbx_details.Checked });
-                                        else
-                                            //тут проверка на выбранный индекс
-                                            if (((ComboBox)controls[0]).SelectedIndex == 1)
-                                            result += (string)method.Invoke(this, new object[] { B, A, this.chbx_details.Checked });
-                                        else
-                                            result += (string)method.Invoke(this, new object[] { A, B, this.chbx_details.Checked });
-                                    }
+                                                Control[] controls = Controls.Find("cmbx_" + function, true);
+                                                if (controls.Count() == 0)
+                                                    result += (string)method.Invoke(this, new object[] { A, B, this.chbx_details.Checked });
+                                                else
+                                                    //тут проверка на выбранный индекс
+                                                    if (((ComboBox)controls[0]).SelectedIndex == 1)
+                                                    result += (string)method.Invoke(this, new object[] { B, A, this.chbx_details.Checked });
+                                                else
+                                                    result += (string)method.Invoke(this, new object[] { A, B, this.chbx_details.Checked });
+                                            }
                             break;
                         default:
                             foreach (Control group_control in panel_control.Controls)
-                                if ((group_control is CheckBox) && ((CheckBox)group_control).Checked)
-                                {
-                                    string function = group_control.Name.Substring(5);
-                                    Type matr_utils = typeof(MatrixUtils);
-                                    MethodInfo method = matr_utils.GetMethod(function);
+                                if (group_control is TableLayoutPanel)
+                                    foreach (Control table_control in group_control.Controls)
+                                        if ((table_control is CheckBox) && ((CheckBox)table_control).Checked)
+                                        {
+                                            string function = table_control.Name.Substring(5);
+                                            Type matr_utils = typeof(MatrixUtils);
+                                            MethodInfo method = matr_utils.GetMethod(function);
 
-                                    Control[] controls = Controls.Find("cmbx_" + function, true);
-                                    if (controls.Count() == 0)
-                                        //MessageBox.Show(String.Format("Для чекбокса {0} не найден привязанный комбобокс", group_control.Name));
-                                        result += (string)method.Invoke(this, new object[] { A, this.chbx_details.Checked });
-                                    else
-                                    {
-                                        //вызов для одного или двух комбобоксов
-                                        Control[] controls2 = Controls.Find("cmbx_" + function + "_2", true);
-                                        if (controls2.Count() == 0)
-                                            //один комбобокс
-                                            //MessageBox.Show(String.Format("Для чекбокса {0} НАШЁЛСЯ привязанный комбобокс", group_control.Name));
-                                            result += (string)method.Invoke(this, new object[] { A, ((ComboBox)controls[0]).SelectedIndex, this.chbx_details.Checked });
-                                        else
-                                            //два комбобокса
-                                            result += (string)method.Invoke(this, new object[] { A, ((ComboBox)controls[0]).SelectedIndex, ((ComboBox)controls2[0]).SelectedIndex, this.chbx_details.Checked });
-                                    }
-                                }
+                                            Control[] controls = Controls.Find("cmbx_" + function, true);
+                                            if (controls.Count() == 0)
+                                                //MessageBox.Show(String.Format("Для чекбокса {0} не найден привязанный комбобокс", group_control.Name));
+                                                result += (string)method.Invoke(this, new object[] { A, this.chbx_details.Checked });
+                                            else
+                                            {
+                                                //вызов для одного или двух комбобоксов
+                                                Control[] controls2 = Controls.Find("cmbx_" + function + "_2", true);
+                                                if (controls2.Count() == 0)
+                                                    //один комбобокс
+                                                    //MessageBox.Show(String.Format("Для чекбокса {0} НАШЁЛСЯ привязанный комбобокс", group_control.Name));
+                                                    result += (string)method.Invoke(this, new object[] { A, ((ComboBox)controls[0]).SelectedIndex, this.chbx_details.Checked });
+                                                else
+                                                    //два комбобокса
+                                                    result += (string)method.Invoke(this, new object[] { A, ((ComboBox)controls[0]).SelectedIndex, ((ComboBox)controls2[0]).SelectedIndex, this.chbx_details.Checked });
+                                            }
+                                        }
                             break;
                     }
 
