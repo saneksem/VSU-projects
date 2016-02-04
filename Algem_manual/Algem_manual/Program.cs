@@ -17,10 +17,7 @@ namespace Algem_manual
         [DllImport("urlmon.dll")]
         [PreserveSig]
         [return: MarshalAs(UnmanagedType.Error)]
-        static extern int CoInternetSetFeatureEnabled(
-            int FeatureEntry,
-            [MarshalAs(UnmanagedType.U4)] int dwFlags,
-            bool fEnable);
+        static extern int CoInternetSetFeatureEnabled(int FeatureEntry,[MarshalAs(UnmanagedType.U4)] int dwFlags,bool fEnable);
 
         static void DisableClickSounds()
         {
@@ -90,8 +87,9 @@ namespace Algem_manual
                 MessageBox.Show("Ошибка при инициализации системы логов"+Environment.NewLine+"При возникновении ошибок в дальнейшем Вы не сможете отследить их с помощью лога", "Критическая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 System.Environment.Exit(0);
             }
-            
+
             //запуск программы
+            Logs.WriteLine("Запуск программы");
             Application.Run(new Main());
         }
 

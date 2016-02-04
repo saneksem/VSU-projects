@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -49,7 +50,29 @@ namespace Algem_manual
             finally
             {
                 fs.Close();
+
+                //восстанавливаем индексы по тегам
+                foreach (TreeNode tn in trv.Nodes)
+                {
+                    FillImageIndexes(tn);
+
+                    if (tn.Nodes.Count > 0)
+                        foreach (TreeNode tn_child in tn.Nodes)
+                            FillImageIndexes(tn_child);
+                }
             }
+        }
+
+        //выставление индекса изображения для TreeNode в зависимости от тега
+        private static void FillImageIndexes(TreeNode tn)
+        {
+            int image_index = 0;
+
+            if (tn.Tag.ToString() == "child")
+                image_index = 1;
+
+            tn.ImageIndex = image_index;
+            tn.SelectedImageIndex = image_index;
         }
 
         public class TreeRunner

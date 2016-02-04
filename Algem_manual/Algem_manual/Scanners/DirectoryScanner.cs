@@ -16,6 +16,7 @@ namespace Algem_manual.Scanners
 
         public DirectoryScanner(string directory, string key, TreeView output)
         {
+            Logs.WriteLine("Инициализация сканера для '" + key + "'");
             path = directory;
             keyWord = key;
             tree = output;
@@ -32,12 +33,16 @@ namespace Algem_manual.Scanners
                     //нашли папку с теорией,примерами или тестами
                     TreeNode root = new TreeNode(root_folder.Split(Path.DirectorySeparatorChar).Last());
                     root.Name = Path.Combine(root.Text, keyWord);
+                    root.ImageIndex = 0;//!!!
+                    root.SelectedImageIndex = 0;//!!!
 
                     string[] folders = Directory.GetDirectories(fullpath);
                     foreach (string folder in folders)
                     {
                         TreeNode child = new TreeNode(folder.Split(Path.DirectorySeparatorChar).Last());
                         child.Tag = "child";
+                        child.ImageIndex = 1;//!!!
+                        child.SelectedImageIndex = 1;//!!!
                         root.Nodes.Add(child);
                     }
 

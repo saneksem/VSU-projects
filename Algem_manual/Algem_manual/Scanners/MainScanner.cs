@@ -15,6 +15,7 @@ namespace Algem_manual.Scanners
 
         public MainScanner(string directory)
         {
+            Logs.WriteLine("Иниализация главного сканера");
             path = directory;
         }
 
@@ -26,6 +27,8 @@ namespace Algem_manual.Scanners
                 return;
             }
 
+            Logs.WriteLine("Запуск потоков-сканеров");
+            
             DirectoryScanner theory = new DirectoryScanner(path, "Теория", trv_theory);
             Thread thread_theory = new Thread(theory.ScanContent);
             thread_theory.Start();
@@ -42,6 +45,7 @@ namespace Algem_manual.Scanners
             {
                 Application.DoEvents();
             }
+            Logs.WriteLine("Сканеры завершили свою работу");
         }
     }
 }

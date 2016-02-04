@@ -22,6 +22,7 @@ namespace Algem_manual.Converters
 
         public TestConverter(string initpath, string save, string word)
         {
+            Logs.WriteLine("Инициализация конвертера для '" + word + "'");
             path = initpath;
             savepath = save;
             keyWord = word;

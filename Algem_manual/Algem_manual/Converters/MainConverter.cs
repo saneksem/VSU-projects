@@ -19,6 +19,7 @@ namespace Algem_manual.Converters
 
         public MainConverter(string directory)
         {
+            Logs.WriteLine("Инициализация главного конвертера");
             path = directory;
         }
 
@@ -53,6 +54,7 @@ namespace Algem_manual.Converters
             }
 
             //запускаем потоки-конвертеры для теории, примеров и тестов
+            Logs.WriteLine("Запуск потоков-конвертеров");
             TexConverter theory = new TexConverter(path,ContentPath,"Теория");
             TexConverter examples = new TexConverter(path, ContentPath, "Примеры");
             TestConverter tests = new TestConverter(path, ContentPath, "Тесты");
@@ -70,6 +72,7 @@ namespace Algem_manual.Converters
             {
                 Application.DoEvents();
             }
+            Logs.WriteLine("Конвертеры завершили работу");
         }
     }
 }

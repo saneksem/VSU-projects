@@ -95,6 +95,10 @@ namespace Algem_manual
             Logs.WriteLine("Инициализация главной формы");
             InitializeComponent();
 
+            tree_Теория.ImageList = img_list_theory_examples;
+            tree_Примеры.ImageList = img_list_theory_examples;
+            tree_Тесты.ImageList = img_list_tests;
+
             split_Теория.SplitterWidth = 10;
             split_Примеры.SplitterWidth = 10;
             split_Тесты.SplitterWidth = 10;
@@ -210,6 +214,7 @@ namespace Algem_manual
             WebBrowser browser = null;
 
             TreeNode current = tree.SelectedNode;
+            //MessageBox.Show(current.SelectedImageIndex.ToString());
             if (current.Tag.ToString() == "child")
             {
                 String htmlpath = Path.Combine(DirectoriesSettings.ConvertedPath, current.Parent.Name, current.Text);
@@ -222,13 +227,6 @@ namespace Algem_manual
 
                     htmlpath = Path.Combine(htmlpath, "main.html");
                     browser_Теория.Navigate(String.Format("file:///{0}", htmlpath));
-                    /*
-                    while (browser_Теория.ReadyState != WebBrowserReadyState.Complete)
-                    { Application.DoEvents(); }
-                    //MessageBox.Show("TEST");
-                    browser_Теория.Document.Body.Style = "font-size:14pt;";
-                    if (browser_Теория.Document != null)
-                        browser_Теория.Document.BackColor = Color.LightYellow;*/
                 }
 
 
@@ -274,7 +272,6 @@ namespace Algem_manual
                     settings.ApplyWebBrowserStyle(browser);
                     ((Control)browser).Enabled = true;
                 }
-                    
             }
         }
 

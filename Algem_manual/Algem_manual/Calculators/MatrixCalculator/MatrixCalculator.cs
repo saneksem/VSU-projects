@@ -18,7 +18,7 @@ namespace Algem_manual
 
         public Calculations(Settings global)
         {
-
+            Logs.WriteLine("Инициализация формы калькулятора матриц");
             //загрузка настроек
             settings = global;
 
@@ -250,7 +250,10 @@ namespace Algem_manual
         //Процедура кнопки "посчитать"
         private void btn_calculate_Click(object sender, EventArgs e)
         {
+
+
             //считывание первой матрицы
+            Logs.WriteLine("Калькулятор матриц: чтение первой матрицы");
             int[,] A = new int[dgv_mtr1.Rows.Count, dgv_mtr1.Columns.Count];
             try
             {
@@ -263,6 +266,7 @@ namespace Algem_manual
             }
 
             //считывание второй матрицы
+            Logs.WriteLine("Калькулятор матриц: чтение второй матрицы");
             int[,] B = new int[dgv_mtr2.Rows.Count, dgv_mtr2.Columns.Count];
             if (chbx_две_матр.Checked == true)
             {
@@ -280,18 +284,24 @@ namespace Algem_manual
             string result = "";
 
             //вызов соответствующих процедур
+            Logs.WriteLine("Калькулятор матриц: вычисления");
             foreach (Control panel_control in splitContainerMatrix.Panel2.Controls)
                 if (panel_control is GroupBox)
+                {
+                    Logs.WriteLine("Калькулятор матриц: поиск выбранных опций для " + panel_control.Name);
                     switch (panel_control.Name)
                     {
                         case "gbx_две_матр_действия":
+
                             if (chbx_две_матр.Checked == true)
                                 foreach (Control group_control in panel_control.Controls)
                                     if (group_control is TableLayoutPanel)
                                         foreach (Control table_control in group_control.Controls)
-                                            if ((table_control is CheckBox) && ((CheckBox)table_control).Checked && ((CheckBox)table_control).Name!="chbx_две_матр")
+                                            if ((table_control is CheckBox) && ((CheckBox)table_control).Checked && ((CheckBox)table_control).Name != "chbx_две_матр")
                                             {
+                                                
                                                 string function = table_control.Name.Substring(5);
+                                                Logs.WriteLine("Калькулятор матриц: поиск и вызов процедуры '" + function + "'");
                                                 Type matr_utils = typeof(MatrixUtils);
                                                 MethodInfo method = matr_utils.GetMethod(function);
 
@@ -313,6 +323,7 @@ namespace Algem_manual
                                         if ((table_control is CheckBox) && ((CheckBox)table_control).Checked)
                                         {
                                             string function = table_control.Name.Substring(5);
+                                            Logs.WriteLine("Калькулятор матриц: поиск и вызов процедуры '" + function + "'");
                                             Type matr_utils = typeof(MatrixUtils);
                                             MethodInfo method = matr_utils.GetMethod(function);
 
@@ -335,7 +346,7 @@ namespace Algem_manual
                                         }
                             break;
                     }
-
+            }
             string[] temp = result.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
             //очистка временной директории
@@ -478,11 +489,6 @@ namespace Algem_manual
                 dgv_mtr2.Rows.Add(row);
             mtr2row.Value = Convert.ToDecimal(dgv_mtr2.Rows.Count);
             mtr2col.Value = Convert.ToDecimal(dgv_mtr2.Columns.Count);
-        }
-
-        private void splitContainerMain_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
         }
     }
 }

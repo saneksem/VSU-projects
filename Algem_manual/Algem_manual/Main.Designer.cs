@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tree_Теория = new System.Windows.Forms.TreeView();
             this.tab_control_main = new System.Windows.Forms.TabControl();
@@ -46,6 +47,8 @@
             this.матрицыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.комплексныеЧислаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.img_list_theory_examples = new System.Windows.Forms.ImageList(this.components);
+            this.img_list_tests = new System.Windows.Forms.ImageList(this.components);
             this.tab_control_main.SuspendLayout();
             this.tab_Теория.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.split_Теория)).BeginInit();
@@ -174,7 +177,7 @@
             // 
             this.tree_Примеры.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tree_Примеры.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tree_Примеры.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tree_Примеры.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tree_Примеры.HideSelection = false;
             this.tree_Примеры.Location = new System.Drawing.Point(0, 0);
             this.tree_Примеры.Margin = new System.Windows.Forms.Padding(2);
@@ -271,6 +274,7 @@
             // 
             // комплексныеЧислаToolStripMenuItem
             // 
+            this.комплексныеЧислаToolStripMenuItem.Enabled = false;
             this.комплексныеЧислаToolStripMenuItem.Name = "комплексныеЧислаToolStripMenuItem";
             this.комплексныеЧислаToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.комплексныеЧислаToolStripMenuItem.Text = "Комплексные числа";
@@ -282,6 +286,20 @@
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.настройкиToolStripMenuItem.Text = "Настройки";
             this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.tool_settings_Click);
+            // 
+            // img_list_theory_examples
+            // 
+            this.img_list_theory_examples.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("img_list_theory_examples.ImageStream")));
+            this.img_list_theory_examples.TransparentColor = System.Drawing.Color.Transparent;
+            this.img_list_theory_examples.Images.SetKeyName(0, "11.Notebook-16.png");
+            this.img_list_theory_examples.Images.SetKeyName(1, "12.File-16.png");
+            // 
+            // img_list_tests
+            // 
+            this.img_list_tests.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("img_list_tests.ImageStream")));
+            this.img_list_tests.TransparentColor = System.Drawing.Color.Transparent;
+            this.img_list_tests.Images.SetKeyName(0, "11.Notebook-16.png");
+            this.img_list_tests.Images.SetKeyName(1, "15.Pencil-16.png");
             // 
             // Main
             // 
@@ -337,6 +355,8 @@
         private System.Windows.Forms.ToolStripMenuItem матрицыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem комплексныеЧислаToolStripMenuItem;
+        private System.Windows.Forms.ImageList img_list_theory_examples;
+        private System.Windows.Forms.ImageList img_list_tests;
     }
 }
 

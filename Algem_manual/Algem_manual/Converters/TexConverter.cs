@@ -19,6 +19,7 @@ namespace Algem_manual.Converters
 
         public TexConverter(string initpath, string save, string word)
         {
+            Logs.WriteLine("Инициализация конвертера для '"+word+"'");
             path = initpath;
             savepath = save;
             keyWord = word;
