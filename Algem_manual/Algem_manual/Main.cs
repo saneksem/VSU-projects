@@ -68,46 +68,36 @@ namespace Algem_manual
 
         public Main()
         {
-            Logs.InitLogging();
-
-            Logs.Write("Версия ОС: "+Environment.OSVersion);
-            if (Environment.Is64BitOperatingSystem)
-                Logs.Write(" х64; ");
-            else
-                Logs.Write(" х32; ");
-            Logs.WriteLine(Environment.ProcessorCount.ToString() + " ядер ЦП");
-            
-            Logs.WriteLine("Инициализация главной формы");
-
-            
+            Logs.WriteLine("Загрузка файла настроек");
             Settings temp = Settings.Load();
             if (temp == null)
             {
-                //создать настройки по умолчанию и сохранить
+                Logs.WriteLine("Файл настроек не найден. Создание файла настроек.");
                 settings = new Settings();
                 try
                 {
                     settings.Save();
+                    Logs.WriteLine("Успешно сохранён файл настроек со стандартными значениями.");
                 }
-                catch
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Невозможно сохранить настройки по умолчанию."+Environment.NewLine+"Возможно, приложение нужно запустить с правами администратора." + Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Logs.WriteLine("Ошибка при создании файла настроек.");
+                    Logs.WriteException(ex);
+                    MessageBox.Show("Невозможно сохранить настройки по умолчанию."+Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию." + Environment.NewLine + "Возможно, приложение нужно запустить с правами администратора.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                //MessageBox.Show("успешно загружено");
+                Logs.WriteLine("Файл настроек успешно загружен");
                 settings = temp;
             }
 
-            
+            Logs.WriteLine("Инициализация главной формы");
             InitializeComponent();
 
             split_Теория.SplitterWidth = 10;
             split_Примеры.SplitterWidth = 10;
             split_Тесты.SplitterWidth = 10;
-
-            
         }
 
         private void TestTextBoxChanged(object sender, EventArgs e)
@@ -281,10 +271,8 @@ namespace Algem_manual
 
                 if (browser != null)
                 {
-                    
                     settings.ApplyWebBrowserStyle(browser);
                     ((Control)browser).Enabled = true;
-                    
                 }
                     
             }
@@ -305,7 +293,6 @@ namespace Algem_manual
         private void Main_Shown(object sender, EventArgs e)
         {
             LockControls();
-            
             
             cmdDisableX_Click(sender, e);
 
