@@ -51,17 +51,16 @@ namespace Algem_manual
 
         public void ApplyWebBrowserStyle(WebBrowser browser)
         {
+            browser.Hide();
+            
             while (browser.ReadyState != WebBrowserReadyState.Complete)
             { Application.DoEvents(); }
-
-            Logs.WriteLine("браузер загрузил страницу");
 
             if (browser.Document != null)
                 browser.Document.BackColor = this.BackgroundColor;
             browser.Document.Body.Style = String.Format("font-size:{0}pt;", this.FontSize);
 
-            while (browser.ReadyState != WebBrowserReadyState.Complete)
-            { Logs.WriteLine("применение стиля браузера"); }
+            browser.Show();
         }
 
         public void ApplyTreeViewStyle(TreeView tree)
