@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,6 +11,25 @@ namespace Algem_manual
 {
     static class Program
     {
+        const int FEATURE_DISABLE_NAVIGATION_SOUNDS = 21;
+        const int SET_FEATURE_ON_PROCESS = 0x00000002;
+
+        [DllImport("urlmon.dll")]
+        [PreserveSig]
+        [return: MarshalAs(UnmanagedType.Error)]
+        static extern int CoInternetSetFeatureEnabled(
+            int FeatureEntry,
+            [MarshalAs(UnmanagedType.U4)] int dwFlags,
+            bool fEnable);
+
+        static void DisableClickSounds()
+        {
+            CoInternetSetFeatureEnabled(
+                FEATURE_DISABLE_NAVIGATION_SOUNDS,
+                SET_FEATURE_ON_PROCESS,
+                true);
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -19,6 +39,7 @@ namespace Algem_manual
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            DisableClickSounds();
 
             //обработка необработанных ранее исключений
             System.AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
