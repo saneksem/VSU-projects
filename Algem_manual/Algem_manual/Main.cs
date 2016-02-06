@@ -214,7 +214,6 @@ namespace Algem_manual
             WebBrowser browser = null;
 
             TreeNode current = tree.SelectedNode;
-            //MessageBox.Show(current.SelectedImageIndex.ToString());
             if (current.Tag.ToString() == "child")
             {
                 String htmlpath = Path.Combine(DirectoriesSettings.ConvertedPath, current.Parent.Name, current.Text);
@@ -349,6 +348,11 @@ namespace Algem_manual
         {
             Calculators.ComplexCalculator.ComplexCalculator c = new Calculators.ComplexCalculator.ComplexCalculator(settings);
             c.Show();
+        }
+
+        private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "file://" + DirectoriesSettings.HelpPath);
         }
     }
 }
