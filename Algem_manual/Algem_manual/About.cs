@@ -15,17 +15,21 @@ namespace Algem_manual
         {
             InitializeComponent();
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.labelVersion.Text = String.Format("Версия {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription
                 +Environment.NewLine
                 +Environment.NewLine
-                +"Преподаватель: Глушакова Татьяна Николаевна"
+                +"Преподаватель:"
+                + Environment.NewLine + "Глушакова Татьяна Николаевна"
                 + Environment.NewLine
-                +"Главный разработчик: Семочко Александр Васильевич"
                 + Environment.NewLine
-                +"Над теорией, примерами и алгоритмами калькуляторов работали:"
+                + "Главный разработчик:"
+                + Environment.NewLine + "Семочко Александр Васильевич"
+                + Environment.NewLine
+                + Environment.NewLine
+                + "Над теорией, примерами и алгоритмами калькуляторов работали:"
                 + Environment.NewLine + "Баскаков Алексей,"
                 + Environment.NewLine + "Власов Максим Сергеевич,"
                 + Environment.NewLine + "Кожевников Никита,"
