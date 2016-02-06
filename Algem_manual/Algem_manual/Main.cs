@@ -95,6 +95,9 @@ namespace Algem_manual
             Logs.WriteLine("Инициализация главной формы");
             InitializeComponent();
 
+
+            
+
             tree_Теория.ImageList = img_list_theory_examples;
             tree_Примеры.ImageList = img_list_theory_examples;
             tree_Тесты.ImageList = img_list_tests;
@@ -351,6 +354,11 @@ namespace Algem_manual
         }
 
         private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "file://" + DirectoriesSettings.HelpPath);
+        }
+
+        private void Main_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             Help.ShowHelp(this, "file://" + DirectoriesSettings.HelpPath);
         }

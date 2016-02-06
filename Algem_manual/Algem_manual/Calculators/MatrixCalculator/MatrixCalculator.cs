@@ -490,5 +490,10 @@ namespace Algem_manual
             mtr2row.Value = Convert.ToDecimal(dgv_mtr2.Rows.Count);
             mtr2col.Value = Convert.ToDecimal(dgv_mtr2.Columns.Count);
         }
+
+        private void Calculations_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "file://" + DirectoriesSettings.HelpPath,HelpNavigator.Topic, "Matrix calculator.htm");
+        }
     }
 }

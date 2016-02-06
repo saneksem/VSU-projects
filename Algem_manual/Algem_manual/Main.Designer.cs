@@ -47,11 +47,11 @@
             this.матрицыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.комплексныеЧислаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.img_list_theory_examples = new System.Windows.Forms.ImageList(this.components);
-            this.img_list_tests = new System.Windows.Forms.ImageList(this.components);
             this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.img_list_theory_examples = new System.Windows.Forms.ImageList(this.components);
+            this.img_list_tests = new System.Windows.Forms.ImageList(this.components);
             this.tab_control_main.SuspendLayout();
             this.tab_Теория.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.split_Теория)).BeginInit();
@@ -291,20 +291,6 @@
             this.настройкиToolStripMenuItem.Text = "Настройки";
             this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.tool_settings_Click);
             // 
-            // img_list_theory_examples
-            // 
-            this.img_list_theory_examples.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("img_list_theory_examples.ImageStream")));
-            this.img_list_theory_examples.TransparentColor = System.Drawing.Color.Transparent;
-            this.img_list_theory_examples.Images.SetKeyName(0, "11.Notebook-16.png");
-            this.img_list_theory_examples.Images.SetKeyName(1, "12.File-16.png");
-            // 
-            // img_list_tests
-            // 
-            this.img_list_tests.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("img_list_tests.ImageStream")));
-            this.img_list_tests.TransparentColor = System.Drawing.Color.Transparent;
-            this.img_list_tests.Images.SetKeyName(0, "11.Notebook-16.png");
-            this.img_list_tests.Images.SetKeyName(1, "15.Pencil-16.png");
-            // 
             // помощьToolStripMenuItem
             // 
             this.помощьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -327,6 +313,20 @@
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе...";
             // 
+            // img_list_theory_examples
+            // 
+            this.img_list_theory_examples.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("img_list_theory_examples.ImageStream")));
+            this.img_list_theory_examples.TransparentColor = System.Drawing.Color.Transparent;
+            this.img_list_theory_examples.Images.SetKeyName(0, "11.Notebook-16.png");
+            this.img_list_theory_examples.Images.SetKeyName(1, "12.File-16.png");
+            // 
+            // img_list_tests
+            // 
+            this.img_list_tests.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("img_list_tests.ImageStream")));
+            this.img_list_tests.TransparentColor = System.Drawing.Color.Transparent;
+            this.img_list_tests.Images.SetKeyName(0, "11.Notebook-16.png");
+            this.img_list_tests.Images.SetKeyName(1, "15.Pencil-16.png");
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,6 +341,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Электронный учебник. Алгебра и геометрия";
             this.Shown += new System.EventHandler(this.Main_Shown);
+            this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Main_HelpRequested);
             this.tab_control_main.ResumeLayout(false);
             this.tab_Теория.ResumeLayout(false);
             this.split_Теория.Panel1.ResumeLayout(false);
