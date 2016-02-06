@@ -135,6 +135,7 @@
             // 
             this.browser_Теория.AllowWebBrowserDrop = false;
             this.browser_Теория.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browser_Теория.IsWebBrowserContextMenuEnabled = false;
             this.browser_Теория.Location = new System.Drawing.Point(0, 0);
             this.browser_Теория.Margin = new System.Windows.Forms.Padding(2);
             this.browser_Теория.MinimumSize = new System.Drawing.Size(15, 16);
@@ -142,6 +143,8 @@
             this.browser_Теория.Size = new System.Drawing.Size(487, 405);
             this.browser_Теория.TabIndex = 0;
             this.browser_Теория.WebBrowserShortcutsEnabled = false;
+            this.browser_Теория.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowserNavigating);
+            this.browser_Теория.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.webBrowserButtonCheck);
             // 
             // tab_Примеры
             // 
@@ -191,13 +194,18 @@
             // 
             // browser_Примеры
             // 
+            this.browser_Примеры.AllowWebBrowserDrop = false;
             this.browser_Примеры.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browser_Примеры.IsWebBrowserContextMenuEnabled = false;
             this.browser_Примеры.Location = new System.Drawing.Point(0, 0);
             this.browser_Примеры.Margin = new System.Windows.Forms.Padding(2);
             this.browser_Примеры.MinimumSize = new System.Drawing.Size(15, 16);
             this.browser_Примеры.Name = "browser_Примеры";
             this.browser_Примеры.Size = new System.Drawing.Size(487, 405);
             this.browser_Примеры.TabIndex = 0;
+            this.browser_Примеры.WebBrowserShortcutsEnabled = false;
+            this.browser_Примеры.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowserNavigating);
+            this.browser_Примеры.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.webBrowserButtonCheck);
             // 
             // tab_Тесты
             // 

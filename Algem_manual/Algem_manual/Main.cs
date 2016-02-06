@@ -49,6 +49,7 @@ namespace Algem_manual
 
         List<object> answers;
         Settings settings;
+        private bool backspace;
 
         private void UpdateAllStyles()
         {
@@ -95,9 +96,6 @@ namespace Algem_manual
             Logs.WriteLine("Инициализация главной формы");
             InitializeComponent();
 
-
-            
-
             tree_Теория.ImageList = img_list_theory_examples;
             tree_Примеры.ImageList = img_list_theory_examples;
             tree_Тесты.ImageList = img_list_tests;
@@ -105,7 +103,30 @@ namespace Algem_manual
             split_Теория.SplitterWidth = 10;
             split_Примеры.SplitterWidth = 10;
             split_Тесты.SplitterWidth = 10;
+
+            backspace = false;
         }
+
+        private void webBrowserButtonCheck(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+            {
+                backspace = true;
+                return;
+            }
+
+            backspace = false;
+        }
+
+        private void webBrowserNavigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            if (backspace)
+            {
+                e.Cancel = true;
+                backspace = false;
+            }
+        }
+
 
         private void TestTextBoxChanged(object sender, EventArgs e)
         {
@@ -151,6 +172,9 @@ namespace Algem_manual
             {
                 WebBrowser b = new WebBrowser();
                 b.Location = new Point(10, currentpos);
+                b.IsWebBrowserContextMenuEnabled = false;
+                b.AllowWebBrowserDrop = false;
+                b.WebBrowserShortcutsEnabled = false;
                 b.Url = new Uri(String.Format("file:///{0}", Path.Combine(path,(i+1).ToString(),"main.html")));
                 b.Visible = true;
                 b.Name = "WebBrowser" + i.ToString();
@@ -212,6 +236,8 @@ namespace Algem_manual
 
         private void treeViewSelection(object sender, TreeViewEventArgs e)
         {
+            backspace = false;
+
             TreeView tree = (TreeView)sender;
 
             WebBrowser browser = null;
