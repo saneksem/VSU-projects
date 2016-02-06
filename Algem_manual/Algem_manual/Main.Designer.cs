@@ -312,6 +312,7 @@
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе...";
+            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
             // img_list_theory_examples
             // 

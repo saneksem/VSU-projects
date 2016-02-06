@@ -362,5 +362,11 @@ namespace Algem_manual
         {
             Help.ShowHelp(this, "file://" + DirectoriesSettings.HelpPath);
         }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About ab = new About();
+            ab.ShowDialog();
+        }
     }
 }
