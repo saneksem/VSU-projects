@@ -69,22 +69,27 @@ namespace Algem_manual
 
         public Main()
         {
+            
+
+            Logs.WriteLine("Инициализация главной формы");
+            InitializeComponent();
+
             Logs.WriteLine("Загрузка файла настроек");
             Settings temp = Settings.Load();
             if (temp == null)
             {
                 Logs.WriteLine("Файл настроек не найден. Создание файла настроек.");
-                settings = new Settings();
+                settings = new Settings(this);
                 try
                 {
                     settings.Save();
                     Logs.WriteLine("Успешно сохранён файл настроек со стандартными значениями.");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Logs.WriteLine("Ошибка при создании файла настроек.");
                     Logs.WriteException(ex);
-                    MessageBox.Show("Невозможно сохранить настройки по умолчанию."+Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию." + Environment.NewLine + "Возможно, приложение нужно запустить с правами администратора.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Невозможно сохранить настройки по умолчанию." + Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию." + Environment.NewLine + "Возможно, приложение нужно запустить с правами администратора.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -93,8 +98,7 @@ namespace Algem_manual
                 settings = temp;
             }
 
-            Logs.WriteLine("Инициализация главной формы");
-            InitializeComponent();
+            settings.LoadFormState(this);
 
             tree_Теория.ImageList = img_list_theory_examples;
             tree_Примеры.ImageList = img_list_theory_examples;
@@ -126,7 +130,6 @@ namespace Algem_manual
                 backspace = false;
             }
         }
-
 
         private void TestTextBoxChanged(object sender, EventArgs e)
         {
@@ -393,6 +396,19 @@ namespace Algem_manual
         {
             About ab = new About();
             ab.ShowDialog();
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            settings.SaveFormState(this);
+            try
+            {
+                settings.Save();
+            }
+            catch
+            {
+                MessageBox.Show("Невозможно сохранить настройки." + Environment.NewLine + "Возможно, приложение нужно запустить с правами администратора." + Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

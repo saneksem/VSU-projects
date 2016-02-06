@@ -74,14 +74,7 @@ namespace Algem_manual
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            try
-            {
-                settings.Save();
-            }
-            catch
-            {
-                MessageBox.Show("Невозможно сохранить настройки." + Environment.NewLine + "Возможно, приложение нужно запустить с правами администратора." + Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
             this.DialogResult = DialogResult.OK;
         }
     }

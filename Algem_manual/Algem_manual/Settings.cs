@@ -13,9 +13,11 @@ namespace Algem_manual
     public class Settings
     {
         private static string FilePath = Path.Combine(Application.StartupPath, "settings.conf");
-
         public int FontSize;
         public Color BackgroundColor;
+        public Point WindowLocation;
+        public Size WindowSize;
+        public FormWindowState WindowState;
 
         public Settings()
         {
@@ -23,8 +25,40 @@ namespace Algem_manual
             BackgroundColor = System.Drawing.Color.White;
         }
 
+        public Settings(Form frm)
+        {
+            FontSize = 14;
+            BackgroundColor = System.Drawing.Color.White;
+            SaveFormState(frm);
+        }
+
+        public void SaveFormState(Form frm)
+        {
+            switch(frm.WindowState)
+            {
+                case FormWindowState.Normal:
+                    WindowLocation = frm.Location;
+                    WindowSize = frm.Size;
+                    break;
+                default:
+                    WindowLocation = frm.RestoreBounds.Location;
+                    WindowSize = frm.RestoreBounds.Size;
+                    break;
+            }
+            
+            WindowState = frm.WindowState;
+        }
+
+        public void LoadFormState(Form frm)
+        {
+            frm.WindowState = WindowState;
+            frm.Location = WindowLocation;
+            frm.Size = WindowSize;
+        }
+
         public void Save()
         {
+            Logs.WriteLine("Сохраняю настройки в файл...");
             using (Stream stream = File.Open(FilePath, FileMode.Create))
             {
                 var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
