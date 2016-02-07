@@ -31,7 +31,7 @@ namespace Algem_manual
                 + Environment.NewLine
                 + "Над теорией, примерами и алгоритмами калькуляторов работали:"
                 + Environment.NewLine + "Баскаков Алексей,"
-                + Environment.NewLine + "Власов Максим Сергеевич,"
+                + Environment.NewLine + "Власов Максим,"
                 + Environment.NewLine + "Кожевников Никита,"
                 + Environment.NewLine + "Меликбекян Ваге,"
                 + Environment.NewLine + "Пономарёва Екатерина,"

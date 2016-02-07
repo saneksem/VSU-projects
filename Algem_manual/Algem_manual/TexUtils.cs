@@ -16,7 +16,7 @@ namespace Algem_manual
     public static class TexUtils
     {
         [System.Runtime.InteropServices.DllImport("MimeTex.dll")]
-        public static extern int CreateGifFromEq(string expr, string fileName);
+        private static extern int CreateGifFromEq(string expr, string fileName);
 
         public class Render
         {

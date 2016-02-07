@@ -110,7 +110,6 @@ namespace Algem_manual
             {
                 var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 binaryFormatter.Serialize(stream, this);
-                stream.Close();
             }
         }
 
