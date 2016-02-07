@@ -74,7 +74,6 @@ namespace Algem_manual
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            
             this.DialogResult = DialogResult.OK;
         }
     }

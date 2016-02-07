@@ -69,36 +69,10 @@ namespace Algem_manual
 
         public Main()
         {
-            
-
             Logs.WriteLine("Инициализация главной формы");
             InitializeComponent();
 
-            Logs.WriteLine("Загрузка файла настроек");
-            Settings temp = Settings.Load();
-            if (temp == null)
-            {
-                Logs.WriteLine("Файл настроек не найден. Создание файла настроек.");
-                settings = new Settings(this);
-                try
-                {
-                    settings.Save();
-                    Logs.WriteLine("Успешно сохранён файл настроек со стандартными значениями.");
-                }
-                catch (Exception ex)
-                {
-                    Logs.WriteLine("Ошибка при создании файла настроек.");
-                    Logs.WriteException(ex);
-                    MessageBox.Show("Невозможно сохранить настройки по умолчанию." + Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию." + Environment.NewLine + "Возможно, приложение нужно запустить с правами администратора.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                Logs.WriteLine("Файл настроек успешно загружен");
-                settings = temp;
-            }
-
-            settings.LoadFormState(this);
+            
 
             tree_Теория.ImageList = img_list_theory_examples;
             tree_Примеры.ImageList = img_list_theory_examples;
@@ -258,6 +232,7 @@ namespace Algem_manual
 
                     htmlpath = Path.Combine(htmlpath, "main.html");
                     browser_Теория.Navigate(String.Format("file:///{0}", htmlpath));
+                    
                 }
 
 
@@ -268,6 +243,7 @@ namespace Algem_manual
 
                     htmlpath = Path.Combine(htmlpath, "main.html");
                     browser_Примеры.Navigate(String.Format("file:///{0}", htmlpath));
+                    
                 }
                     
 
@@ -296,6 +272,7 @@ namespace Algem_manual
                     FillTest(answers.Count,htmlpath);
 
                     UnlockControls();
+                    
                 }
 
                 if (browser != null)
@@ -324,10 +301,13 @@ namespace Algem_manual
             
             cmdDisableX_Click(sender, e);
 
+            bool update = false;
+
             Converters.MainConverter converter = new Converters.MainConverter(DirectoriesSettings.UnconvertedPath);
             if (converter.CheckForUpdates())
             {
                 Logs.WriteLine("Найдены обновления контента");
+                update = true;
 
                 MessageBox.Show("Начинается распаковка нового контента" + Environment.NewLine + "Главный элемент с вкладками будет временно недоступен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
@@ -361,7 +341,36 @@ namespace Algem_manual
             browser_Теория.Navigate("about:blank");
             browser_Примеры.Navigate("about:blank");
 
+            Logs.WriteLine("Загрузка файла настроек");
+            Settings temp = Settings.Load();
+            if (temp == null)
+            {
+                Logs.WriteLine("Файл настроек не найден. Создание файла настроек.");
+                settings = new Settings(this);
+                try
+                {
+                    settings.Save();
+                    Logs.WriteLine("Успешно сохранён файл настроек со стандартными значениями.");
+                }
+                catch (Exception ex)
+                {
+                    Logs.WriteLine("Ошибка при создании файла настроек.");
+                    Logs.WriteException(ex);
+                    MessageBox.Show("Невозможно сохранить настройки по умолчанию." + Environment.NewLine + "При следующем запуске будут загружены настройки по умолчанию." + Environment.NewLine + "Возможно, приложение нужно запустить с правами администратора.", "Ошибка сохранения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                Logs.WriteLine("Файл настроек успешно загружен");
+                settings = temp;
+            }
+
             UpdateAllStyles();
+            settings.LoadFormState(this);
+            if (update == true)
+                settings.ResetBookmarks();
+            else
+                settings.LoadBookmarks(tree_Теория, tree_Примеры, tree_Тесты);
 
             cmdEnableX_Click(sender, e);
             UnlockControls();
@@ -401,6 +410,10 @@ namespace Algem_manual
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             settings.SaveFormState(this);
+            settings.SaveBookmark(ref settings.TheoryBookmark, tree_Теория, tree_Теория.SelectedNode);
+            settings.SaveBookmark(ref settings.ExamplesBookmark, tree_Примеры, tree_Примеры.SelectedNode);
+            settings.SaveBookmark(ref settings.TestsBookmark, tree_Тесты, tree_Тесты.SelectedNode);
+
             try
             {
                 settings.Save();

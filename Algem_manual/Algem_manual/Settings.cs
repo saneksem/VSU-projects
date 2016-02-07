@@ -18,17 +18,29 @@ namespace Algem_manual
         public Point WindowLocation;
         public Size WindowSize;
         public FormWindowState WindowState;
+        public Point TheoryBookmark;
+        public Point ExamplesBookmark;
+        public Point TestsBookmark;
+
+        public void ResetBookmarks()
+        {
+            TheoryBookmark = new Point(-1, -1);
+            ExamplesBookmark = new Point(-1, -1);
+            TestsBookmark = new Point(-1, -1);
+        }
 
         public Settings()
         {
             FontSize = 14;
             BackgroundColor = System.Drawing.Color.White;
+            ResetBookmarks();
         }
 
         public Settings(Form frm)
         {
             FontSize = 14;
             BackgroundColor = System.Drawing.Color.White;
+            ResetBookmarks();
             SaveFormState(frm);
         }
 
@@ -54,6 +66,41 @@ namespace Algem_manual
             frm.WindowState = WindowState;
             frm.Location = WindowLocation;
             frm.Size = WindowSize;
+        }
+
+        public void SaveBookmark(ref Point point,TreeView tree, TreeNode node)
+        {
+            if (node == null || !PointOfNode(ref point, tree, node))
+                point = new Point(-1, -1);
+        }
+
+        public void LoadBookmarks(TreeView theory,TreeView examples,TreeView tests)
+        {
+            Logs.WriteLine("Восстанавливаю закладки");
+
+            if (TheoryBookmark.X>-1 && TheoryBookmark.Y>-1)
+                theory.SelectedNode = theory.Nodes[TheoryBookmark.X].Nodes[TheoryBookmark.Y];
+
+            if (ExamplesBookmark.X>-1 && ExamplesBookmark.Y>-1)
+                examples.SelectedNode = examples.Nodes[ExamplesBookmark.X].Nodes[ExamplesBookmark.Y];
+
+            if (TestsBookmark.X>-1 && TestsBookmark.Y >-1)
+            tests.SelectedNode = tests.Nodes[TestsBookmark.X].Nodes[TestsBookmark.Y];
+        }
+
+        public bool PointOfNode(ref Point point,TreeView tree,TreeNode node)
+        {
+            int x = 0;
+            while (x < tree.Nodes.Count && !tree.Nodes[x].Nodes.Contains(node))
+                x++;
+
+            if (x >= tree.Nodes.Count)
+                return false;
+
+            int y = tree.Nodes[x].Nodes.IndexOf(node);
+            point.X = x;
+            point.Y = y;
+            return true;
         }
 
         public void Save()
@@ -106,6 +153,6 @@ namespace Algem_manual
         {
             other.BackgroundColor = this.BackgroundColor;
             other.FontSize = this.FontSize;
-        }
+    }
     }
 }
