@@ -30,7 +30,11 @@ namespace Algem_manual
             {
                 float dpi = myGraphics.DpiX;
                 if (dpi > 96)
-                    this.splitContainerMatrix.SplitterDistance -= Convert.ToInt32(dpi)*3/2 - 96;
+                {
+                    this.splitContainerMatrix.SplitterDistance -= Convert.ToInt32(dpi) * 3 / 2 - 96;
+                    this.splitContainerMain.SplitterDistance+= Convert.ToInt32(dpi) * 3 / 2 - 96;
+                }
+                    
             }
 
             this.MinimumSize = new Size(this.Width, this.Height);
